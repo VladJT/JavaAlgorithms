@@ -3,6 +3,7 @@ package com.company.sort_objects;
 import java.util.HashMap;
 import java.util.Random;
 
+
 /**
  * 1. Отсортировать массив, состоящий из экземпляров класса Notebook в количестве 10000 штук.
  * Условия для сортировки:
@@ -13,6 +14,7 @@ import java.util.Random;
  * 3) по производителю:
  * Lenuvo > Asos > MacNote > Eser > Xamiou
  */
+// 1
 public class Notebook {
 
     public static HashMap<Integer, String> vendors;
