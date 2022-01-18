@@ -1,14 +1,12 @@
 package com.company.sort_objects;
 
 import com.company.sort.SpeedTest;
-
 import java.util.HashMap;
 
 
 public class Main {
 
     public static void main(String[] args) {
-
         Notebook.vendors = new HashMap<>();
         Notebook.vendors.put(1, "Lenuvo");
         Notebook.vendors.put(2, "Asos");

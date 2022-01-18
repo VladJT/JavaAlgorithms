@@ -34,7 +34,6 @@ public class Notebook {
         System.out.println(price + "$ - " + ram + " - " + vendors.get(keyName) + " (id: " + index + ")");
     }
 
-
     public boolean isHigherThan(Notebook y) {
         boolean result = false;
 

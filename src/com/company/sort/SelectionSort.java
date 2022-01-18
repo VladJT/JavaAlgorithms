@@ -1,13 +1,15 @@
 package com.company.sort;
+
 /**
  * сортировка выбором
  * O(n^2)
  */
+
 public class SelectionSort {
 
     public static int sort(int[] array) {
-        int countIteration=0;
-        int lastIndex = array.length-1;
+        int countIteration = 0;
+        int lastIndex = array.length - 1;
 
         for (int i = 0; i <= lastIndex; i++) {
             int minIndex = i;
