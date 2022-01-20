@@ -1,4 +1,4 @@
-package com.company.sort;
+package com.company.common;
 
 import java.util.Random;
 
@@ -9,6 +9,9 @@ public class MyArray {
 
     // массив целых чисел
     int[] array;
+    public int[] getArray(){
+        return array;
+    }
 
     public MyArray(int _size) {
         size = _size;
@@ -32,11 +35,10 @@ public class MyArray {
 
     // вывод массива на экран
     public void printArray() {
-        for (int a : array) {
-            System.out.print(a + " ");
+        for (int i=0;i<array.length;i++) {
+            System.out.print(i + ":"+array[i]+"  ");
         }
         System.out.println();
     }
-
 
 }
