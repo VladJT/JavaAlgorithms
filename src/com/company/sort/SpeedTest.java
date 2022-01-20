@@ -2,14 +2,14 @@ package com.company.sort;
 
 public class SpeedTest {
 
-    public static  long time;
+    public static long time;
 
-    public static void startTime(){
+    public static void startTime() {
         time = System.currentTimeMillis();
     }
 
-    public static void endTime(){
+    public static void endTime() {
         time = System.currentTimeMillis() - time;
-        System.out.println("Прошло милисекунд: "+time);
+        System.out.println("Прошло милисекунд: " + time);
     }
 }

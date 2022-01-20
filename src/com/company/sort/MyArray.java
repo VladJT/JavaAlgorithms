@@ -7,15 +7,11 @@ public class MyArray {
     // размер массива
     int size;
 
-    // количество итераций сортировки
-    public long countIteration;
-
     // массив целых чисел
     int[] array;
 
     public MyArray(int _size) {
         size = _size;
-        countIteration = 0L;
         array = new int[size];
     }
 

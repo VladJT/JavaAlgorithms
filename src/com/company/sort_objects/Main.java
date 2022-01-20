@@ -1,7 +1,7 @@
 package com.company.sort_objects;
 
-import com.company.sort.SpeedTest;
 import java.util.HashMap;
+import com.company.sort.*;
 
 
 public class Main {

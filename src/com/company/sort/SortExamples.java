@@ -5,7 +5,6 @@ import com.company.sort.*;
 
 public class SortExamples {
 
-
     public static void main(String[] args) {
         int size = 100;
         MyArray a1 = new MyArray(size);
@@ -19,7 +18,7 @@ public class SortExamples {
         MyArray a2 = new MyArray(size);
         a2.initArray(1000);
         a2.printArray();
-        c =  SelectionSort.sort(a2.array);
+        c = SelectionSort.sort(a2.array);
         a2.printArray();
         System.out.println("Сортировка выбором. Итераций = " + c);
         System.out.println();
@@ -35,7 +34,7 @@ public class SortExamples {
         MyArray a4 = new MyArray(size);
         a4.initArray(1000);
         a4.printArray();
-        c =  InsertionSort.sort(a4.array);
+        c = InsertionSort.sort(a4.array);
         a4.printArray();
         System.out.println("Сортировка вставками. Итераций = " + c);
         System.out.println();

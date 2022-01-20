@@ -4,7 +4,6 @@ package com.company.sort;
  * сортировка выбором
  * O(n^2)
  */
-
 public class SelectionSort {
 
     public static int sort(int[] array) {

@@ -1,4 +1,5 @@
 package com.company.sort;
+
 /**
  * сортировка "пузырьком"
  * O(n^2)
