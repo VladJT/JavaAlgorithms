@@ -2,8 +2,7 @@ package com.company.sort_objects;
 
 import com.company.sort.SpeedTest;
 import java.util.HashMap;
-
-
+// 1
 public class Main {
 
     public static void main(String[] args) {
