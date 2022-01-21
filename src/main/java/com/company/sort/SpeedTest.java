@@ -1,4 +1,4 @@
-package main.java.com.company.sort;
+package com.company.sort;
 
 public class SpeedTest {
 

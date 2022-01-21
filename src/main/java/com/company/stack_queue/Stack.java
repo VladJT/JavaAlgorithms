@@ -1,4 +1,4 @@
-package main.java.com.company.stack_queue;
+package com.company.stack_queue;
 
 public class Stack {
     /**

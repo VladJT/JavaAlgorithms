@@ -1,4 +1,4 @@
-package main.java.com.company.search;
+package com.company.search;
 
 public class BinarySearch {
 

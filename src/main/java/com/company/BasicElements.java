@@ -1,4 +1,4 @@
-package main.java.com.company;
+package com.company;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
