@@ -15,10 +15,7 @@ public class NumberSearch {
         // 1. массив длиной = 0 или не начинается с 1
         if (arr.length == 0 || arr[0] != 1) return 1;
 
-        // 2. массив из 1 элемента
-        if (arr.length == 1) return arr[0] == 1 ? 2 : 1;
-
-        // 3. в массиве нет пропусков
+        // 2. пропущенный элемент - последний (в массиве нет пропусков)
         if (arr[end] == end + 1) return arr[end] + 1;
 
         // Во всех остальных случаях ищем бинарным поиском
@@ -42,8 +39,8 @@ public class NumberSearch {
 
     public static void main(String[] args) {
         int[] a1 = {1, 2, 4, 5, 6, 7, 8};
-        int[] a2 = {2, 3, 4};
-        int[] a3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20};
+        int[] a2 = {2};
+        int[] a3 = {1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
         NumberSearch s1 = new NumberSearch();
         NumberSearch s2 = new NumberSearch();
         NumberSearch s3 = new NumberSearch();
@@ -51,6 +48,5 @@ public class NumberSearch {
         System.out.println(Arrays.toString(a1) + " не хватает элемента: " + s1.search(a1) + ". Итераций: " + s1.iterationCount);
         System.out.println(Arrays.toString(a2) + " не хватает элемента: " + s2.search(a2) + ". Итераций: " + s2.iterationCount);
         System.out.println(Arrays.toString(a3) + " не хватает элемента: " + s3.search(a3) + ". Итераций: " + s3.iterationCount);
-
     }
 }
