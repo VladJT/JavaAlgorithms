@@ -46,6 +46,7 @@ public class MyArray {
     public void printArray() {
         for (int i = 0; i < array.length; i++) {
             System.out.print("[" + i + "]:" + array[i] + "  ");
+            //if (i % 20 == 0 && i!=0) System.out.println();
         }
         System.out.println();
     }
