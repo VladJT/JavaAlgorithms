@@ -8,12 +8,16 @@ public class Main {
     public static void main(String[] args) {
 
         MyArray arr = new MyArray(100);
-        arr.initArray(100);
-        int c = QuickSort.sort(arr.getArray());
+        arr.initUniqueArray(2);
+        // int c = QuickSort.sort(arr.getArray());
         arr.printArray();
 
-        int num2Find = 11;
-        System.out.println("Бинарный поиск. Номер элемента " +num2Find+ " в массиве: " + BinarySearch.search(arr.getArray(), num2Find));
-        System.out.println("Экспоненциальный поиск. Номер элемента " +num2Find+ " в массиве: " + ExponentialSearch.search(arr.getArray(), num2Find));
+        int num2Find = 10;
+        System.out.println("Бинарный поиск. Число " + num2Find + " в массиве имеет индекс: " + BinarySearch.search(arr.getArray(), num2Find));
+        System.out.println();
+        System.out.println("Экспоненциальный поиск. Число " + num2Find + " в массиве имеет индекс: " + ExponentialSearch.search(arr.getArray(), num2Find));
+        System.out.println();
+        System.out.println("Интерполяционный поиск. Число " + num2Find + " в массиве имеет индекс: " + InterpolationSearch.search(arr.getArray(), num2Find));
+
     }
 }

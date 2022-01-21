@@ -9,7 +9,8 @@ public class MyArray {
 
     // массив целых чисел
     int[] array;
-    public int[] getArray(){
+
+    public int[] getArray() {
         return array;
     }
 
@@ -26,6 +27,14 @@ public class MyArray {
         }
     }
 
+    public void initUniqueArray(int step) {
+        Random r = new Random();
+        array[0] = r.nextInt(step) + 1;
+        for (int i = 1; i < array.length; i++) {
+            array[i] = r.nextInt(step) + 1 + array[i - 1];
+        }
+    }
+
     // поменять местами 2 элемента массива
     public void swap(int ind1, int ind2) {
         int tmp = array[ind1];
@@ -35,8 +44,8 @@ public class MyArray {
 
     // вывод массива на экран
     public void printArray() {
-        for (int i=0;i<array.length;i++) {
-            System.out.print(i + ":"+array[i]+"  ");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("[" + i + "]:" + array[i] + "  ");
         }
         System.out.println();
     }

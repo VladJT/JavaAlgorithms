@@ -13,7 +13,7 @@ public class BinarySearch {
             i++;
             base = (start + end) / 2;
             if (arr[base] == num2Find){
-                System.out.println("Найдено за итераций: "+i);
+                System.out.println("Найдено. Итераций: "+i);
                 return base;
             }
             else if (arr[base] < num2Find) {
@@ -23,7 +23,7 @@ public class BinarySearch {
             }
 
         }
-        System.out.println("НЕ найдено за итераций: "+i);
+        System.out.println("НЕ найдено. Итераций: "+i);
         return -1;
     }
 }
