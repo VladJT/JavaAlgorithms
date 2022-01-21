@@ -1,4 +1,4 @@
-package com.company.stack_queue;
+package main.java.com.company.stack_queue;
 
 import java.io.IOException;
 

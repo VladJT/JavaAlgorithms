@@ -1,7 +1,7 @@
-package com.company.sort_objects;
+package main.java.com.company.sort_objects;
 
 import java.util.HashMap;
-import com.company.sort.*;
+import main.java.com.company.sort.*;
 
 
 public class Main {

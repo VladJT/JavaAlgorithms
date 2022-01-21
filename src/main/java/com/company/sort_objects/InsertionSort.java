@@ -1,4 +1,4 @@
-package com.company.sort_objects;
+package main.java.com.company.sort_objects;
 // 1
 public class InsertionSort {
     public static int sort(Notebook[] array) {

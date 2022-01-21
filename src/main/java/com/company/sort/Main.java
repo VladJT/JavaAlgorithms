@@ -1,7 +1,7 @@
-package com.company.sort;
+package main.java.com.company.sort;
 
 
-import com.company.common.MyArray;
+import main.java.com.company.common.*;
 
 public class Main {
 

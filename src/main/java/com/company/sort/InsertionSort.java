@@ -1,4 +1,4 @@
-package com.company.sort;
+package main.java.com.company.sort;
 
 /**
  * сортировка вставками

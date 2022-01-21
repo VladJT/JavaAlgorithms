@@ -1,4 +1,4 @@
-package com.company;
+package main.java.com.company;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -17,7 +17,9 @@ import java.util.List;
 
 public class BasicElements {
 
+
     public static void main(String[] args) {
+
         int[] arr = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
         int max = arr[0];
         for (int i = 1; i < arr.length; i++) {

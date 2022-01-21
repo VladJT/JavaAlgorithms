@@ -1,7 +1,7 @@
-package com.company.search;
+package main.java.com.company.search;
 
-import com.company.common.MyArray;
-import com.company.sort.QuickSort;
+import main.java.com.company.common.*;
+import main.java.com.company.sort.QuickSort;
 
 public class Main {
 
