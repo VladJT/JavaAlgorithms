@@ -1,4 +1,4 @@
-package com.company.search;
+package main.java.com.company.search;
 
 import java.util.Arrays;
 
