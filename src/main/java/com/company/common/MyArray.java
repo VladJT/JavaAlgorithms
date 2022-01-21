@@ -10,14 +10,16 @@ public class MyArray {
     // массив целых чисел
     int[] array;
 
-    public int[] getArray() {
-        return array;
-    }
-
     public MyArray(int _size) {
         size = _size;
         array = new int[size];
     }
+
+
+    public int[] getArray() {
+        return array;
+    }
+
 
     // инициализировать массив случайными числами от 1 до maxValue
     public void initArray(int maxValue) {
@@ -27,6 +29,7 @@ public class MyArray {
         }
     }
 
+    // инициализировать массив случайными уникальными числами с расбросом step
     public void initUniqueArray(int step) {
         Random r = new Random();
         array[0] = r.nextInt(step) + 1;
@@ -46,7 +49,6 @@ public class MyArray {
     public void printArray() {
         for (int i = 0; i < array.length; i++) {
             System.out.print("[" + i + "]:" + array[i] + "  ");
-            //if (i % 20 == 0 && i!=0) System.out.println();
         }
         System.out.println();
     }
