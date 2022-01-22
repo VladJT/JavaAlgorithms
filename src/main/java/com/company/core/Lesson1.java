@@ -2,7 +2,6 @@ package com.company.core;
 
 public class Lesson1 {
 
-    // main
     public static void main(String[] args) {
         printThreeWords();
         checkSumSign();
