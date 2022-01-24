@@ -34,5 +34,4 @@ public class StackList {
             System.out.println("Элемент " + sl.pop() + " удален из стека");
         }
     }
-
 }

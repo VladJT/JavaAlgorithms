@@ -24,6 +24,7 @@ public class LinkedList {
         return temp;
     }
 
+
     public void display() {
         Link current = first;
         while (current != null) {
