@@ -30,7 +30,29 @@ public class ELinkedList<E> implements ILinkedList<E> {
 
     @Override
     public boolean remove(E value) {
-        return false;
+
+        Node<E> current = first;
+        Node<E> prev = null;
+
+        while (current != null) {
+            if (current.item.equals(value)) break;
+            prev = current;
+            current = current.next;
+        }
+
+        if (current == null) {
+            return false;
+        } else {
+            if (current == first) {
+                removeFirst();
+                return true;
+            }
+            prev.next = current.next;
+            current.next = null;
+            size--;
+        }
+
+        return true;
     }
 
     @Override
@@ -72,16 +94,19 @@ public class ELinkedList<E> implements ILinkedList<E> {
 
     @Override
     public E getFirst() {
-        return null;
+        return first.item;
     }
 
     public static void main(String[] args) {
         ELinkedList<Integer> l = new ELinkedList<>();
+        l.insertFirst(5);
+        l.insertFirst(4);
         l.insertFirst(3);
         l.insertFirst(2);
         l.insertFirst(1);
 
         l.removeFirst();
+        l.remove(4);
         l.display();
     }
 }
