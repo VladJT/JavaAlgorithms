@@ -4,6 +4,19 @@ package com.company.lists;
 public class LinkedList {
     private Link first;
 
+    public Link getFirst() {
+        return first;
+    }
+
+    public void setFirst(Link first) {
+        this.first = first;
+    }
+
+    public LinkIterator getIterator(){
+        return new LinkIterator(this);
+    }
+
+
     public LinkedList() {
         first = null;
     }
