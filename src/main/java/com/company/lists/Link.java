@@ -1,6 +1,6 @@
 package com.company.lists;
 
-// элемент односвязного списка
+// элемент списка
 public class Link {
     public String name;
     public int age;

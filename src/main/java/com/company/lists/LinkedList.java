@@ -88,10 +88,11 @@ public class LinkedList {
 
         Link l = list.find("Roman");
         if (l != null) l.display();
-        else System.out.println("Элемент не найден");
+        else System.out.println("Элемент Roman не найден");
+
         l = list.find("Stas");
         if (l != null) l.display();
-        else System.out.println("Элемент не найден");
+        else System.out.println("Элемент Stas не найден");
 
         list.delete("Roman");
 
