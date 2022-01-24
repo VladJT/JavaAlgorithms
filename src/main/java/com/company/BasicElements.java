@@ -29,6 +29,13 @@ public class BasicElements {
         ArrayExample.printArray(arr);
         System.out.println("max= " + max);
         System.out.println("fibonacci= " + fibonacci(6));
+
+        boolean a = false;
+        boolean b = true;
+
+        System.out.println("a & b = "+(a & b));
+        System.out.println("a | b = "+(a | b));
+        System.out.println(a^b);
     }
 
 
