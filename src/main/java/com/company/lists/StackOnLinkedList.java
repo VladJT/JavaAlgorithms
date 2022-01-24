@@ -1,10 +1,10 @@
 package com.company.lists;
 
 // Реализация стека на базе связного списка
-public class StackList {
+public class StackOnLinkedList {
     private LinkedList list;
 
-    public StackList() {
+    public StackOnLinkedList() {
         list = new LinkedList();
     }
 
@@ -25,7 +25,7 @@ public class StackList {
     }
 
     public static void main(String[] args) {
-        StackList sl = new StackList();
+        StackOnLinkedList sl = new StackOnLinkedList();
         sl.push("Artem", 30);
         sl.push("Viktor", 20);
         sl.push("Sergey", 10);
