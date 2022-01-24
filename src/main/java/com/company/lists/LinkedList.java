@@ -32,12 +32,55 @@ public class LinkedList {
         }
     }
 
+    /**
+     * поиск элемента в списке
+     *
+     * @param name - ФИО для поиска
+     * @return
+     */
+    public Link find(String name) {
+        Link current = first;
+        while (current != null) {
+            if (current.name == name) return current;
+            else current = current.next;
+        }
+        return null;
+    }
 
-    public static void main(String[] args){
+    public Link delete(String name) {
+        Link current = first;
+        Link previous = first;
+        while (current.name != name) {
+            if (current.next == null)
+                return null;
+            else {
+                previous = current;
+                current = current.next;
+            }
+        }
+        if (current == first)
+            first = first.next;
+        else
+            previous.next = current.next;
+        return current;
+    }
+
+
+    public static void main(String[] args) {
         LinkedList list = new LinkedList();
         list.insert("Artem", 22);
         list.insert("Roman", 31);
         list.insert("Pavel", 34);
+
+        Link l = list.find("Roman");
+        if (l != null) l.display();
+        else System.out.println("Элемент не найден");
+        l = list.find("Stas");
+        if (l != null) l.display();
+        else System.out.println("Элемент не найден");
+
+        list.delete("Roman");
+
 
         list.display();
     }
