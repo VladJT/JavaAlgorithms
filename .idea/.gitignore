@@ -1,6 +1,3 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-target/
-# Java class files
-*.class
