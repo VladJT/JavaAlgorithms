@@ -89,7 +89,7 @@ public class LinkIterator {
 
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
-        LinkIterator i = new LinkIterator(list);
+        LinkIterator i = list.getIterator();
 
         i.insert("Artem", 22);
         i.insert("Roman", 31);

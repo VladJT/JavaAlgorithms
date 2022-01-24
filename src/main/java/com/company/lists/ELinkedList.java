@@ -1,6 +1,10 @@
 package com.company.lists;
 
-public class ELinkedList<E> implements ILinkedList<E> {
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class ELinkedList<E> implements ILinkedList<E>, Iterable<E> {
 
     protected int size;
     protected Node<E> first;
@@ -105,8 +109,46 @@ public class ELinkedList<E> implements ILinkedList<E> {
         l.insertFirst(2);
         l.insertFirst(1);
 
-        l.removeFirst();
+
         l.remove(4);
         l.display();
+
+        for (Integer i : l) {
+            System.out.print(i + " -- ");
+        }
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return null;
+    }
+
+    @Override
+    public void forEach(Consumer<? super E> action) {
+        Iterable.super.forEach(action);
+    }
+
+    @Override
+    public Spliterator<E> spliterator() {
+        return Iterable.super.spliterator();
+    }
+
+    private class EListIterator<E> implements Iterator<E> {
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public E next() {
+            return null;
+        }
+
+        @Override
+        public void remove() {
+            Iterator.super.remove();
+        }
+
     }
 }
