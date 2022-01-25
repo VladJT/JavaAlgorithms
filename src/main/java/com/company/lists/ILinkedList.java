@@ -21,10 +21,17 @@ public interface ILinkedList<E> {
     class Node<E> {
         E item;
         Node next;
+        Node prev;
 
         public Node(E item, Node<E> next) {
             this.item = item;
             this.next = next;
+        }
+
+        public Node(E item, Node<E> prev, Node<E> next) {
+            this.item = item;
+            this.next = next;
+            this.prev = prev;
         }
     }
 

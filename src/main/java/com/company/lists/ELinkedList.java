@@ -101,26 +101,14 @@ public class ELinkedList<E> implements ILinkedList<E>, Iterable<E> {
         return first.item;
     }
 
-    public static void main(String[] args) {
-        ELinkedList<Integer> l = new ELinkedList<>();
-        l.insertFirst(5);
-        l.insertFirst(4);
-        l.insertFirst(3);
-        l.insertFirst(2);
-        l.insertFirst(1);
-
-
-        l.remove(4);
-        l.display();
-
-        for (Integer i : l) {
-            System.out.print(i + " -- ");
-        }
+    public Node<E> getFirstNode() {
+        return first;
     }
+
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return iterator;
     }
 
     @Override
@@ -133,16 +121,56 @@ public class ELinkedList<E> implements ILinkedList<E>, Iterable<E> {
         return Iterable.super.spliterator();
     }
 
-    private class EListIterator<E> implements Iterator<E> {
+    EListIterator<E> iterator = new EListIterator<E>(this);
+
+    public EListIterator<E> getIterator() {
+        return iterator;
+    }
+
+
+    /**
+     * ИТЕРАТОР
+     *
+     * @param <E> - тип для связанного списка
+     */
+    public class EListIterator<E> implements Iterator<E> {
+        private Node<E> current;
+        private Node<E> previous;
+
+        private ELinkedList<E> list;
+
+        public EListIterator(ELinkedList<E> list) {
+            this.list = list;
+            this.reset();
+        }
+
+        public void reset() {
+            current = list.getFirstNode();
+            previous = null;
+        }
+
+        public boolean atEnd() {
+            return (current.next == null);
+        }
+
+        public void nextLink() {
+            previous = current;
+            current = current.next;
+        }
+
+        public Node<E> getCurrent() {
+            return current;
+        }
 
         @Override
         public boolean hasNext() {
-            return false;
+            return (current != null);
         }
 
         @Override
         public E next() {
-            return null;
+            nextLink();
+            return (E) previous.item;
         }
 
         @Override
@@ -150,5 +178,26 @@ public class ELinkedList<E> implements ILinkedList<E>, Iterable<E> {
             Iterator.super.remove();
         }
 
+    }
+
+    public static void main(String[] args) {
+        ELinkedList<Integer> l = new ELinkedList<>();
+        l.insertFirst(5);
+        l.insertFirst(4);
+        l.insertFirst(3);
+        l.insertFirst(2);
+        l.insertFirst(1);
+
+        l.display();
+
+        l.getIterator().reset();
+        System.out.println("current: " + l.getIterator().getCurrent().item);
+
+        System.out.println("Вывод через foreach:");
+        for (Integer j : l) {
+            if (l.getIterator().hasNext())
+                System.out.print(j + " -> ");
+            else System.out.print(j + " ");
+        }
     }
 }
