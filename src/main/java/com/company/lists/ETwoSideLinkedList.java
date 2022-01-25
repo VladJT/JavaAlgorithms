@@ -3,6 +3,7 @@ package com.company.lists;
 /**
  * LinkedList с указателем на первый и последний элементы
  * first + last
+ *
  * @param <E>
  */
 public class ETwoSideLinkedList<E> extends ELinkedList<E> {
@@ -79,7 +80,6 @@ public class ETwoSideLinkedList<E> extends ELinkedList<E> {
 
         l.insertLast(8);
         l.remove(3);
-
 
         System.out.println("contains 2? - " + l.contains(2));
         System.out.println("contains 3? - " + l.contains(3));

@@ -34,5 +34,4 @@ public interface ILinkedList<E> {
             this.prev = prev;
         }
     }
-
 }

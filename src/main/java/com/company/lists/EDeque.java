@@ -61,7 +61,6 @@ public class EDeque<E> extends ETwoSideLinkedList<E> {
             current.prev = null;
             size--;
         }
-
         return true;
     }
 
@@ -99,10 +98,9 @@ public class EDeque<E> extends ETwoSideLinkedList<E> {
         d.insertFirst(2);
         d.insertFirst(1);
         d.insertLast(6);
-       // d.remove(1);
+        // d.remove(1);
 
         d.showFromHead();
-
         d.showFromLast();
 
         d.getIterator().reset();

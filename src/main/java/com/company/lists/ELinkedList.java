@@ -168,8 +168,9 @@ public class ELinkedList<E> implements ILinkedList<E>, Iterable<E> {
 
         @Override
         public E next() {
+            E item = current.item;
             nextLink();
-            return (E) previous.item;
+            return item;
         }
 
         @Override
@@ -186,14 +187,11 @@ public class ELinkedList<E> implements ILinkedList<E>, Iterable<E> {
         l.insertFirst(3);
         l.insertFirst(2);
         l.insertFirst(1);
-        l.insertFirst(0);
-
         l.display();
 
         l.getIterator().reset();
-        System.out.println("current item for iterator: " + l.getIterator().getCurrent().item);
-
-        System.out.println("\nВывод через foreach:");
+        System.out.println("\ncurrent item for iterator: " + l.getIterator().getCurrent().item);
+        System.out.println("Вывод через foreach:");
         for (Integer j : l) {
             if (l.getIterator().hasNext())
                 System.out.print(j + " -> ");
