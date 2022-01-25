@@ -1,5 +1,10 @@
 package com.company.lists;
 
+/**
+ * LinkedList с указателем на первый и последний элементы
+ * first + last
+ * @param <E>
+ */
 public class ETwoSideLinkedList<E> extends ELinkedList<E> {
 
     protected Node<E> last;
@@ -48,9 +53,9 @@ public class ETwoSideLinkedList<E> extends ELinkedList<E> {
                 removeFirst();
                 return true;
             }
-            if(current==last){
+            if (current == last) {
                 last = prev;
-                last.next=null;
+                last.next = null;
             }
             prev.next = current.next;
             current.next = null;
@@ -76,8 +81,8 @@ public class ETwoSideLinkedList<E> extends ELinkedList<E> {
         l.remove(3);
 
 
-        System.out.println("contains 2? - "+l.contains(2));
-        System.out.println("contains 3? - "+l.contains(3));
+        System.out.println("contains 2? - " + l.contains(2));
+        System.out.println("contains 3? - " + l.contains(3));
         l.display();
     }
 

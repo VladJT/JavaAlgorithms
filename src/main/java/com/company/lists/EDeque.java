@@ -99,11 +99,18 @@ public class EDeque<E> extends ETwoSideLinkedList<E> {
         d.insertFirst(2);
         d.insertFirst(1);
         d.insertLast(6);
-
-        d.remove(1);
+       // d.remove(1);
 
         d.showFromHead();
+
         d.showFromLast();
 
+        d.getIterator().reset();
+        System.out.println("\ncurrent item for iterator: " + d.getIterator().getCurrent().item);
+        System.out.println("Вывод через foreach:");
+        for (Integer j : d) {
+            System.out.print(j);
+            if (d.getIterator().hasNext()) System.out.print(", ");
+        }
     }
 }

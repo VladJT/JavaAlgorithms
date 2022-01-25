@@ -105,7 +105,6 @@ public class ELinkedList<E> implements ILinkedList<E>, Iterable<E> {
         return first;
     }
 
-
     @Override
     public Iterator<E> iterator() {
         return iterator;
@@ -187,13 +186,14 @@ public class ELinkedList<E> implements ILinkedList<E>, Iterable<E> {
         l.insertFirst(3);
         l.insertFirst(2);
         l.insertFirst(1);
+        l.insertFirst(0);
 
         l.display();
 
         l.getIterator().reset();
-        System.out.println("current: " + l.getIterator().getCurrent().item);
+        System.out.println("current item for iterator: " + l.getIterator().getCurrent().item);
 
-        System.out.println("Вывод через foreach:");
+        System.out.println("\nВывод через foreach:");
         for (Integer j : l) {
             if (l.getIterator().hasNext())
                 System.out.print(j + " -> ");
