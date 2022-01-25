@@ -40,12 +40,9 @@ public class ELinkedQueue<E> {
         q.insert(3);
         q.insert(4);
         q.insert(5);
-
-
         System.out.println("Front: " + q.peekFront());
         q.remove();
         q.display();
-
     }
 
 }

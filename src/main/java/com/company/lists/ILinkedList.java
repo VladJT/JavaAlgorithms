@@ -1,5 +1,6 @@
 package com.company.lists;
 
+
 public interface ILinkedList<E> {
 
     void insertFirst(E value);
