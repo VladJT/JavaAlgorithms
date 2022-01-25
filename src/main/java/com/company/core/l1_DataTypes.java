@@ -7,6 +7,12 @@ public class l1_DataTypes {
         checkSumSign();
         printColor();
         compareNumbers();
+
+        System.out.println("""
+                Много
+                строчный
+                текст
+                """);
     }
 
 
