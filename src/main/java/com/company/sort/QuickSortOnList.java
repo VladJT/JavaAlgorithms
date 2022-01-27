@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * O(N*logN)
+ */
 public class QuickSortOnList {
 
     public static List<Integer> quickSort(List<Integer> arr) {

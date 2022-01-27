@@ -2,6 +2,7 @@ package com.company.sort;
 
 /**
  * метод быстрой сортировки
+ * O(N*logN)
  */
 public class QuickSort {
 
