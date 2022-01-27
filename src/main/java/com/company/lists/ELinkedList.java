@@ -5,7 +5,6 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 public class ELinkedList<E> implements ILinkedList<E>, Iterable<E> {
-
     protected int size;
     protected Node<E> first;
 

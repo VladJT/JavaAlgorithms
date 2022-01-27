@@ -42,7 +42,6 @@ public class EStack<E> {
 
     public static void main(String[] args) {
         EStack<String> s = new EStack<>();
-
         s.push("c");
         s.push("b");
         s.push("a");

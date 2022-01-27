@@ -77,7 +77,6 @@ public class ETwoSideLinkedList<E> extends ELinkedList<E> {
         l.insertFirst(3);
         l.insertFirst(2);
         l.insertFirst(1);
-
         l.insertLast(8);
         l.remove(3);
 
