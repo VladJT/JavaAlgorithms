@@ -28,7 +28,7 @@ public class Anagram {
             return;
         }
         for (int i = 0; i < length; i++) {
-            find(length-1);
+            find(length - 1);
             result.add(String.valueOf(chars));
             rotate(length);
         }
