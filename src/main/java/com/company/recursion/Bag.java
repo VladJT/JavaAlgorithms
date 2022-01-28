@@ -1,8 +1,5 @@
 package com.company.recursion;
 
-import org.w3c.dom.ls.LSOutput;
-
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -38,7 +35,7 @@ public class Bag {
     }
 
     // максимальный размер рюкзака
-    private static final int MAX_BAG_SIZE = 5;
+    private int MAX_BAG_SIZE;
 
     // СПИСОК ВСЕХ ПРЕДМЕТОВ
     List items = new ArrayList<Item>();
@@ -94,6 +91,8 @@ public class Bag {
 
 
     public void full() {
+        MAX_BAG_SIZE = 5;
+
         System.out.println("ВСЕ ПРЕДМЕТЫ:");
         items.add(new Item("Телефон", 1, 8000));
         items.add(new Item("Ноутбук", 3, 7500));
@@ -107,7 +106,7 @@ public class Bag {
         System.out.println(result + "\n");
 
 
-        System.out.println("---Оптимальный выбор " + bestItems + " ---\nИтоговая стоимость: " + bestPrice + "\nВес: " + bestWeight);
+        System.out.println("---Оптимальный выбор для сумки " + MAX_BAG_SIZE + " " + bestItems + " ---\nИтоговая стоимость: " + bestPrice + "\nВес: " + bestWeight);
         for (Item i : (List<Item>) bestItems) {
             System.out.println(i.getInfo());
         }
