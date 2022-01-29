@@ -17,7 +17,7 @@ public class l3_GuessNumber {
             int xNumber = new Random().nextInt(10);
             boolean isWin = false;
 
-            System.out.printf(xNumber + "Компьютер загадал число от 0 до 9. Попробуйте его угадать %d за попытки%n", tryCount);
+            System.out.printf(xNumber + " Компьютер загадал число от 0 до 9. Попробуйте его угадать %d за попытки%n", tryCount);
             do {
                 isWin = checkAnswer(xNumber);
                 tryCount--;
@@ -27,7 +27,7 @@ public class l3_GuessNumber {
                 System.out.println("Поздравляем🎈🎈🎈  Вы победили!Оставалось попыток: " + tryCount);
             else System.out.println("Вы проиграли! Компьютер загадал число " + xNumber);
 
-            System.out.println("Повторить игру еще раз? 1 – да / 0 – нет");
+            System.out.println("\nПовторить игру еще раз? 1 – да / 0 – нет");
             playGame = new Scanner(System.in).nextInt();
         } while (playGame == 1);
     }

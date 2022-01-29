@@ -3,6 +3,7 @@ package com.company;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /***
  * О - Асимптотическая сложность (рост сложности алгоритма с ростом кол-ва вх. аргументов)
@@ -37,6 +38,34 @@ public class BasicElements {
         System.out.println("a | b = " + (a | b));
         System.out.println(a ^ b);
         System.out.println("5! = " + factorial(5));
+
+        System.out.println(sum(1, 2, 3));
+        System.out.println(sum(4, 3, 4, 2, 3));
+        System.out.println(sum(1));
+
+        int i = inputInt();
+    }
+
+    public static Scanner scanner = new Scanner(System.in);
+
+    // ввод числа с проверкой
+    private static int inputInt() {
+        while (true) {
+            System.out.println("Введите число:");
+
+            if (scanner.hasNextInt()) {
+                return scanner.nextInt();
+            }
+            System.out.println(scanner.next() + " - это не число");
+        }
+    }
+
+    static int sum(int... a) {
+        int rez = 0;
+        for (int i : a) {
+            rez += i;
+        }
+        return rez;
     }
 
 
