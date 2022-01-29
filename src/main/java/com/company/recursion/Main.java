@@ -1,7 +1,5 @@
 package com.company.recursion;
 
-import com.company.ArrayExample;
-
 public class Main {
 
     public static void main(String[] args) {

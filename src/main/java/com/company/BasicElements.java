@@ -1,8 +1,8 @@
 package com.company;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
+import com.company.arrays.ArrayExample;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 /***
@@ -27,7 +27,7 @@ public class BasicElements {
             if (arr[i] > max) max = arr[i];
 
         }  // O(4 * n) , где 4 - это 4 действия, которые будут выполняться для каждого элемента
-        ArrayExample.printArray(arr);
+        System.out.println(Arrays.toString(arr));
         System.out.println("max= " + max);
         System.out.println("fibonacci= " + fibonacci(6));
 
