@@ -270,9 +270,9 @@ public class IntBinaryTree {
         tree.insertNode(10);
         tree.insertNode(15);
         tree.insertNode(7);
-//        tree.insertNode(5);
-//        tree.insertNode(6);
-      //  tree.insertNode(4);
+        tree.insertNode(5);
+        tree.insertNode(6);
+        tree.insertNode(4);
         tree.insertNode(2);
         tree.deleteNode(3);
         tree.printTree();
