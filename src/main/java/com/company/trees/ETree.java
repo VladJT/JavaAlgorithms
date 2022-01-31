@@ -192,7 +192,50 @@ public class ETree<E extends Comparable<? super E>> implements ITree<E> {
 
     @Override
     public void traverse(TraversMode mode) {
+        switch (mode) {
+            case PRE_ORDER -> {// прямой обход
+                preOrder(root);
+                break;
 
+            }
+            case IN_ORDER -> { // центрированный обход
+                inOrder(root);
+                break;
+
+            }
+            case POST_ORDER -> {// обратный обход
+                postOrder(root);
+                break;
+            }
+        }
+        System.out.println();
+    }
+
+    private void postOrder(ENode<E> current) {
+        if (current == null) {
+            return;
+        }
+        postOrder(current.getLeftChild());
+        postOrder(current.getRightChild());
+        System.out.print(current.getValue() + " ");
+    }
+
+    private void inOrder(ENode<E> current) {
+        if (current == null) {
+            return;
+        }
+        inOrder(current.getLeftChild());
+        System.out.print(current.getValue() + " ");
+        inOrder(current.getRightChild());
+    }
+
+    private void preOrder(ENode<E> current) {
+        if (current == null) {
+            return;
+        }
+        System.out.print(current.getValue() + " ");
+        preOrder(current.getLeftChild());
+        preOrder(current.getRightChild());
     }
 
 
@@ -208,8 +251,10 @@ public class ETree<E extends Comparable<? super E>> implements ITree<E> {
         t.add(-4);
         t.add(-1);
         t.add(-5);
-
-        t.remove(-4);
         t.display();
+
+        t.traverse(TraversMode.PRE_ORDER);
+        t.traverse(TraversMode.IN_ORDER);
+        t.traverse(TraversMode.POST_ORDER);
     }
 }

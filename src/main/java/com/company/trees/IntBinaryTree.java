@@ -166,7 +166,7 @@ public class IntBinaryTree {
             successorParent.leftChild = successor.rightChild;
             successor.rightChild = node.rightChild;
         }
-        // TODO стоит добавить ??
+        // TODO
         successor.leftChild = node.leftChild;
 
         return successor;
@@ -254,29 +254,27 @@ public class IntBinaryTree {
 
     public static void main(String[] args) {
         IntBinaryTree tree = new IntBinaryTree();
-//        Random random = new Random();
-//        tree.insertNode(random.nextInt(201) - 100);
-//        while (true) {
-//            int newValue = random.nextInt(201) - 100;
-//            if (tree.getDepthHelper(tree.rootNode) >= 6) break;
-//            else
-//                tree.insertNode(newValue);
-//        }
-        tree.insertNode(8);
-        tree.insertNode(9);
-        tree.insertNode(1);
-        tree.insertNode(0);
-        tree.insertNode(3);
-        tree.insertNode(10);
-        tree.insertNode(15);
-        tree.insertNode(7);
-        tree.insertNode(5);
-        tree.insertNode(6);
-        tree.insertNode(4);
-        tree.insertNode(2);
-        tree.deleteNode(3);
+        Random random = new Random();
+        tree.insertNode(random.nextInt(26) - 25);
+        while (true) {
+            int newValue = random.nextInt(26) - 25;
+            if (tree.getDepthHelper(tree.rootNode) >= 4) break;
+            else
+                tree.insertNode(newValue);
+        }
+//        tree.insertNode(8);
+//        tree.insertNode(9);
+//        tree.insertNode(1);
+//        tree.insertNode(0);
+//        tree.insertNode(3);
+//        tree.insertNode(10);
+//        tree.insertNode(15);
+//        tree.insertNode(7);
+//        tree.insertNode(5);
+//        tree.insertNode(6);
+//        tree.insertNode(4);
+//        tree.insertNode(2);
+//        tree.deleteNode(3);
         tree.printTree();
-
-
     }
 }
