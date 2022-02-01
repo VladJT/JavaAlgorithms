@@ -1,7 +1,7 @@
 package com.company.trees;
 
-import com.sun.jdi.InterfaceType;
-
+import java.util.Arrays;
+import java.util.Random;
 import java.util.Stack;
 
 public class ETree<E extends Comparable<? super E>> implements ITree<E> {
@@ -153,9 +153,9 @@ public class ETree<E extends Comparable<? super E>> implements ITree<E> {
     public void display() {
         Stack<ENode<E>> globalStack = new Stack();
         globalStack.push(root);
-        int nBlanks = 64;
+        int nBlanks = 32;
         boolean isRowEmpty = false;
-        System.out.println("........................................................");
+        //   System.out.println("................................................................................................................");
 
         while (!isRowEmpty) {
             Stack<ENode<E>> localStack = new Stack();
@@ -185,8 +185,8 @@ public class ETree<E extends Comparable<? super E>> implements ITree<E> {
             while (!localStack.isEmpty()) {
                 globalStack.push(localStack.pop());
             }
-            //     System.out.println("........................................................");
         }
+        //    System.out.println("................................................................................................................");
     }
 
 
@@ -238,23 +238,84 @@ public class ETree<E extends Comparable<? super E>> implements ITree<E> {
         preOrder(current.getRightChild());
     }
 
+    public int getDepth(ENode<E> node) {
+        if (node == null) return 0;
+        else return getMaxDepth(node);
+    }
+
+    // глубина дерева
+    public int getMaxDepth(ENode<E> node) {
+        int treeHeightLeft;
+        int treeHeightRight;
+        //get height of left subtree
+        if (node.getLeftChild() == null)
+            treeHeightLeft = 1;
+        else {
+            treeHeightLeft = getDepth(node.getLeftChild()) + 1;
+        }
+
+        //get height of right subtree
+        if (node.getRightChild() == null)
+            treeHeightRight = 1;
+        else {
+            treeHeightRight = getDepth(node.getRightChild()) + 1;
+        }
+        return Math.max(treeHeightLeft, treeHeightRight);
+    }
+
+    boolean isBalanced(ENode<E> node) {
+        return (node == null) ||
+                isBalanced(node.getLeftChild()) &&
+                        isBalanced(node.getRightChild()) &&
+                        Math.abs(height(node.getLeftChild()) - height(node.getRightChild())) <= 1;
+    }
+
+    private int height(ENode<E> node) {
+        return node == null ? 0 : 1 + Math.max(height(node.getLeftChild()), height(node.getRightChild()));
+    }
 
     public static void main(String[] args) {
-        ETree<Integer> t = new ETree<>();
-        t.add(5);
-        t.add(6);
-        t.add(8);
-        t.add(1);
-        t.add(2);
-        t.add(4);
-        t.add(0);
-        t.add(-4);
-        t.add(-1);
-        t.add(-5);
-        t.display();
+//        ETree<Integer> t = new ETree<>();
+//        t.traverse(TraversMode.PRE_ORDER);
+//        t.traverse(TraversMode.IN_ORDER);
+//        t.traverse(TraversMode.POST_ORDER);
+        int SIZE = 20; // количество деревьев
+        int DEPTH = 4; // глубина деревьев
 
-        t.traverse(TraversMode.PRE_ORDER);
-        t.traverse(TraversMode.IN_ORDER);
-        t.traverse(TraversMode.POST_ORDER);
+
+        ETree<Integer>[] t = new ETree[SIZE];
+        int[] unbalanceTreeCount = new int[SIZE];
+        Arrays.fill(unbalanceTreeCount, 1);
+
+        Random random = new Random();
+        for (int i = 0; i < t.length; i++) {
+            t[i] = new ETree<>();
+            System.out.println("                           🎄 Дерево № " + (i + 1)+"");
+            int newValue = 0;
+            while (true) {
+                if (t[i].getDepth(t[i].root) > DEPTH) break;
+                else {
+                    newValue = random.nextInt(51) - 25; // диапазон от -25 До 25
+                    t[i].add(newValue);
+                }
+            }
+            t[i].remove(newValue);// удаляем элемент из-за которого завершился цикл (5-ый уровень)
+            t[i].display();
+            // выводим данные о дереве
+            System.out.println("Количество узлов 🎗 = "+t[i].size);
+            System.out.println("Глубина левого поддерева = " + t[i].getDepth(t[i].root.getLeftChild()));
+            System.out.println("Глубина правого поддерева = " + t[i].getDepth(t[i].root.getRightChild()));
+            System.out.println("Сбалансированность дерева = " + t[i].isBalanced(t[i].root));
+            if (t[i].isBalanced(t[i].root))
+                unbalanceTreeCount[i] = 0;
+            System.out.println("........................................................................");
+        }//for
+        int sum = 0;
+        for (int cc : unbalanceTreeCount) {
+            sum += cc;
+        }
+        System.out.printf("Несбалансированных деревьев = %d из %d (%.2f процентов)", sum, unbalanceTreeCount.length, (float)sum / unbalanceTreeCount.length * 100);
     }
+
+
 }

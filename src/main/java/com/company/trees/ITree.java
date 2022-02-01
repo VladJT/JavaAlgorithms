@@ -1,8 +1,7 @@
 package com.company.trees;
 
 public interface ITree<E extends Comparable<? super E>> {
-
-    enum TraversMode{
+    enum TraversMode {
         IN_ORDER, PRE_ORDER, POST_ORDER
     }
 
