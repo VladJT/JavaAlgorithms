@@ -38,11 +38,11 @@ public class ENode<T extends Comparable<? super T>> {
     }
 
     public boolean isLeaf() {
-        return (leftChild==null && rightChild==null);
+        return (leftChild == null && rightChild == null);
     }
 
     public boolean hasOnlyOneChild() {
-      //  return (getRightChild()==null && getLeftChild()!=null) || (getRightChild()!=null && getLeftChild()==null);
-        return getRightChild()!=null ^ getLeftChild()!=null;//XOR
+        //  return (getRightChild()==null && getLeftChild()!=null) || (getRightChild()!=null && getLeftChild()==null);
+        return getRightChild() != null ^ getLeftChild() != null;//XOR
     }
 }
