@@ -81,15 +81,15 @@ public class GraphImpl implements IGraph {
     @Override
     public void dfs(String startLabel) {
         int startIndex = indexOf(startLabel);
-        if(startIndex==-1) throw new IllegalArgumentException("Неверная вершинка "+startLabel);
+        if (startIndex == -1) throw new IllegalArgumentException("Неверная вершинка " + startLabel);
 
         Stack<Vertex> stack = new Stack<>();
         Vertex vertex = vertexList.get(startIndex);
 
         visitVertex(stack, vertex);
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             vertex = getNearUnvisitedVertex(stack.peek());
-            if(vertex!=null)
+            if (vertex != null)
                 visitVertex(stack, vertex);
             else stack.pop();
         }
@@ -99,8 +99,8 @@ public class GraphImpl implements IGraph {
 
     private Vertex getNearUnvisitedVertex(Vertex vertex) {
         int currentIndex = vertexList.indexOf(vertex);
-        for(int i=0;i<getSize();i++){
-            if(adjMatrix[currentIndex][i] && !vertexList.get(i).isVisited()){
+        for (int i = 0; i < getSize(); i++) {
+            if (adjMatrix[currentIndex][i] && !vertexList.get(i).isVisited()) {
                 return vertexList.get(i);
             }
         }
@@ -109,13 +109,13 @@ public class GraphImpl implements IGraph {
 
 
     private void visitVertex(Stack<Vertex> stack, Vertex vertex) {
-        System.out.println(vertex.getLabel()+"");
+        System.out.println(vertex.getLabel() + "");
         stack.push(vertex);
         vertex.setVisited(true);
     }
 
     private void visitVertex(Queue<Vertex> stack, Vertex vertex) {
-        System.out.println(vertex.getLabel()+"");
+        System.out.println(vertex.getLabel() + "");
         stack.add(vertex);
         vertex.setVisited(true);
     }
@@ -123,15 +123,15 @@ public class GraphImpl implements IGraph {
     @Override
     public void bfs(String startLabel) {
         int startIndex = indexOf(startLabel);
-        if(startIndex==-1) throw new IllegalArgumentException("Неверная вершинка "+startLabel);
+        if (startIndex == -1) throw new IllegalArgumentException("Неверная вершинка " + startLabel);
 
         Queue<Vertex> stack = new LinkedList<>();
         Vertex vertex = vertexList.get(startIndex);
 
         visitVertex(stack, vertex);
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             vertex = getNearUnvisitedVertex(stack.peek());
-            if(vertex!=null)
+            if (vertex != null)
                 visitVertex(stack, vertex);
             else stack.remove();
         }
@@ -161,7 +161,6 @@ public class GraphImpl implements IGraph {
         graph.addEdge("Самара", "Воронеж");
         graph.addEdge("Тверь", "Воронеж");
         graph.addEdge("Орел", "Воронеж");
-
 
 
         System.out.println("Graph size: " + graph.getSize());
