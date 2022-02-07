@@ -4,6 +4,15 @@ import java.util.Objects;
 
 public class Vertex {
     private final String label;
+    private boolean isVisited;
+
+    public boolean isVisited() {
+        return isVisited;
+    }
+
+    public void setVisited(boolean visited) {
+        isVisited = visited;
+    }
 
     public Vertex(String label) {
         this.label = label;
