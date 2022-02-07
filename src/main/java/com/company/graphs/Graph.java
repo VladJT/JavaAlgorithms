@@ -7,7 +7,7 @@ import java.util.Stack;
 
 class Graph {
 
-    class Vertex {
+    private class Vertex {
         public char label;
 
         public boolean wasVisited;
@@ -129,12 +129,12 @@ class Graph {
 
     public static void main(String[] args) {
         Graph graph = new Graph();
-        graph.addVertex('A');
+        graph.addVertex('A');//0
         graph.addVertex('B');
         graph.addVertex('C');
         graph.addVertex('D');
         graph.addVertex('E');
-        graph.addVertex('F');
+        graph.addVertex('F');//5
 
         graph.addEdge(0, 1); //AB
         graph.addEdge(0, 2); //AC
@@ -149,7 +149,7 @@ class Graph {
     }
 
     private void searchPath(int startV, int lastV) {
-        System.out.println("ВСЕ ВАРИАНТЫ МАРШРУТОВ:");
+        System.out.println("ВАРИАНТЫ МАРШРУТОВ:");
         vertexList[startV].wasVisited = true;
         stack.push(startV);
         while (!stack.isEmpty()) {
