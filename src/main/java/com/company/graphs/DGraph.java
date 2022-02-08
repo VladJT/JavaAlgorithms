@@ -94,6 +94,17 @@ public class DGraph {
         relationMatrix[indexOf(end)][indexOf(start)] = weight; // задание ребер между вершинами, с весом между ними
     }
 
+    /**
+     * Одной из самых распространённых задач, связанной со взвешенными графами, является задача выбора кратчайшего пути между двумя вершинами.
+     * Для решения данной задачи мы и используем алгоритм Дейкстры.
+     *
+     * Этапы алгоритма Дейкстры:
+     * Этап 1: поиск узла, переход к которому будет составлять наименьшую стоимость. Вы стоите в самом начале и думаете, куда направиться: к узлу А или к узлу В. Сколько времени понадобится, чтобы добраться до каждого из этих узлов?
+     * Этап 2: вычисление, сколько времени нужно, чтобы добраться до всех ещё не затронутых алгоритмом соседей В при переходе по ребру из В. Если же это новое время окажется меньше старого, путь через ребро B и станет новым кратчайшим путём для этой вершины.
+     * Этап 3: помечаем вершину B как пройденную.
+     * Этап 4: перейти к этапу 1.
+     * Цикл этих этапов мы будем повторять до тех пор, пока все вершины не будут пройдены.
+      */
     public void path(String startVertex, String endVertex) { // выбор кратчайшего пути
         //  задание данных для стартовой вершины
         int startTree = indexOf(startVertex); // стартуем с вершины 0
@@ -177,16 +188,16 @@ public class DGraph {
     private void displayPaths(String endVertex) { // метод для вывода кратчайших путей на экран
         int lastIndex = indexOf(endVertex);
         System.out.print("Расстояние = ");
-            if (shortestPaths.get(lastIndex).getDistance() == INFINITY) {
-                System.out.println("0");
-            } else {
-                String result = shortestPaths.get(lastIndex).getDistance() + " (";
-                List<Integer> parents = shortestPaths.get(lastIndex).getParentVertices();
-                for (int j = 0; j < parents.size(); j++) {
-                    result += vertexList[parents.get(j)].getLabel() + " -> ";
-                }
-                System.out.println(result + vertexList[lastIndex].getLabel() + ")");
+        if (shortestPaths.get(lastIndex).getDistance() == INFINITY) {
+            System.out.println("0");
+        } else {
+            String result = shortestPaths.get(lastIndex).getDistance() + " (";
+            List<Integer> parents = shortestPaths.get(lastIndex).getParentVertices();
+            for (int j = 0; j < parents.size(); j++) {
+                result += vertexList[parents.get(j)].getLabel() + " -> ";
             }
+            System.out.println(result + vertexList[lastIndex].getLabel() + ")");
+        }
 
     }
 
