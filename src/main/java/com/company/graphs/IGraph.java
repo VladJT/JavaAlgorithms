@@ -4,9 +4,9 @@ public interface IGraph {
 
     void addVertex(String label);
 
-    boolean addEdge(String startLabel, String SecondLabel, String... others);
+    boolean addEdge(String startLabel, String SecondLabel, int distance, String... others);
 
-    boolean addEdge(String startLabel, String SecondLabel);
+    boolean addEdge(String startLabel, String SecondLabel, int distance);
 
     int getSize();
 
