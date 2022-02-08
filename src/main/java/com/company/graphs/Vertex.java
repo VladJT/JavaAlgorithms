@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Vertex {
     private final String label;
     private boolean isVisited;
+    private boolean isInTree;
 
     public boolean isVisited() {
         return isVisited;
@@ -42,4 +43,10 @@ public class Vertex {
         return Objects.hash(label);
     }
 
+    public void setInTree(boolean inTree) {
+        isInTree = inTree;
+    }
+    public boolean isInTree() {
+        return isInTree;
+    }
 }

@@ -123,6 +123,13 @@ public class GraphImpl implements IGraph {
         return count;
     }
 
+    // дистанция между вершинами
+    private int getDistance(String prevLabel, String currlabel) {
+        int i = indexOf(prevLabel);
+        int j = indexOf(currlabel);
+        return adjMatrix[i][j];
+    }
+
     // поиск ближайшей непосещенной вершины
     private Vertex getNearUnvisitedVertex(Vertex vertex) {
         int currentIndex = vertexList.indexOf(vertex);
@@ -249,12 +256,5 @@ public class GraphImpl implements IGraph {
         }//while (!stack.isEmpty())
 
     }
-
-    private int getDistance(String prevLabel, String currlabel) {
-        int i = indexOf(prevLabel);
-        int j = indexOf(currlabel);
-        return adjMatrix[i][j];
-    }
-
 
 }
