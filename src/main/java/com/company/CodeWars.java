@@ -5,42 +5,23 @@ import java.util.stream.IntStream;
 
 
 public class CodeWars {
-    /**
-     * "3x^2"  => "6x"
-     * "-5x^3" => "-15x^2"
-     * "6x^-2" => "-12x^-3"
-     * "5x"    => "5"
-     * "-x"    => "-1"
-     * "42"    => "0"
-     */
-    public static String differentiate(String function) {
-        String delimiter = "x";
-        String[] st = function.split(delimiter);
-
-        //"42"    => "0"
-        if(st.length==1) return "0";
-
-        String left = st[0];
-        String right = st[1];
-
-        //  * "-x"    => "-1"
-        if (left.equals("-")) left = "-1";
-        if(right.equals("")) return left;
-
-        //* "6x^-2" => "-12x^-3"
-        right = right.substring(1, right.length());
-        int l = Integer.parseInt(left);
-        int r = Integer.parseInt(right);
-        l *= r;
-        r -= 1;
-        return l+"x"+(char)94+r;
 
 
+    private static int[] ints;
+
+    public static boolean comp(int[] a, int[] b) {
+        if (a == null || b == null) return false;
+        ints = Arrays.stream(a).map(n -> n * n).toArray();
+        Arrays.sort(ints);
+        Arrays.sort(b);
+        return (Arrays.equals(ints, b));
     }
 
 
     public static void main(String[] args) {
-        System.out.println(differentiate("6x^-2"));
+        int[] a = new int[]{121, 144, 19, 161, 19, 144, 19, 11};
+        int[] b = new int[]{121, 14641, 20736, 361, 25921, 361, 20736, 361};
+        System.out.println(comp(a, b));
 
     }
 }
