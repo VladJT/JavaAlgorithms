@@ -7,5 +7,15 @@ public class COLORS {
     public static final String GREEN = "\u001b[32m";
     public static final String YELLOW = "\u001b[33m";
     public static final String BLUE = "\u001b[34m";
-    public static final String MENU = "\u001b[100m";
+
+
+    private static final String MENU_BG = "\u001b[100m";
+
+    public static void setGreyBackgroundColor() {
+        System.out.print(SYS+MENU_BG);
+    }
+
+    public static void resetColors() {
+        System.out.print(SYS);
+    }
 }
