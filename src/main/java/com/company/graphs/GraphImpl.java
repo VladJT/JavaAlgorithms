@@ -2,7 +2,7 @@ package com.company.graphs;
 
 import java.util.*;
 
-// взвешенный граф для путешествий от Москвы до Воронежа
+// взвешенный граф
 public class GraphImpl implements IGraph {
 
     private final List<Vertex> vertexList;
