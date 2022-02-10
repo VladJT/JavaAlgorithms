@@ -42,12 +42,10 @@ public class LinkedHashTable {
 
     private Item[] hashArr;
     private int arrSize;
-    //   private Item nonItem;
 
     public LinkedHashTable(int size) {
         this.arrSize = size;
         hashArr = new Item[arrSize];
-        //     nonItem = new Item(-1);
     }
 
     public void display() {
