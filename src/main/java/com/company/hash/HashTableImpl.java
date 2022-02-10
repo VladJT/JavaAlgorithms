@@ -6,6 +6,7 @@ public class HashTableImpl<K, V> implements IHashTable<K, V> {
 
     private final Item<K, V>[] data;
     private int size;
+    private Item<K, V> emptyItem;
 
     static class Item<K, V> implements Entry<K, V> {
         private final K key;
@@ -42,6 +43,12 @@ public class HashTableImpl<K, V> implements IHashTable<K, V> {
 
     public HashTableImpl(int initialCapacity) {
         data = new Item[initialCapacity * 2];
+        emptyItem = new Item<>(null, null);
+    }
+
+    // Хеш-функция
+    private int hashFunc(K key) {
+        return Math.abs(key.hashCode() % data.length);
     }
 
 
@@ -50,16 +57,29 @@ public class HashTableImpl<K, V> implements IHashTable<K, V> {
         if (size() == data.length) return false;
         int index = hashFunc(key);
         size++;
+        int n = 0;
 
-        while (data[index] != null) {
+        while (data[index] != null && data[index]!=emptyItem) {
             if (isKeyEquals(data[index], key)) {
                 return true;
             }
-            index += getStepLinear();
+            index += getStepDoubleHash(key);
+//            index += getStepQuadro(n++ );
+//            index += getStepLinear();
             index = index % data.length;
         }
         data[index] = new Item<>(key, value);
         return true;
+    }
+
+    // двойное хеширование (константа д.б. меньше размера массива)
+    private int getStepDoubleHash(K key) {
+        return 5 - (key.hashCode() % 5);
+    }
+
+    // квадратичное пробитие
+    private int getStepQuadro(int n) {
+        return (int) Math.pow(n, 2);
     }
 
     // линейное пробитие
@@ -68,21 +88,40 @@ public class HashTableImpl<K, V> implements IHashTable<K, V> {
     }
 
     private boolean isKeyEquals(Item<K, V> item, K key) {
+        if (item==emptyItem) return false;
         return (item.getKey() == null) ? (key == null) : item.getKey().equals(key);
     }
 
-    private int hashFunc(K key) {
-        return Math.abs(key.hashCode() % data.length);
+
+    @Override
+    public V get(K key) {
+        int index = indexOf(key);
+        return (index==-1)?null:data[index].getValue();
+    }
+
+    private int indexOf(K key) {
+        int index = hashFunc(key);
+        int count = 0;
+        while (count++ < data.length) {
+            if (data[index] == null) break;
+            if (isKeyEquals(data[index], key)) {
+                return index;
+            }
+            else index+=getStepDoubleHash(key);
+            index%= data.length;
+        }
+        return -1;
     }
 
     @Override
-    public Object get(Object key) {
-        return null;
-    }
+    public V remove(K key) {
+        int index = indexOf(key);
+        if (index==-1) return null;
 
-    @Override
-    public Object remove(Object key) {
-        return null;
+        Item<K, V> removed = data[index];
+        data[index] = emptyItem;
+
+        return removed.getValue();
     }
 
     @Override
@@ -92,7 +131,7 @@ public class HashTableImpl<K, V> implements IHashTable<K, V> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return (size==0);
     }
 
     @Override
@@ -103,20 +142,26 @@ public class HashTableImpl<K, V> implements IHashTable<K, V> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(int i=0; i <data.length;i++){
-            sb.append(String.format("%s=[%s]%n",i,data[i]));
+        for (int i = 0; i < data.length; i++) {
+            sb.append(String.format("%s=[%s]%n", i, data[i]));
         }
         return sb.toString();
     }
 
     public static void main(String[] args) {
         HashTableImpl ht = new HashTableImpl(5);
-        ht.put(new Product(1,"Orange"), 150);//1
-        ht.put(new Product(60,"Lemon"), 150);//0
-        ht.put(new Product(70,"Milk"), 150);//2
-        ht.put(new Product(9,"Potato"), 150);//9
+        ht.put(new Product(1, "Orange"), 150);//1
+        ht.put(new Product(60, "Lemon"), 200);//0
+        ht.put(new Product(70, "Milk"), 250);//2
+        ht.put(new Product(9, "Potato"), 266);//9
 
-        System.out.println("Size = "+ht.size());
+//        System.out.println(ht.get(new Product(60, "Lemon")));
+//        System.out.println(ht.get(new Product(62, "Lemon")));
+//        System.out.println(ht.get(new Product(70, "Milk")));
+
+        System.out.println(ht.remove(new Product(60, "Lemon")));
+        ht.put(new Product(1000, "Avokado"), 765);//0
+        System.out.println("Size = " + ht.size());
         ht.display();
     }
 

@@ -3,7 +3,7 @@ package com.company.hash;
 import java.util.Objects;
 
 public class Product {
-    final  int id;
+    final int id;
     String title;
 
     public Product(int id, String title) {
@@ -13,10 +13,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                '}';
+        return "[" + id + " - " + title + "]";
     }
 
     @Override
@@ -29,7 +26,7 @@ public class Product {
 
     @Override
     public int hashCode() {
-       // return Objects.hash(id, title);
+        // return Objects.hash(id, title);
 
         return id;
     }
