@@ -4,6 +4,8 @@ import com.company.arrays.ArrayExample;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.function.BiFunction;
+import java.util.stream.Stream;
 
 /***
  * О - Асимптотическая сложность (рост сложности алгоритма с ростом кол-ва вх. аргументов)
@@ -18,38 +20,26 @@ import java.util.Scanner;
 
 public class BasicElements {
 
-
-    public static void main(String[] args) {
-
-        int[] arr = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
-        int max = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] > max) max = arr[i];
-
-        }  // O(4 * n) , где 4 - это 4 действия, которые будут выполняться для каждого элемента
-        System.out.println(Arrays.toString(arr));
-        System.out.println("max= " + max);
-        System.out.println("fibonacci= " + fibonacci(6));
-
-        boolean a = false;
-        boolean b = true;
-
-        System.out.println("a & b = " + (a & b));
-        System.out.println("a | b = " + (a | b));
-        System.out.println(a ^ b);
-        System.out.println("5! = " + factorial(5));
-
-        System.out.println(sum(1, 2, 3));
-        System.out.println(sum(4, 3, 4, 2, 3));
-        System.out.println(sum(1));
-
-        int i = inputInt();
+    // BiFunction является functional interface, представляющим оператор, который принимает 2 значения и возвращает 1.
+    void l(){
+        BiFunction<Integer, Integer, Integer> mul = (x, y) -> x * y;
+        int rez = mul.apply(5,2);//10
     }
 
-    public static Scanner scanner = new Scanner(System.in);
+
+    // поиск самого короткого слова в строке и вывод его длины
+    // "bitcoin take over the world maybe who knows perhaps" --> 3
+    public static int findShort(String s) {
+        return Stream.of(s.split(" "))
+                .mapToInt(String::length)
+                .min()
+                .getAsInt();
+    }
+
 
     // ввод числа с проверкой
     private static int inputInt() {
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Введите число:");
 
@@ -60,13 +50,6 @@ public class BasicElements {
         }
     }
 
-    static int sum(int... a) {
-        int rez = 0;
-        for (int i : a) {
-            rez += i;
-        }
-        return rez;
-    }
 
 
     public static int fibonacci(int n) {

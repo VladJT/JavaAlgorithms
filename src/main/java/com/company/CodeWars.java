@@ -1,27 +1,77 @@
 package com.company;
 
 import java.util.*;
-import java.util.stream.IntStream;
+import java.util.function.BiFunction;
 
+// функциональный интерфейс
+interface Expression{
+    long call(long a, long b);
+}
 
 public class CodeWars {
 
+    class Operarray {
 
-    private static int[] ints;
+        public static long gcdi(long x, long y) {
+            long min = Math.min(Math.abs(x), Math.abs(y));
+            long max = Math.max(Math.abs(x), Math.abs(y));
+            long gcdi = min;
+            while (gcdi > 1) {
+                if (max % gcdi == 0 && min % gcdi == 0) break;
+                gcdi--;
+            }
+            return gcdi;
+        }
 
-    public static boolean comp(int[] a, int[] b) {
-        if (a == null || b == null) return false;
-        ints = Arrays.stream(a).map(n -> n * n).toArray();
-        Arrays.sort(ints);
-        Arrays.sort(b);
-        return (Arrays.equals(ints, b));
+        public static long lcmu(long a, long b) {
+            // your code
+            long min = Math.min(Math.abs(a), Math.abs(b));
+            long max = Math.max(Math.abs(a), Math.abs(b));
+            long sum = min;
+            while (sum % max != 0) {
+                sum += min;
+            }
+            return sum;
+        }
+
+        public static long som(long a, long b) {
+            return a + b;
+        }
+
+        public static long maxi(long a, long b) {
+            return a > b ? a : b;
+        }
+
+        public static long mini(long a, long b) {
+            return a > b ? b : a;
+        }
+
+        public static long[] operArray(Expression operator, long[] arr, long init) {
+            long[] newArr = new long[arr.length];
+            for (int i = 0; i < arr.length; i++) {
+                newArr[i] = operator.call(arr[i], init);
+                init = newArr[i];
+            }
+
+            return newArr;
+        }
+
     }
-
 
     public static void main(String[] args) {
-        int[] a = new int[]{121, 144, 19, 161, 19, 144, 19, 11};
-        int[] b = new int[]{121, 14641, 20736, 361, 25921, 361, 20736, 361};
-        System.out.println(comp(a, b));
+
+        long[] a = new long[]{18, 69, -90, -78, 65, 40};
+
+
+        System.out.println(Arrays.toString(Operarray.operArray(Operarray::gcdi, a, 18)));
+        
+        BiFunction<Integer, Integer, Integer> mul = (x, y) -> x * y;
+
+        System.out.println(mul.apply(5,2));
 
     }
+
+
 }
+
+
