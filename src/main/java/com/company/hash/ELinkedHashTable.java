@@ -2,6 +2,7 @@ package com.company.hash;
 
 import java.util.*;
 
+
 public class ELinkedHashTable<K, V> implements IHashTable<K, V> {
 
     private final LItem<K, V>[] data;
@@ -89,14 +90,14 @@ public class ELinkedHashTable<K, V> implements IHashTable<K, V> {
                 String st = "";
                 for (int i = 0; i < list.size(); i++) {
                     st += list.get(i).toString();
-                    if(i!=list.size()-1) st+=", ";
+                    if (i != list.size() - 1) st += ", ";
                 }
                 return st;
             }
         }
 
         public V deleteItem(K key) {
-            for(int i=0;i<list.size();i++) {
+            for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).getKey().equals(key)) {
                     V temp = list.get(i).getValue();
                     list.remove(i);
@@ -160,7 +161,7 @@ public class ELinkedHashTable<K, V> implements IHashTable<K, V> {
         int index = hashFunc(key);
         if (data[index] == null || (!data[index].contains(key))) {
             return null;
-        }else {
+        } else {
             size--;
             return data[index].deleteItem(key);
         }
@@ -219,6 +220,5 @@ public class ELinkedHashTable<K, V> implements IHashTable<K, V> {
         System.out.println("[70 - Milk] результат удаления: " + ht.remove(new Product(70, "Milk"))); // есть
 
         ht.display();
-
     }
 }

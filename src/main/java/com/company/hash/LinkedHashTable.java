@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 // хеш-таблица, где коллизии устраняются методом цепочек (через связанный список)
 public class LinkedHashTable {
     class Item {
