@@ -69,7 +69,6 @@ public class LinkedHashTable {
             if (hashArr[hashVal].search(key) != -1) System.out.println("Уже есть такой элемент");
             else hashArr[hashVal].add(key);
         }
-
     }
 
     public boolean delete(int key) {
