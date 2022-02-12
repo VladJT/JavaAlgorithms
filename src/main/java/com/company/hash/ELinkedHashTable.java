@@ -9,7 +9,7 @@ public class ELinkedHashTable<K, V> implements IHashTable<K, V> {
     private int size;
 
     // класс для 1 элемента хранения
-    class Item<K, V> implements Entry<K, V> {
+    static class Item<K, V> implements Entry<K, V> {
         private final K key;
         private V value;
 
@@ -54,7 +54,7 @@ public class ELinkedHashTable<K, V> implements IHashTable<K, V> {
 
 
     // класс для хранения цепочек (предотвращение коллизий)
-    class LItem<K, V> {
+    static class LItem<K, V> {
 
         List<Item<K, V>> list;
 
@@ -203,6 +203,7 @@ public class ELinkedHashTable<K, V> implements IHashTable<K, V> {
         ht.put(new Product(8, "Potato"), 77);//3
         ht.put(new Product(4, "Berry"), 452);//4
         ht.put(new Product(6, "Carrot"), 101);//1
+
 
         ht.display();
 
