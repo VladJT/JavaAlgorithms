@@ -18,7 +18,31 @@ import java.util.stream.Stream;
  * f(n) = O(n!) - рост факториальный
  */
 
+// функциональный интерфейс
+interface Expression{
+    long call(long a, long b);
+}
+
 public class BasicElements {
+    // функция как параметр
+    public static long[] operArray(Expression operator, long[] arr, long init) {
+        long[] newArr = new long[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            newArr[i] = operator.call(arr[i], init);
+            init = newArr[i];
+        }
+        return newArr;
+    }
+    public static long som(long a, long b) {
+        return a + b;
+    }
+    public static long maxi(long a, long b) {
+        return a > b ? a : b;
+    }
+    public static void main(String[] args) {
+        long[] a = new long[]{18, 69, -90, -78, 65, 40};
+        System.out.println(Arrays.toString(operArray(BasicElements::som, a, 18)));
+    }
 
     // BiFunction является functional interface, представляющим оператор, который принимает 2 значения и возвращает 1.
     void l(){

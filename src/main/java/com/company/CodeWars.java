@@ -1,73 +1,52 @@
 package com.company;
 
+import com.company.stack_queue.Queue;
+
 import java.util.*;
 import java.util.function.BiFunction;
 
-// функциональный интерфейс
-interface Expression{
-    long call(long a, long b);
-}
+import static java.lang.Math.*;
+
 
 public class CodeWars {
 
-    class Operarray {
+    /**
+     * encode("mer", 6015)  -->  "6015ekx"
+     * <p>
+     * m --> 12,   12 * 6015 % 26 = 4,    4  --> e
+     * e --> 4,     4 * 6015 % 26 = 10,   10 --> k
+     * r --> 17,   17 * 6015 % 26 = 23,   23 --> x
+     * <p>
+     * So we get "ekx", hence the output is "6015ekx"
+     */
+    public static String decode(String r) {
+        String numString = "";
+        String rezString = "";
 
-        public static long gcdi(long x, long y) {
-            long min = Math.min(Math.abs(x), Math.abs(y));
-            long max = Math.max(Math.abs(x), Math.abs(y));
-            long gcdi = min;
-            while (gcdi > 1) {
-                if (max % gcdi == 0 && min % gcdi == 0) break;
-                gcdi--;
-            }
-            return gcdi;
+        for (char c : r.toCharArray()) {
+            if (c >= '0' && c <= '9') numString += c;
+            else break;
         }
 
-        public static long lcmu(long a, long b) {
-            // your code
-            long min = Math.min(Math.abs(a), Math.abs(b));
-            long max = Math.max(Math.abs(a), Math.abs(b));
-            long sum = min;
-            while (sum % max != 0) {
-                sum += min;
-            }
-            return sum;
+        int num = Integer.parseInt(numString);
+        r = r.substring(numString.length());
+
+        for (char c : r.toCharArray()) {
+            int charS = c-'a';
+            int newS = charS * num % 26;
+            char decodedChar = (char)('a'+newS);
+            rezString += decodedChar;
         }
 
-        public static long som(long a, long b) {
-            return a + b;
-        }
 
-        public static long maxi(long a, long b) {
-            return a > b ? a : b;
-        }
-
-        public static long mini(long a, long b) {
-            return a > b ? b : a;
-        }
-
-        public static long[] operArray(Expression operator, long[] arr, long init) {
-            long[] newArr = new long[arr.length];
-            for (int i = 0; i < arr.length; i++) {
-                newArr[i] = operator.call(arr[i], init);
-                init = newArr[i];
-            }
-
-            return newArr;
-        }
-
+        return rezString;
     }
 
     public static void main(String[] args) {
+        //testing_decode("1273409kuqhkoynvvknsdwljantzkpnmfgf", "uogbucwnddunktsjfanzlurnyxmx");
+        System.out.println(decode("6015ekx"));
+        System.out.println(decode("1273409kuqhkoynvvknsdwljantzkpnmfgf"));
 
-        long[] a = new long[]{18, 69, -90, -78, 65, 40};
-
-
-        System.out.println(Arrays.toString(Operarray.operArray(Operarray::gcdi, a, 18)));
-        
-        BiFunction<Integer, Integer, Integer> mul = (x, y) -> x * y;
-
-        System.out.println(mul.apply(5,2));
 
     }
 
