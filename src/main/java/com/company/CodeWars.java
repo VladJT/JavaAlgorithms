@@ -23,14 +23,15 @@ public class CodeWars {
         int num = Integer.parseInt(numString);
         r = r.substring(numString.length());
 
+        if (num % 2 == 0 || num % 13 == 0) return "Impossible to decode";
+
         for (char c : r.toCharArray()) {
             boolean isExists = false;
             int cCode = c - 'a';
             for (char i = 'a'; i <= 'z'; i++) {
                 int iCode = i - 'a';
                 if (iCode * num % 26 == cCode) {
-                    System.out.println(c+" "+(char)i+ "   "+cCode+" - "+iCode);
-                  //  if (c==(char)i) return "Impossible to decode";
+             //       System.out.println(c+" "+(char)i+ "   "+cCode+" - "+iCode);
                     rezString += (char) i;
                     isExists = true;
                     break;
