@@ -1,4 +1,4 @@
-package com.company.patterns;
+package com.company.patterns.singleton;
 
 
 /**
@@ -49,6 +49,9 @@ class Singleton {
  * - Поддерживается только с JDK 1.5 [5]
  */
 class Singleton2 {
+    // volatile означает:
+    // Она всегда будет атомарно читаться и записываться. Даже если это 64-битные double или long.
+    // Java-машина не будет помещать ее в кэш. Так что ситуация, когда 10 потоков работают со своими локальными копиями исключена.
     private static volatile Singleton2 instance;
 
     public static Singleton2 getInstance() {
