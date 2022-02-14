@@ -10,15 +10,7 @@ import static java.lang.Math.*;
 
 public class CodeWars {
 
-    /**
-     * encode("mer", 6015)  -->  "6015ekx"
-     * <p>
-     * m --> 12,   12 * 6015 % 26 = 4,    4  --> e
-     * e --> 4,     4 * 6015 % 26 = 10,   10 --> k
-     * r --> 17,   17 * 6015 % 26 = 23,   23 --> x
-     * <p>
-     * So we get "ekx", hence the output is "6015ekx"
-     */
+
     public static String decode(String r) {
         String numString = "";
         String rezString = "";
@@ -32,20 +24,34 @@ public class CodeWars {
         r = r.substring(numString.length());
 
         for (char c : r.toCharArray()) {
-            int charS = c-'a';
-            int newS = charS * num % 26;
-            char decodedChar = (char)('a'+newS);
-            rezString += decodedChar;
-        }
-
+            boolean isExists = false;
+            int cCode = c - 'a';
+            for (char i = 'a'; i <= 'z'; i++) {
+                int iCode = i - 'a';
+                if (iCode * num % 26 == cCode) {
+                    System.out.println(c+" "+(char)i+ "   "+cCode+" - "+iCode);
+                  //  if (c==(char)i) return "Impossible to decode";
+                    rezString += (char) i;
+                    isExists = true;
+                    break;
+                }
+            }
+        }//for
 
         return rezString;
     }
 
     public static void main(String[] args) {
         //testing_decode("1273409kuqhkoynvvknsdwljantzkpnmfgf", "uogbucwnddunktsjfanzlurnyxmx");
+
+        System.out.println(decode("5057aan"));//uogbucwnddunktsjfanzlurnyxmx
+        System.out.println("---");
         System.out.println(decode("6015ekx"));
-        System.out.println(decode("1273409kuqhkoynvvknsdwljantzkpnmfgf"));
+        System.out.println("---");
+        System.out.println(decode("105860ymmgegeeiwaigsqkcaeguicc"));
+//        System.out.println(decode("1122305vvkhrrcsyfkvejxjfvafzwpsdqgp"));
+
+
 
 
     }
