@@ -1,5 +1,6 @@
 package com.company.game_xo;
 
+// набор цветов для работы с консолью
 public class COLORS {
     public static final String SYS = "\u001b[0m";
     public static final String GREY = "\u001b[90m";
