@@ -144,7 +144,6 @@ public class ELinkedHashTable<K, V> implements IHashTable<K, V> {
         }
     }
 
-
     @Override
     public V get(K key) {
         int index = hashFunc(key);
