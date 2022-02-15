@@ -1,4 +1,4 @@
-package com.company.sort_objects;
+package com.company.sort.sort_objects;
 
 import java.util.HashMap;
 import java.util.Random;

@@ -19,7 +19,7 @@ enum AnimalType {
 }
 
 
-class Animal {
+abstract class Animal {
 
     public void init1() {
         System.out.println("Расчесываем");
@@ -34,7 +34,7 @@ class Animal {
     }
 
 
-    static class AnimalSimpleFactory {
+    static class SimpleFactory {
         public static Animal createAnimal(AnimalType animalType) {
             Animal a = null;
             switch (animalType) {
@@ -46,7 +46,7 @@ class Animal {
             a.init2();
             return a;
         }
-    }//..... AnimalFactory ......
+    }//..... Factory ......
 }
 
 class Cat extends Animal {
@@ -73,7 +73,7 @@ class Dog extends Animal {
 class Main {
 
     public static void main(String[] args) {
-        Animal barsik = Animal.AnimalSimpleFactory.createAnimal(AnimalType.LION);
-        System.out.println("Команда /голос/: " + barsik.getVoice());
+        Animal barsik = Animal.SimpleFactory.createAnimal(AnimalType.LION);
+        System.out.println("Команда /голос/: " + barsik.getVoice()+" от животного "+barsik.getClass());
     }
 }

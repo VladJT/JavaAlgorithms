@@ -1,27 +1,31 @@
 package com.company;
 
 
-class CodeWars {
+import java.math.BigInteger;
 
 
-    public static double findUniq(double arr[]) {
-        double d = 0;
 
-        if (arr[0] == arr[1]) d = arr[0];
-        if (arr[0] == arr[2]) d = arr[0];
-        if (arr[1] == arr[2]) d = arr[1];
+class CodeWars extends Object{
 
-        for (double x : arr) {
-            if (x != d) return x;
+
+
+    public static BigInteger finance(int n) {
+        if(n==0) return new BigInteger("0");
+        int sum=0;
+
+        for(int i =0; i<=n;i++) {
+            sum += (n+i);
         }
 
-        return -1;
+        return finance(n-1).add(BigInteger.valueOf(sum));
     }
 
 
     public static void main(String[] args) {
 
-        System.out.println(findUniq(new double[]{0, 1, 0}));
+        System.out.println(finance(8));//360
+        System.out.println(finance(5));//105
+
 
     }
 

@@ -55,7 +55,6 @@ public class Employees implements Cloneable {
         l2.remove(0);
         l2.remove("Антон");
 
-        System.out.println(etalon.getEmpList());
         System.out.println(c1.getEmpList());
         System.out.println(c2.getEmpList());
     }
