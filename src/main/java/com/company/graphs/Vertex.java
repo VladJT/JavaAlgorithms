@@ -2,7 +2,7 @@ package com.company.graphs;
 
 import java.util.Objects;
 
-public class Vertex {
+class Vertex {
     private final String label;
     private boolean isVisited;
     private boolean isInTree;

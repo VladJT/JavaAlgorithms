@@ -1,6 +1,6 @@
 package com.company.stack_queue;
 
-public class Queue {
+class Queue {
     /**
      * В качестве очереди будем использовать массив.
      * Переменная front — маркер начала очереди.

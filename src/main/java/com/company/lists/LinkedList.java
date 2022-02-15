@@ -1,7 +1,7 @@
 package com.company.lists;
 
 // односвязный список
-public class LinkedList {
+class LinkedList {
     private Link first;
 
     public Link getFirst() {

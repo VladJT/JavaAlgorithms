@@ -1,6 +1,6 @@
 package com.company.trees;
 
-public class Person {
+class Person {
     public String name;
     public int id;
     public int age;

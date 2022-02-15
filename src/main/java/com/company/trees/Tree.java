@@ -2,7 +2,7 @@ package com.company.trees;
 
 import java.util.Stack;
 
-public class Tree {
+class Tree {
 
 
     /**

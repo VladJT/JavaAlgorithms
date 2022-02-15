@@ -1,6 +1,6 @@
 package com.company.lists;
 
-public class ELinkedQueue<E> {
+class ELinkedQueue<E> {
     private final ETwoSideLinkedList<E> data;
 
     public ELinkedQueue() {

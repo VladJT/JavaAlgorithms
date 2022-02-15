@@ -1,6 +1,6 @@
 package com.company.sort_objects;
 // 1
-public class InsertionSort {
+class InsertionSort {
     public static int sort(Notebook[] array) {
         int countIteration = 0;
         for (int i = 1; i < array.length; i++) {

@@ -4,7 +4,7 @@ package com.company.lists;
  * Двухсторонний список позволяет вставлять элементы не только в начало, но и в конец списка.
  * С этой целью для класса списка создается дополнительное поле last.
  */
-public class TwoSidedLinkedList {
+class TwoSidedLinkedList {
     private Link first;
     private Link last;
 

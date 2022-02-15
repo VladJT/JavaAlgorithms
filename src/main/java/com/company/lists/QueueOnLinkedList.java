@@ -1,6 +1,6 @@
 package com.company.lists;
 
-public class QueueOnLinkedList {
+class QueueOnLinkedList {
     private TwoSidedLinkedList queue;
 
     public QueueOnLinkedList() {

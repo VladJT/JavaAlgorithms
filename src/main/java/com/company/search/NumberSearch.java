@@ -2,7 +2,7 @@ package com.company.search;
 
 import java.util.Arrays;
 
-public class NumberSearch {
+class NumberSearch {
 
     public int iterationCount = 0;
 

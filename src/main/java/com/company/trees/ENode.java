@@ -1,6 +1,6 @@
 package com.company.trees;
 
-public class ENode<T extends Comparable<? super T>> {
+class ENode<T extends Comparable<? super T>> {
     private T value;
     private ENode<T> leftChild;
     private ENode<T> rightChild;

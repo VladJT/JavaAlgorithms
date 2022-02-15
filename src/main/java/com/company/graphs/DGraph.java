@@ -3,8 +3,8 @@ package com.company.graphs;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DGraph {
-    public class DVertex {
+class DGraph {
+    class DVertex {
         private String label;
         private boolean isInTree;
 

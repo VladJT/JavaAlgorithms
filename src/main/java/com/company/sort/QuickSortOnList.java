@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * O(N*logN)
  */
-public class QuickSortOnList {
+class QuickSortOnList {
 
     public static List<Integer> quickSort(List<Integer> arr) {
         // базовый случай рекурсии

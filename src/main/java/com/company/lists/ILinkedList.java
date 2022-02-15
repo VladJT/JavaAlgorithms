@@ -1,7 +1,7 @@
 package com.company.lists;
 
 
-public interface ILinkedList<E> {
+interface ILinkedList<E> {
 
     void insertFirst(E value);
 

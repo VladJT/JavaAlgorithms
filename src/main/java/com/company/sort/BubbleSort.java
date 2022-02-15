@@ -4,7 +4,7 @@ package com.company.sort;
  * сортировка "пузырьком"
  * O(n^2)
  */
-public class BubbleSort {
+class BubbleSort {
     public static int sort(int[] array) {
         int countIteration = 0;
         boolean needSort = true;

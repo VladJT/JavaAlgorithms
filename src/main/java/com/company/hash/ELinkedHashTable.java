@@ -3,7 +3,7 @@ package com.company.hash;
 import java.util.*;
 
 
-public class ELinkedHashTable<K, V> implements IHashTable<K, V> {
+class ELinkedHashTable<K, V> implements IHashTable<K, V> {
 
     private final LItem<K, V>[] data;
     private int size;

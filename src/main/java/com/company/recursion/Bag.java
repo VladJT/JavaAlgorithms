@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * Написать программу «Задача о рюкзаке» с помощью рекурсии.
  */
-public class Bag {
+class Bag {
 
     /**
      * ПРЕДМЕТЫ

@@ -3,7 +3,7 @@ package com.company.search;
 import com.company.common.*;
 import com.company.sort.QuickSort;
 
-public class Main {
+class Main {
 
     public static void main(String[] args) {
 

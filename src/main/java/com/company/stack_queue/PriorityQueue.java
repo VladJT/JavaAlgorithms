@@ -2,7 +2,7 @@ package com.company.stack_queue;
 
 import java.io.IOException;
 
-public class PriorityQueue {
+class PriorityQueue {
     private int maxSize;
     private int[] queueArray;
     private int items;

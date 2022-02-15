@@ -16,7 +16,7 @@ class Item {
 
 // TODO Хеширование — это преобразование массива данных или набора символов в число.
 // хеш-таблица, где коллизии устраняются методом открытой адресации
-public class HashTable {
+class HashTable {
 
 
     private Item[] hashArr;

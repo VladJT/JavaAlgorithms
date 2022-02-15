@@ -1,7 +1,7 @@
 package com.company.lists;
 
 // Реализация стека на базе связного списка
-public class StackOnLinkedList {
+class StackOnLinkedList {
     private LinkedList list;
 
     public StackOnLinkedList() {

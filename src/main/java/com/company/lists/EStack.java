@@ -1,6 +1,6 @@
 package com.company.lists;
 
-public class EStack<E> {
+class EStack<E> {
 
     private final ELinkedList<E> data;
 

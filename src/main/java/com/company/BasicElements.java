@@ -1,7 +1,5 @@
 package com.company;
 
-import com.company.arrays.ArrayExample;
-
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.BiFunction;

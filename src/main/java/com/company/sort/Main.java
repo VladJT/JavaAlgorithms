@@ -3,7 +3,7 @@ package com.company.sort;
 
 import com.company.common.*;
 
-public class Main {
+class Main {
 
     public static void main(String[] args) {
         int size = 100;

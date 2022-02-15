@@ -1,7 +1,7 @@
 package com.company.lists;
 
 // элемент списка
-public class Link {
+class Link {
     public String name;
     public int age;
     public Link next;

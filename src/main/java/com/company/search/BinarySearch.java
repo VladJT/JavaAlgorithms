@@ -1,6 +1,6 @@
 package com.company.search;
 
-public class BinarySearch {
+class BinarySearch {
 
     public static int search(int[] arr, int num2Find) {
         return search(arr, num2Find, 0, arr.length-1);

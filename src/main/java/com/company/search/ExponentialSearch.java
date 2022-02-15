@@ -2,7 +2,7 @@ package com.company.search;
 
 import java.util.Objects;
 
-public class ExponentialSearch {
+class ExponentialSearch {
 
     public static int search(int[] arr, int num2Find) {
         int i = 0;

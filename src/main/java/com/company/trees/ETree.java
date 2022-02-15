@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Stack;
 
-public class ETree<E extends Comparable<? super E>> implements ITree<E> {
+class ETree<E extends Comparable<? super E>> implements ITree<E> {
 
     private ENode<E> root;
     private int size;

@@ -6,7 +6,7 @@ package com.company.lists;
  *
  * @param <E>
  */
-public class ETwoSideLinkedList<E> extends ELinkedList<E> {
+class ETwoSideLinkedList<E> extends ELinkedList<E> {
 
     protected Node<E> last;
 

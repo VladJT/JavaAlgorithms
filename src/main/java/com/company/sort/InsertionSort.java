@@ -3,7 +3,7 @@ package com.company.sort;
 /**
  * сортировка вставками
  */
-public class InsertionSort {
+class InsertionSort {
 
     public static int sort(int[] array) {
         int countIteration = 0;

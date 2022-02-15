@@ -4,7 +4,7 @@ import java.util.HashMap;
 import com.company.sort.*;
 
 
-public class Main {
+class Main {
 
     public static void main(String[] args) {
         Notebook.vendors = new HashMap<>();

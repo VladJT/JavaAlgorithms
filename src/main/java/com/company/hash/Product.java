@@ -2,7 +2,7 @@ package com.company.hash;
 
 import java.util.Objects;
 
-public class Product {
+class Product {
     final int id;
     String title;
 

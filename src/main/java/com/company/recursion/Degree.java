@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 /**
  * Написать программу по возведению числа в степень с помощью рекурсии.
  */
-public class Degree {
+class Degree {
 
     public static void main(String[] args) {
         DecimalFormat decimalFormat = new DecimalFormat("#.####");

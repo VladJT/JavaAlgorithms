@@ -1,6 +1,6 @@
 package com.company.search;
 
-public class InterpolationSearch {
+class InterpolationSearch {
 
     public static int search(int[] arr, int num2Find) {
         int start = 0;

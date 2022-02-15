@@ -15,7 +15,7 @@ import java.util.Random;
  * Lenuvo > Asos > MacNote > Eser > Xamiou
  */
 // 1
-public class Notebook {
+class Notebook {
 
     public static HashMap<Integer, String> vendors;
 

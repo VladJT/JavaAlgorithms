@@ -3,7 +3,7 @@ package com.company.trees;
 import java.util.Random;
 import java.util.Stack;
 
-public class IntBinaryTree {
+class IntBinaryTree {
     class Node {
         private int value; // ключ узла
         private Node leftChild; // Левый узел потомок

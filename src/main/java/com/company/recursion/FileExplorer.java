@@ -2,7 +2,7 @@ package com.company.recursion;
 
 import java.io.File;
 
-public class FileExplorer {
+class FileExplorer {
 
     public static void main(String[] args) {
         File file = new File("D:\\Projects\\Git2\\");

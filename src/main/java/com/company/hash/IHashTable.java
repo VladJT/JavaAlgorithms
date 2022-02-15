@@ -1,6 +1,6 @@
 package com.company.hash;
 
-public interface IHashTable<K, V> {
+interface IHashTable<K, V> {
 
     boolean put(K key, V value);
 

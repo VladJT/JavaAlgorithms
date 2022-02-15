@@ -4,7 +4,7 @@ package com.company.sort;
  * метод быстрой сортировки
  * O(N*logN)
  */
-public class QuickSort {
+class QuickSort {
 
     public static int countIteration = 0;
 

@@ -10,7 +10,7 @@ package com.company.lists;
  * insertBefore() — вставка элемента до итератора;
  * deleteCurrent() — удаление элемента в текущей позиции итератора.
  */
-public class LinkIterator {
+class LinkIterator {
     private Link current;
     private Link previous;
     private LinkedList list;

@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 // игра Крестики-Нолики
-public class ConsoleGameXO {
+class ConsoleGameXO {
 
     private static int SIZE = 3;// размер игрового поля
     private static int WIN_SIZE = 3;// длина линии до победы в партии

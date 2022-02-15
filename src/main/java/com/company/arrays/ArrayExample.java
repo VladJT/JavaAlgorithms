@@ -2,7 +2,7 @@ package com.company.arrays;
 
 import java.util.Arrays;
 
-public class ArrayExample {
+class ArrayExample {
 
     public static void main(String[] args) {
 

@@ -2,7 +2,7 @@ package com.company.hash;
 
 import java.util.Arrays;
 
-public class HashTableImpl<K, V> implements IHashTable<K, V> {
+class HashTableImpl<K, V> implements IHashTable<K, V> {
 
     private final Item<K, V>[] data;
     private int size;

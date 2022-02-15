@@ -5,7 +5,7 @@ package com.company.lists;
  *
  * @param <E> - тип хранимого значения в Node
  */
-public class EDeque<E> extends ETwoSideLinkedList<E> {
+class EDeque<E> extends ETwoSideLinkedList<E> {
 
     @Override
     public void insertFirst(E value) {

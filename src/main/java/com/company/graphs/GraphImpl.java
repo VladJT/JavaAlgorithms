@@ -3,7 +3,7 @@ package com.company.graphs;
 import java.util.*;
 
 // взвешенный граф
-public class GraphImpl implements IGraph {
+class GraphImpl implements IGraph {
 
     private final List<Vertex> vertexList;
     private final int[][] adjMatrix;
