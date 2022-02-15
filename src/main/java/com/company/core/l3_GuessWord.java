@@ -17,7 +17,7 @@ import java.util.Scanner;
  * Играем до тех пор, пока игрок не отгадает слово.
  * Используем только маленькие буквы.
  */
-public class l3_GuessWord {
+class l3_GuessWord {
 
     public static void main(String[] args) {
         String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};

@@ -1,6 +1,6 @@
 package com.company.core.oop;
 
-public class Player {
+class Player {
     String nickname;
     int points;
     int level;

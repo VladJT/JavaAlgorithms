@@ -1,7 +1,7 @@
 package com.company.core.oop;
 
 
-public abstract class Animal {
+abstract class Animal {
     private String name;
     protected final int age;
 

@@ -2,7 +2,7 @@ package com.company.core.oop;
 
 import java.sql.SQLOutput;
 
-public class Worker {
+class Worker {
     // TODO принято использовать такой порядок в классе: сначала все поля, потом конструктор, потом методы
     private final String name;
     private final String position;

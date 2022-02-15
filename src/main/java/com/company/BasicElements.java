@@ -23,7 +23,7 @@ interface Expression{
     long call(long a, long b);
 }
 
-public class BasicElements {
+class BasicElements {
     // функция как параметр
     public static long[] operArray(Expression operator, long[] arr, long init) {
         long[] newArr = new long[arr.length];

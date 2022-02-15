@@ -1,6 +1,6 @@
 package com.company.core;
 
-public class l1_DataTypes {
+class l1_DataTypes {
 
     public static void main(String[] args) {
         printThreeWords();

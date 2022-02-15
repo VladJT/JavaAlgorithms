@@ -8,7 +8,7 @@ import java.util.Scanner;
  * При каждой попытке компьютер должен сообщить, больше ли указанное пользователем число, чем загаданное, или меньше.
  * После победы или проигрыша выводится запрос – «Повторить игру еще раз? 1 – да / 0 – нет»(1 – повторить, 0 – нет).
  */
-public class l3_GuessNumber {
+class l3_GuessNumber {
 
     public static void main(String[] args) {
         int playGame = 1;
