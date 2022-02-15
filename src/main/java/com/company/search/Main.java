@@ -1,7 +1,6 @@
 package com.company.search;
 
-import com.company.common.*;
-import com.company.sort.QuickSort;
+import com.company.arrays.MyArray;
 
 class Main {
 

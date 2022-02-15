@@ -1,7 +1,7 @@
 package com.company.sort;
 
 
-import com.company.common.*;
+import com.company.arrays.MyArray;
 
 class Main {
 
