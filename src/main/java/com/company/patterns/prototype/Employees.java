@@ -1,31 +1,28 @@
 package com.company.patterns.prototype;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * Шаблон прототипа обычно используется, когда у нас есть экземпляр класса (прототип), и мы хотели бы создать новые объекты, просто скопировав прототип
  * Вместо создания новых объектов нам просто нужно клонировать прототипический экземпляр.
- *
+ * <br>
  * Применимость: Паттерн Прототип реализован в базовой библиотеке Java посредством интерфейса Cloneable.
  * Признаки применения паттерна: Прототип легко определяется в коде по наличию методов clone, copy и прочих.
- *
  */
 
-public class Employees implements Cloneable{
+public class Employees implements Cloneable {
     private List<String> empList;
 
-    public Employees(){
+    public Employees() {
         empList = new ArrayList<String>();
     }
 
-    public Employees(List<String> l){
+    public Employees(List<String> l) {
         empList = l;
     }
 
-    public void loadData(){
+    public void loadData() {
         empList.add("Иван");
         empList.add("Стас");
         empList.add("Антон");
@@ -39,7 +36,7 @@ public class Employees implements Cloneable{
     @Override
     protected Employees clone() throws CloneNotSupportedException {
         List<String> temp = new ArrayList<>();
-        for(String s : empList){
+        for (String s : empList) {
             temp.add(s);
         }
         return new Employees(temp);
