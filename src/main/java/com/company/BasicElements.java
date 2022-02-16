@@ -16,6 +16,7 @@ import java.util.stream.Stream;
  * f(n) = O(n!) - рост факториальный
  */
 
+
 // функциональный интерфейс
 interface Expression{
     long call(long a, long b);
@@ -31,12 +32,15 @@ class BasicElements {
         }
         return newArr;
     }
+
     public static long som(long a, long b) {
         return a + b;
     }
+
     public static long maxi(long a, long b) {
         return a > b ? a : b;
     }
+
     public static void main(String[] args) {
         long[] a = new long[]{18, 69, -90, -78, 65, 40};
         System.out.println(Arrays.toString(operArray(BasicElements::som, a, 18)));
@@ -48,7 +52,6 @@ class BasicElements {
         int rez = mul.apply(5,2);//10
     }
 
-
     // поиск самого короткого слова в строке и вывод его длины
     // "bitcoin take over the world maybe who knows perhaps" --> 3
     public static int findShort(String s) {
@@ -57,7 +60,6 @@ class BasicElements {
                 .min()
                 .getAsInt();
     }
-
 
     // ввод числа с проверкой
     private static int inputInt() {
@@ -71,8 +73,6 @@ class BasicElements {
             System.out.println(scanner.next() + " - это не число");
         }
     }
-
-
 
     public static int fibonacci(int n) {
         if (n <= 1) return 1;
