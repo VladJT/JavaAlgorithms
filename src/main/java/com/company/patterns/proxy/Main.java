@@ -1,5 +1,7 @@
 package com.company.patterns.proxy;
 
+import java.io.IOException;
+
 /**
  * <h1>Заместитель (PROXY)</h1> — это объект, который выступает прослойкой между клиентом и реальным сервисным объектом.
  * Заместитель получает вызовы от клиента, выполняет свою функцию (контроль доступа, кеширование, изменение запроса и прочее),
@@ -30,5 +32,53 @@ package com.company.patterns.proxy;
  * <li>javax.persistence.PersistenceContext</>
  */
 
+
+interface ICommandExecutor {
+    public void runCommand(String cmd) throws Exception;
+}
+
+
+// сервисный объект для запуска команд консоли
+class SystemCommandExecutor implements ICommandExecutor {
+    @Override
+    public void runCommand(String cmd) throws IOException {
+        //Runtime.getRuntime().exec(cmd);
+        System.out.println("'" + cmd + "' команда выполнена");
+    }
+}
+
+// Proxy (мы хотим предоставить полный доступ только пользователям с правами администратора вышеуказанного класса)
+class CommandExecutorProxy implements ICommandExecutor {
+    private boolean isAdmin;
+    private ICommandExecutor executor;
+
+    public CommandExecutorProxy(String user, String pwd) {
+        if ("vlad".equals(user) && "Qwerty12".equals(pwd)) isAdmin = true;
+        executor = new SystemCommandExecutor();
+    }
+
+    @Override
+    public void runCommand(String cmd) throws Exception {
+        if (isAdmin) {
+            executor.runCommand(cmd);
+        } else {
+            if (cmd.trim().startsWith("rm")) {
+                throw new Exception("rm command запрещена для запуска пользователям");
+            } else {
+                executor.runCommand(cmd);
+            }
+        }
+    }
+}
+
 class Main {
+    public static void main(String[] args) {
+        ICommandExecutor executor = new CommandExecutorProxy("vlad", "wrong_pwd");
+        try {
+            executor.runCommand("ls -ltr"); // доступна пользователям
+            executor.runCommand(" rm -rf abc.pdf"); // только для админа
+        } catch (Exception e) {
+            System.out.println("Exception::" + e.getMessage());
+        }
+    }
 }
