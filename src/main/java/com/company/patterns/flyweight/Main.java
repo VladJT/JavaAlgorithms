@@ -11,6 +11,11 @@ import java.util.Map;
 
 /**
  * <h1>Легковес (Flyweight)</h1>
+ * <font color="#fa8e47">Сложность:⭐⭐⭐</font><br>
+ * <font color="#fa8e47">Популярность:⭐</font>⭐⭐<p>
+ * структурный паттерн, который экономит память, благодаря разделению общего состояния, вынесенного в один объект, между множеством объектов.
+ * Легковес позволяет экономить память, кешируя одинаковые данные, используемые в разных объектах.
+ * <p>
  * Его суть заключается в том, что если у разных объектов есть одинаковое состояние, то его можно обобщить и хранить не в каждом объекте, а в одном месте.
  * И тогда каждый объект сможет ссылаться на общу часть, что позволит сократить расходы памяти на хранение.
  * Часто работа данного паттерна связана с предварительным кэшированием или с поддержанием пула объектов.
@@ -35,9 +40,9 @@ import java.util.Map;
 class MyTree {
     private int x;
     private int y;
-    private TreeType type;
+    private TreeModel type;
 
-    public MyTree(int x, int y, TreeType type) {
+    public MyTree(int x, int y, TreeModel type) {
         this.x = x;
         this.y = y;
         this.type = type;
@@ -50,11 +55,11 @@ class MyTree {
 
 
 // Легковес, имеющий общее состояние нескольких деревьев
-class TreeType {
+class TreeModel {
     private String name;
     private Color color;
 
-    public TreeType(String name, Color color) {
+    public TreeModel(String name, Color color) {
         this.name = name;
         this.color = color;
     }
@@ -69,12 +74,12 @@ class TreeType {
 
 // фабрика деревьев
 class TreeFactory {
-    static Map<String, TreeType> treeTypes = new HashMap<>();
+    static Map<String, TreeModel> treeTypes = new HashMap<>();
 
-    public static TreeType getTreeType(String name, Color color) {
-        TreeType newTreeType = treeTypes.get(name);
+    public static TreeModel getTreeType(String name, Color color) {
+        TreeModel newTreeType = treeTypes.get(name);
         if (newTreeType == null) {
-            newTreeType = new TreeType(name, color);
+            newTreeType = new TreeModel(name, color);
             treeTypes.put(name, newTreeType);
         }
         return newTreeType;
@@ -86,7 +91,7 @@ class Forest extends JFrame {
     private List<MyTree> trees = new ArrayList<>();
 
     public void plantTree(int x, int y, String name, Color color) {
-        TreeType type = TreeFactory.getTreeType(name, color);
+        TreeModel type = TreeFactory.getTreeType(name, color);
         MyTree tree = new MyTree(x, y, type);
         trees.add(tree);
     }

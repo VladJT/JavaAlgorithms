@@ -1,9 +1,12 @@
 package com.company.patterns.factory;
 
 
-
 /**
  * <h1>Простая фабрика (Simple Factory)</h1>
+ * <font color="#fa8e47">Сложность:⭐</font>⭐⭐<br>
+ * <font color="#fa8e47">Популярность:⭐⭐</font>⭐<p>
+ * порождающий шаблон проектирования, который помогает решить проблему создания различных объектов в зависимости от некоторых условий.
+ * <p>
  * 5 шагов к открытию собственной фабрики
  * <li>Шаг 1. У тебя в программе класс с несколькими потомками</li>
  * <li>Шаг 2. Ты создаешь enum, в котором определяешь enum-переменную для каждого класса-наследника:</li>
@@ -74,6 +77,6 @@ class Main {
 
     public static void main(String[] args) {
         Animal barsik = Animal.SimpleFactory.createAnimal(AnimalType.LION);
-        System.out.println("Команда /голос/: " + barsik.getVoice()+" от животного "+barsik.getClass());
+        System.out.println("Команда /голос/: " + barsik.getVoice() + " от животного " + barsik.getClass());
     }
 }
