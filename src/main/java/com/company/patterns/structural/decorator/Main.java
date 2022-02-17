@@ -23,11 +23,16 @@ package com.company.patterns.structural.decorator;
  * <p>
  * <font color="#fa8e47">Признаки применения паттерна:<br></font>
  * Декоратор можно распознать по создающим методам, которые принимают в параметрах объекты того же абстрактного типа или интерфейса, что и текущий класс.
+ *  <p>
+ * <font color="fa8eff">1. Класс-декоратор должен быть того же типа, что и декорируемый класс, — реализовывать тот же интерфейс или наследовать тот же базовый класс.<br>
+ * 2. Декоратор реализует поведение исходного класса; при этом не изменяет его, а добавляет своё до или после вызова базового поведения.<br>
+ * 3. Это достигается за счёт того, что декоратор содержит в себе объект базового класса и вызывает его методы там, где требуется дополнить поведение.</font>
  */
 
-//Существует интерфейс Car
+//  интерфейс Car
 interface Car {
     public int getSpeed();
+
     public int getBaggageWeight();
 }
 
@@ -51,7 +56,58 @@ class SimpleCar implements Car {
 Чтобы сделать из простого автомобиля скоростной спортивный автомобиль у нас есть класс-декоратор SportCar,
 который в конструкторе принимает класс SimpleCar и добавляет скорости обычному автомобилю.
  */
+class SportCar implements Car {
+    private Car car;
+    public int boostSpeed = 200;
+
+    public SportCar(Car car) {
+        this.car = car;
+    }
+
+    @Override
+    public int getSpeed() {
+        return this.car.getSpeed() + boostSpeed;
+    }
+
+    @Override
+    public int getBaggageWeight() {
+        return this.car.getBaggageWeight() - 20;
+    }
+}
+
+//Также чтобы увеличить грузоподъемность простого автомобиля у нас есть класс-декоратор Truck,
+// который в конструкторе принимает класс SimpleCar и добавляет грузоподъемности обычному автомобилю.
+class Truck implements Car {
+    private Car car;
+    public int addedWeight = 1000;
+
+    public Truck(Car car) {
+        this.car = car;
+    }
+
+    @Override
+    public int getSpeed() {
+        return this.car.getSpeed();
+    }
+
+    @Override
+    public int getBaggageWeight() {
+        return this.car.getBaggageWeight() + addedWeight;
+    }
+}
 
 
 class Main {
+    public static void main(String[] args) {
+        Car simpleCar = new SimpleCar();
+
+        //Используем обычный автомобиль SimpleCar, превращая его с помощью декораторов в спортивный автомобиль или грузовик.
+        Car sportCar = new SportCar(simpleCar);
+        System.out.println("Скорость спортивного авто: " + sportCar.getSpeed());
+        System.out.println("Грузоподьемность: " + sportCar.getBaggageWeight());
+
+        Car truck = new Truck(simpleCar);
+        System.out.println("Скорость грузового авто:  " + truck.getSpeed());
+        System.out.println("Грузоподьемность: " + truck.getBaggageWeight());
+    }
 }

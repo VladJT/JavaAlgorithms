@@ -64,6 +64,7 @@ class Rectangle extends Shape {
     @Override
     public void draw() {
         System.out.println("Drawing rectangle");
+        color.fillColor();
     }
 }
 class Triangle extends Shape {
@@ -74,15 +75,17 @@ class Triangle extends Shape {
     @Override
     public void draw() {
         System.out.println("Drawing triangle");
+        color.fillColor();
     }
 }
 
 /*
-Выглядит все просто до того момента, пока мы не вводим понятие “цвета”. То есть, у каждой фигуры будет свой цвет, от которого будет зависеть функционал метода draw().
+У каждой фигуры будет свой цвет, от которого будет зависеть функционал метода draw().
 Чтобы иметь различные реализации метода draw(), нам необходимо создать класс для каждой фигуры, соответствующий цвету.
 Если три цвета, то шесть классов: TriangleBlack, TriangleGreen, TriangleRed, RectangleBlack, RectangleGreen и RectangleRed.
 Шесть классов — не такая уж и большая проблема. Но! Если нам нужно будет добавить новую фигуру или цвет, количество классов будет расти в геометрической прогрессии.
-Как выйти из сложившейся ситуации? Хранение цвета в поле и перебор вариантов через условные конструкции — не лучший выход. Хорошее решение — вывести цвет в отдельный интерфейс.
+Как выйти из сложившейся ситуации? Хранение цвета в поле и перебор вариантов через условные конструкции — не лучший выход.
+Хорошее решение — вывести цвет в отдельный интерфейс.
  */
 interface Color {
     void fillColor();
@@ -114,9 +117,7 @@ class Main {
     public static void main(String[] args) {
         Shape[] shapes = {new Rectangle(new BlackColor()), new Triangle(new RedColor()) };
         shapes[0].draw();
-        shapes[0].color.fillColor();
         shapes[1].draw();
-        shapes[1].color.fillColor();
     }
 
 }
