@@ -1,4 +1,4 @@
-package com.company.patterns.proxy;
+package com.company.patterns.structural.proxy;
 
 import java.io.IOException;
 

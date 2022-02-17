@@ -1,4 +1,4 @@
-package com.company.patterns.facade;
+package com.company.patterns.structural.facade;
 
 
 /**

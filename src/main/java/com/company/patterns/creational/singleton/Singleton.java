@@ -1,4 +1,4 @@
-package com.company.patterns.singleton;
+package com.company.patterns.creational.singleton;
 
 /**
  * <h1>Одиночка (Singletone)</h1>

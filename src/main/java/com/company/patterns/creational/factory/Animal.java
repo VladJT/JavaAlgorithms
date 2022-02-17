@@ -1,4 +1,4 @@
-package com.company.patterns.factory;
+package com.company.patterns.creational.factory;
 
 
 /**

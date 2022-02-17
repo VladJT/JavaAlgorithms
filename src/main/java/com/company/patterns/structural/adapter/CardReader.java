@@ -1,4 +1,4 @@
-package com.company.patterns.adapter;
+package com.company.patterns.structural.adapter;
 
 /**
  * <h1>Адаптер (Adapter)</h1>

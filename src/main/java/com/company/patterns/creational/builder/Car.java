@@ -1,4 +1,4 @@
-package com.company.patterns.builder;
+package com.company.patterns.creational.builder;
 
 /**
  * <h1>Строитель (Builder)</h1>
