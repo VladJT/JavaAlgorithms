@@ -61,6 +61,12 @@ class BasicElements {
                 .getAsInt();
     }
 
+    // получить отсортированный массив только из нечетных чисел
+    static void sortOddNumInArray(){
+        int[]array = new int[]{ 5, 3, 2, 8, 1, 4 };
+        int[] sortedOdd = Arrays.stream(array).filter(e -> e % 2 == 1).sorted().toArray();
+    }
+
     // ввод числа с проверкой
     private static int inputInt() {
         Scanner scanner = new Scanner(System.in);
