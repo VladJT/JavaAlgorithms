@@ -16,8 +16,9 @@ import java.util.List;
  * java.util.concurrent.Executor#execute()
  * <p>
  * <font color="#fa8e47">Преимущества:<br></font>
+ * <ul>
  * <li>Устраняется связанность между "Коллегами"</li>
- * <li>централизуется управление</li>
+ * <li>централизуется управление</li></ul>
  */
 
 /*

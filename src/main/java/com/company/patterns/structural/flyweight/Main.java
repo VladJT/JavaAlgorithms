@@ -1,13 +1,11 @@
 package com.company.patterns.structural.flyweight;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 /**
  * <h1>Легковес (Flyweight)</h1>

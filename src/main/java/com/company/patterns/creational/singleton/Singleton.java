@@ -12,9 +12,10 @@ package com.company.patterns.creational.singleton;
  * <font color="#fa8e47">Признаки применения паттерна:</font> Одиночку можно определить по статическому создающему методу, который возвращает один и тот же объект.
  * <p>
  * Одиночке нашлось применение в стандартных библиотеках Java:
+ * <ul>
  * <li>java.lang.Runtime#getRuntime()</li>
  * <li>java.awt.Desktop#getDesktop()</li>
- * <li>java.lang.System#getSecurityManager()</li>
+ * <li>java.lang.System#getSecurityManager()</li></ul>
  * <p>
  * Одиночка имеет такие же преимущества и недостатки, что и глобальные переменные.
  * Его невероятно удобно использовать, но он нарушает модульность вашего кода.

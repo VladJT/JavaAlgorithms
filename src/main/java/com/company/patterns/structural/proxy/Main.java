@@ -30,9 +30,10 @@ import java.io.IOException;
  * Класс заместителя чаще всего делегирует всю настоящую работу своему реальному объекту. Заместители часто сами следят за жизненным циклом своего реального объекта.
  * <p>
  * <font color="#fa8e47">Примеры Заместителя в стандартных библиотеках Java:</font>
+ * <ul>
  * <li>java.lang.reflect.Proxy</>
  * <li>java.rmi.*</>
- * <li>javax.persistence.PersistenceContext</>
+ * <li>javax.persistence.PersistenceContext</li></ul>
  */
 
 

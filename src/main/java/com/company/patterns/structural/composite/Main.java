@@ -14,8 +14,9 @@ import java.util.List;
  * Самый простой пример — составные элементы GUI, которые тоже можно рассматривать как дерево.
  * <p>
  * <font color="#fa8e47">Примеры Компоновщиков в стандартных библиотеках Java:</font>
+ * <ul>
  * <li>java.awt.Container#add(Component) (обычно применим для компонентов Swing)</li>
- * <li>javax.faces.component.UIComponent#getChildren() (обычно применим для JSF UI)</li>
+ * <li>javax.faces.component.UIComponent#getChildren() (обычно применим для JSF UI)</li></ul>
  * <p>
  * <font color="#fa8e47">Признаки применения паттерна:<br></font>Если из объектов строится древовидная структура, и со всеми объектами дерева,
  * как и с самим деревом работают через общий интерфейс.
