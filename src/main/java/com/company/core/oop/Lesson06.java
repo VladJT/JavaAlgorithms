@@ -3,54 +3,54 @@ package com.company.core.oop;
 import java.util.Random;
 
 // паттерн factory method
-interface IAnimal{
+interface IAnimal {
     void run(int distance);
+
     void swim(int distance);
 }
 
-abstract class AnimalCreator{
+abstract class AnimalCreator {
     public abstract IAnimal factoryMethod(String name);
 }
 
-class CatCreator extends AnimalCreator{
+class CatCreator extends AnimalCreator {
     @Override
     public IAnimal factoryMethod(String name) {
-        return new Cat("Кошка",  name, 200, new NoSwimStrategy());
+        return new Cat("Кошка", name, 200, new NoSwimStrategy());
     }
 }
 
-class DogCreator extends AnimalCreator{
+class DogCreator extends AnimalCreator {
     @Override
     public IAnimal factoryMethod(String name) {
-        return new Dog("Собака",  name, 500, new BasicSwimStategy(10));
+        return new Dog("Собака", name, 500, new BasicSwimStategy(10));
     }
 }
 
-interface SwimStrategy{
+interface SwimStrategy {
     void swim(int distance);
 }
 
-class NoSwimStrategy implements SwimStrategy{
+class NoSwimStrategy implements SwimStrategy {
     @Override
     public void swim(int distance) {
         System.out.println("не умеет плавать");
     }
 }
 
-class BasicSwimStategy implements SwimStrategy{
+class BasicSwimStategy implements SwimStrategy {
     private final int limitSwim;// максимальная дистанция плавания
 
-    public BasicSwimStategy(int limitSwim){
+    public BasicSwimStategy(int limitSwim) {
         this.limitSwim = limitSwim;
     }
 
     @Override
     public void swim(int distance) {
-        String st = ((distance <= limitSwim) ? "проплыл " + distance + " м" : " не может проплыть " + distance + " м");
+        String st = ((distance <= limitSwim) ? "проплыл " + distance + " м" : "не может проплыть " + distance + " м");
         System.out.println(st);
     }
 }
-
 
 
 abstract class Animal {
@@ -60,7 +60,7 @@ abstract class Animal {
 
     SwimStrategy swimStrategy;
 
-    Animal(String type, String name, int limitRun,  SwimStrategy swimStrategy) {
+    Animal(String type, String name, int limitRun, SwimStrategy swimStrategy) {
         this.type = type;
         this.name = name;
         this.limitRun = limitRun;
@@ -69,7 +69,8 @@ abstract class Animal {
 
     public void run(int distance) {
         String st = "";
-        if (limitRun == 0) st = type + " не умеет бегать";
+        if (limitRun == 0)
+            st = type + " не умеет бегать";
         else
             st = this + ((distance <= limitRun) ? " пробежал " + distance + " м" : " не может пробежать " + distance + " м");
         System.out.println(st);
