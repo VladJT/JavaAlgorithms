@@ -79,7 +79,6 @@ class SwitchOffCommand implements ICommand {
 class FuncionalInterfaceEx {
     public static void main(String[] args) {
         Light lamp = new Light();//Receiver
-
         // не требуется обязательно создавать классы SwitchOnCommand и SwitchOffCommand вместо этого мы можем использовать оператор :: как показано в следующем примере
         // ICommand switchOn = new SwitchOnCommand(lamp);
         // ICommand switchOff = new SwitchOffCommand(lamp);
