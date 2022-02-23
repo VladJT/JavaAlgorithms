@@ -1,5 +1,6 @@
 package com.company.core.lesson07;
 
+
 class Plate {
     private int foodCount;
     private final int maxFoodCount = 10;

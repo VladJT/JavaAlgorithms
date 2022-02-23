@@ -2,7 +2,6 @@ package com.company.core.lesson07;
 
 import java.util.Random;
 
-
 class Main {
     public static void main(String[] args) {
         int size = 6;
