@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 
 
 // функциональный интерфейс
+@FunctionalInterface
 interface Expression{
     long call(long a, long b);
 }
