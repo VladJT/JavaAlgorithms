@@ -2,6 +2,8 @@ package com.company.core;
 
 
 import java.io.*;
+import java.math.BigInteger;
+import java.util.Scanner;
 
 class StringFiles {
 
@@ -26,6 +28,16 @@ class StringFiles {
             sb.append(is.read());
         }
         System.out.println(sb);
+
+        File input = new File("src/main/resources/input.txt");
+        File output = new File("src/main/resources/output.txt");
+        Scanner scanner = new Scanner(input);
+        PrintWriter pw = new PrintWriter(output);
+        BigInteger a = scanner.nextBigInteger();
+        BigInteger b = scanner.nextBigInteger();
+        pw.print(a.add(b));
+        pw.close();
+        scanner.close();
     }
 
 
