@@ -1,10 +1,8 @@
 package com.company.streams;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 class Main {
@@ -27,7 +25,7 @@ class Main {
         }).start();
 
         // lambda
-        Runnable r1 = ()->{
+        Runnable r1 = () -> {
             System.out.println("3");
         };
         new Thread(r1).start();
@@ -50,10 +48,42 @@ class Main {
         Integer iopt = o.orElse(-1);// если в контейнере нет значения, вернет -1
         o.ifPresent(i -> System.out.println(i + " в контейнере"));//выполняет команду если число есть в контейнере
         System.out.println(iopt);
-        o.orElseThrow(()-> new RuntimeException("wrong"));
+        o.orElseThrow(() -> new RuntimeException("wrong"));
 
-        Stream<String> streamA = Stream.of("a","b","c","d","e");
+        Stream<String> streamA = Stream.of("a", "b", "c", "d", "e");
         streamA.forEach(System.out::print);
+        System.out.println("\n---------");
+
+        // Примеры использования filter, findFirst, findAny, skip, limit и count
+        List<String> ls = new ArrayList<>(Arrays.asList("a1", "a2", "a3", "a1", "a18","b2","b3"));
+        var i = ls.stream().filter("a1"::equals).count();//Вернуть количество вхождений объекта «a1»
+        String s = ls.stream().findFirst().orElse("0");//Вернуть первый элемент коллекции или 0, если коллекция пуста
+        s = ls.stream().skip(ls.size() - 1).findAny().orElse("empty");//Вернуть последний элемент коллекции или «empty», если коллекция пуста
+        s = ls.stream().filter(n -> n.equals("a3")).findAny().orElseThrow();//Найти элемент в коллекции равный «a3» или кинуть ошибку
+        s = ls.stream().skip(2).findAny().get();//Вернуть третий элемент коллекции по порядку
+        Object[] rez = ls.stream().skip(2).limit(2).toArray();//Вернуть два элемента начиная со второго
+        ls.stream().filter(n -> n.contains("1")).collect(Collectors.toList());//Выбрать все элементы по шаблону - содержит 1
+
+        // без дубликатов
+       ls.stream().distinct().collect(Collectors.toList());
+
+       //убрать первый символ и вернуть массив чисел (int[])
+        int[] arr = ls.stream().map(n->n.substring(1)).mapToInt(n->Integer.parseInt(n)).toArray();
+        System.out.println(Arrays.toString(arr));
+
+        //получить сумму всех чисел, перечисленных через запятую
+        int sum  = ls.stream().mapToInt(n->Integer.parseInt(n.substring(1))).sum();
+        System.out.println(sum);
+
+        //Объединить все элементы в одну строку через разделитель: и обернуть тегами <b>… </b>
+        String rez2 = ls.stream().collect(Collectors.joining(":","<br>","</br>"));
+        System.out.println(rez2);
+
+        //Преобразовать в map, сгруппировав по первому символу строки
+        Map<Object, List<String>> map = ls.stream().collect(Collectors.groupingBy((p->p.substring(0,1))));
+        System.out.println(map);
+
+
     }
 
 }

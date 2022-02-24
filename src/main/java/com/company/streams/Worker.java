@@ -40,6 +40,10 @@ class Worker {
         private final String name;
         private final int age;
 
+        public int getAge() {
+            return age;
+        }
+
         private String position = "стажер";
         private String email = "@mail.ru";
         private String phone = "+7...";
@@ -92,5 +96,35 @@ class Worker {
                 .map(p -> p.name)//из сотрудника получаем имя
                 .collect(Collectors.toList());// преобразуем в список
         System.out.println(engNames);
+
+
+        //Найти средний возраст среди Ст.мехов
+        double i = workers.stream().filter(p -> p.position.equals("Ст.механик")).mapToInt(n -> n.age).average().getAsDouble();
+        System.out.println(i);
+
+        //Отсортировать коллекцию людей по имени в обратном алфавитном порядке
+        engNames = workers.stream().map(n -> n.name).sorted(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return -o1.compareTo(o2);
+            }
+        }).collect(Collectors.toList());
+        System.out.println(engNames);
+
+
+        //Найдем человека с максимальным возрастом
+        Worker age  = workers.stream().max(new Comparator<Worker>() {
+            @Override
+            public int compare(Worker o1, Worker o2) {
+                return o1.age-o2.age;
+            }
+        }).get();
+
+        System.out.println(age);
+
+        //reduce позволяет выполнять агрегатные функции на всей коллекцией
+        //Получить сумму з\п или вернуть 0
+        int salary = workers.stream().mapToInt(p-> (int) p.salary).reduce(Integer::sum).orElse(0);
+        System.out.println(salary);
     }
 }
