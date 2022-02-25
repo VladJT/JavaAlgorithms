@@ -1,6 +1,5 @@
 package com.company.core.lesson07;
 
-
 class Cat {
     private String name;
     private int maxAppetite;
