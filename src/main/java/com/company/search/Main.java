@@ -1,6 +1,6 @@
 package com.company.search;
 
-import com.company.arrays.MyArray;
+import com.company.core.arrays.MyArray;
 
 class Main {
 

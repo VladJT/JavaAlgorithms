@@ -6,7 +6,12 @@ import com.company.core.Color;
 import javax.naming.BinaryRefAddr;
 
 interface DDD{
-     abstract void show(int z);
+     abstract void show(int x);
+}
+
+@FunctionalInterface
+interface DDD2{
+    abstract void show(int x, int y);
 }
 
 interface Runner{
@@ -108,6 +113,13 @@ class Lesson08 {
         d.show(1);
         System.out.println(d.getClass());
 
+        DDD2 d2 = (x,y)->{
+            System.out.println(x+" + "+y+" = "+(x+y));
+
+        };
+
+
+        d2.show(4,8);
 
     }
 
