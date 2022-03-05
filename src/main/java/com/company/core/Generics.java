@@ -2,7 +2,44 @@ package com.company.core;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
+
+interface Storage<T>{
+    void addMoney(T value);
+
+    T getMoney();
+}
+
+class Euro{
+    float value=0;
+
+    public Euro(float value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Euro{" +
+                "value=" + value +
+                '}';
+    }
+}
+
+class MoneyStorage<T> implements Storage<T>{
+
+    T money;
+
+    @Override
+    public void addMoney(T value) {
+        money = value;
+    }
+
+    @Override
+    public T getMoney() {
+        return money;
+    }
+}
 
 class TestGen<T extends Number,V extends Serializable> {
     private T value;
@@ -51,6 +88,12 @@ class Generics {
         System.out.println(t2.getValue()+t2.getValue2());
         t2.printInfo();
         System.out.println(t1.equals(t2));
+
+        System.out.println("-------");
+       Storage<Euro> ms = new MoneyStorage<>();
+        ms.addMoney(new Euro(200f));
+
+        System.out.println("ms = "+ ms.getMoney());
 
     }
 
