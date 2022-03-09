@@ -21,7 +21,7 @@ class Main {
         System.out.println("-----");
 
         List<String> list = arrayToList(arrString);
-        System.out.println(list.getClass().getName()+" "+list);
+        System.out.println(list.getClass().getName() + " " + list);
 
     }
 
