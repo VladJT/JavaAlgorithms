@@ -5,33 +5,34 @@ import com.company.core.Color;
 
 import javax.naming.BinaryRefAddr;
 
-interface DDD{
-     abstract void show(int x);
+interface DDD {
+    abstract void show(int x);
 }
 
 @FunctionalInterface
-interface DDD2{
+interface DDD2 {
     abstract void show(int x, int y);
 }
 
-interface Runner{
+interface Runner {
     int i = 10;
+
     void run(int a);
 }
 
-interface Alive extends Flying, Swiming, Runner{
+interface Alive extends Flying, Swiming, Runner {
 
 }
 
-interface Flying{
-     void fly();
+interface Flying {
+    void fly();
 }
 
-interface Swiming{
+interface Swiming {
     void swim();
 }
 
-class Duck implements Alive{
+class Duck implements Alive {
 
     @Override
     public void fly() {
@@ -50,7 +51,7 @@ class Duck implements Alive{
 }
 
 
-class MyCat{
+class MyCat {
     private String name;
     private Color color;
     Bird b;
@@ -60,7 +61,7 @@ class MyCat{
         this.name = name;
         this.color = color;
 
-        b= new Bird();
+        b = new Bird();
     }
 
     public MyCat() {
@@ -71,15 +72,14 @@ class MyCat{
         return color;
     }
 
-    class Bird{
+    class Bird {
         int age;
     }
 
-    public void getInfo(){
+    public void getInfo() {
 
     }
 }
-
 
 
 class Lesson08 {
@@ -87,14 +87,14 @@ class Lesson08 {
 //        Runner r = new Duck();
 //        r.run();
 //
-        MyCat c = new MyCat("d",Color.RED);
+        MyCat c = new MyCat("d", Color.RED);
         System.out.println(c.getColor());
         System.out.println(c.getClass());
 
-        MyCat cat  = new MyCat("d",Color.BLACK){
-            int age= 10;
+        MyCat cat = new MyCat("d", Color.BLACK) {
+            int age = 10;
 
-            public void getInfo(){
+            public void getInfo() {
                 System.out.println("111");
             }
         };
@@ -102,7 +102,8 @@ class Lesson08 {
         cat.getInfo();
         System.out.println(cat.getClass());
 
-        Runner r1 = (a) ->{   System.out.println("cool="+ a);
+        Runner r1 = (a) -> {
+            System.out.println("cool=" + a);
         };
         r1.run(2);
         System.out.println(r1.getClass());
@@ -113,13 +114,13 @@ class Lesson08 {
         d.show(1);
         System.out.println(d.getClass());
 
-        DDD2 d2 = (x,y)->{
-            System.out.println(x+" + "+y+" = "+(x+y));
+        DDD2 d2 = (x, y) -> {
+            System.out.println(x + " + " + y + " = " + (x + y));
 
         };
 
 
-        d2.show(4,8);
+        d2.show(4, 8);
 
     }
 
