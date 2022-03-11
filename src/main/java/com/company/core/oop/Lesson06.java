@@ -7,6 +7,10 @@ interface IAnimal {
     void run(int distance);
 
     void swim(int distance);
+
+    default void eat(){
+        System.out.println("Животное поело");
+    }
 }
 
 abstract class AnimalCreator {

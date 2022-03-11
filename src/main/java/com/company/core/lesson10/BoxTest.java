@@ -3,6 +3,7 @@ package com.company.core.lesson10;
 import java.util.ArrayList;
 import java.util.List;
 
+
 class Fruit {
     private float weight;
     private String name;
