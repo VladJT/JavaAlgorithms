@@ -1,82 +1,53 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
 
 class CodeWars2 {
 
 
-    public static String compress(int[] _raw) {
-        int[] raw = Arrays.copyOf(_raw, _raw.length + 1);
-        raw[raw.length - 1] = -1;
-
-        String rez = "";
-
-        int curStep = 0, nextStep = 0;
-        int stepCount = 1;
-        int countDup = 1;
-
-        int closeState = 0;
-
-        for (int i = 0; i < raw.length - 1; i++) {
-
-            if (raw[i] == raw[i + 1]) {
-                countDup++;
-                continue;
-            }
-            if (countDup > 1) {
-                rez += raw[i] + "*" + countDup + ",";
-                countDup = 1;
-                closeState = 1;
-                continue;
-            }
-
-            curStep = (i == 0) ? 0 : raw[i] - raw[i - 1];
-            if (closeState == 1) {
-                curStep = 0;
-                closeState = 0;
-            }
-            nextStep = (i == raw.length - 1) ? 0 : raw[i + 1] - raw[i];
-
-            if (curStep == nextStep) {
-                stepCount++;
-                continue;
-            }
-
-            if (stepCount > 1) {
-                rez = rez.substring(0, rez.length() - 1);//удаляем ,
-                if (Math.abs(curStep) == 1) rez += "-" + raw[i] + ",";
-                else rez += "-" + raw[i] + "/" + Math.abs(curStep) + ",";
-                stepCount = 1;
-                closeState = 1;
-            } else {
-                rez += raw[i] + ",";
-            }
-
-        }
+//    static int find(String needle, String haystack) {
+//        String regSt = Arrays.stream(needle.split("\\$"))
+//                .collect(Collectors.joining("[$]"))
+//                .replaceAll("_", ".");
+//
+//        Pattern pattern = Pattern.compile(regSt);
+//        Matcher matcher = pattern.matcher(haystack);
+//        if (matcher.find()) {
+//            return matcher.start();
+//        } else return -1;
+//    }
 
 
-        return (rez.substring(0, rez.length() - 1));
-    }
+    //GPA (descending)
+//First letter of last name (ascending)
+//Age (ascending)
+//    public static String sort2(List<Student> students) {
+//        return students.stream()
+//                .sorted(new Comparator<Student>() {
+//                    @Override
+//                    public int compare(Student o1, Student o2) {
+//                        if (o1.getGpa() != o2.getGpa()) return o2.getGpa() - o1.getGpa();
+//
+//                        String lastName1 = o1.getFullName().split(" ")[1];
+//                        String lastName2 = o2.getFullName().split(" ")[1];
+//
+//                        if (lastName1.charAt(0) != lastName2.charAt(0))
+//                            return lastName1.charAt(0) - lastName2.charAt(0);
+//                        return o1.getAge() - o2.getAge();
+//                    }
+//                })
+//                .map(s -> s.getFullName())
+//                .collect(Collectors.joining(","));
+//    }
 
-    static int[] sequence(int x) {
-        int[] arr = new int[x];
-        for(int i =0;i<arr.length;i++)
-            arr[i]=i+1;
 
-        Object[] l=  Arrays.stream(arr).mapToObj(n->n+"").sorted().toArray();
-        for(int i =0;i<arr.length;i++)
-            arr[i]=Integer.parseInt(l[i]+"");
-        return arr;
-    }
 
     public static void main(String[] args) {
-//        System.out.println(compress(new int[]{1, 1, 2, 3, 4, 5, 7, 9}));//expected:<1*2[,2-5,7,9]> but was:<1*2[-5-9/2]>
-//        System.out.println(compress(new int[]{1, 3, 4, 5, 7}));//"1,3-5,7")
-//        System.out.println(compress(new int[]{1, 2, 2, 3}));//"1,2*2,3"
-//        System.out.println(compress(new int[]{1, 2, 3}));//"1,2,3
-//        System.out.println(compress(new int[]{1, 10, 8, 6, 7}));//1,10-6/2,7
 
-        System.out.println(Arrays.toString(sequence(9)));
+
     }
 }

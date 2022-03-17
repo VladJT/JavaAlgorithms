@@ -55,6 +55,8 @@ class Main {
         System.out.println("\n---------");
 
         // Примеры использования filter, findFirst, findAny, skip, limit и count
+        String t= "asdsf,cxx,wwer";
+        String[] tempString =  Arrays.stream(t.split(",")).filter(n -> n.contains("xxx" + " ")).toArray(String[]::new);//поиск всех вхождений ххх
         List<String> ls = new ArrayList<>(Arrays.asList("a1", "a2", "a3", "a1", "a18","b2","b3"));
         var i = ls.stream().filter("a1"::equals).count();//Вернуть количество вхождений объекта «a1»
         String s = ls.stream().findFirst().orElse("0");//Вернуть первый элемент коллекции или 0, если коллекция пуста
