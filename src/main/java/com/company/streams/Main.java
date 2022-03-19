@@ -85,6 +85,9 @@ class Main {
         Map<Object, List<String>> map = ls.stream().collect(Collectors.groupingBy((p->p.substring(0,1))));
         System.out.println(map);
 
+        List<Integer> li = List.of(3,2,1,4,5,6,9,7,8);
+        // найти максимальное значение
+        System.out.println(li.stream().max(Comparator.comparingInt(Integer::intValue)));
 
     }
 

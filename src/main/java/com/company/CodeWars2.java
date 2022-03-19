@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -44,9 +45,17 @@ class CodeWars2 {
 //                .collect(Collectors.joining(","));
 //    }
 
+    public static List filterList(final List list) {
+        return (List) list.stream()
+                .filter(n -> n instanceof Integer)
+                .collect(Collectors.toList());
+    }
 
 
     public static void main(String[] args) {
+
+        System.out.println(filterList(Arrays.asList(new Object[]{1, "a", "b", "0", 15, 15})));//, true);
+        System.out.println(filterList(Arrays.asList(new Object[]{1, 2, "aasf", 1, 123, 123})));//, true);
 
 
     }

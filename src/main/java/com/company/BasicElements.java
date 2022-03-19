@@ -17,13 +17,15 @@ import java.util.stream.Stream;
  */
 
 
-// функциональный интерфейс
-@FunctionalInterface
-interface Expression{
-    long call(long a, long b);
-}
-
 class BasicElements {
+    // проверка на число
+
+    // функциональный интерфейс
+    @FunctionalInterface
+    interface Expression{
+        long call(long a, long b);
+    }
+
     // функция как параметр
     public static long[] operArray(Expression operator, long[] arr, long init) {
         long[] newArr = new long[arr.length];
