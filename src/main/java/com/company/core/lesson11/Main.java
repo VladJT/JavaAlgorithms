@@ -14,7 +14,7 @@ class Main {
         System.out.println("Дан массив: " + Arrays.toString(words));
 
         // Найти и вывести список уникальных слов, из которых состоит массив (дубликаты не считаем).
-        System.out.println("Уникальные слова: " + Arrays.stream(words).distinct().collect(Collectors.toList()));
+        System.out.println("Уникальные слова: " + Arrays.stream(words).distinct().toList());
 
 
         // Посчитать, сколько раз встречается каждое слово.
