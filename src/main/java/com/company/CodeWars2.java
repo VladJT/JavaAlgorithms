@@ -1,11 +1,10 @@
 package com.company;
 
+import java.awt.List;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
 
 class CodeWars2 {
 
@@ -45,18 +44,46 @@ class CodeWars2 {
 //                .collect(Collectors.joining(","));
 //    }
 
-    public static List filterList(final List list) {
-        return (List) list.stream()
-                .filter(n -> n instanceof Integer)
-                .collect(Collectors.toList());
+
+    public static String translate(String speech, String[] vocabulary) {
+        ArrayList<String> vocabularyList = new ArrayList(Arrays.asList(vocabulary));
+        String[] speechArr = speech.split(" ");
+
+        int index = 0;
+        while (index < speechArr.length) {
+            String regSt = speechArr[index].replaceAll("[,?.!]", "").replaceAll("\\*", ".");
+
+            int curIndexInVoc = 0, count = 0;
+            for (int i = 0; i < vocabularyList.size(); i++) {
+                if (vocabularyList.get(i).matches(regSt) && vocabularyList.get(i).length() == regSt.length()) {
+                    count++;
+                    curIndexInVoc = i;
+                }
+            }
+
+            // если найдено 100% одно совпадение
+            if (count == 1) {
+                String newWord = speechArr[index].replace(speechArr[index].replaceAll("[,?.!]", ""),vocabularyList.get(curIndexInVoc));
+
+                speech = " "+speech+" ";
+                speech = speech.replace(" "+speechArr[index]+" "," "+newWord+" ").trim();
+
+                speechArr[index] = vocabularyList.get(curIndexInVoc);
+                vocabularyList.remove(curIndexInVoc);
+                // speechArr.remove(index);
+                index = 0;// начинаем поиск с начала
+                continue;
+            }
+            index++;
+        }
+
+
+        return speech;
     }
 
 
     public static void main(String[] args) {
-
-        System.out.println(filterList(Arrays.asList(new Object[]{1, "a", "b", "0", 15, 15})));//, true);
-        System.out.println(filterList(Arrays.asList(new Object[]{1, 2, "aasf", 1, 123, 123})));//, true);
-
-
+        System.out.println(translate("*** **** **s *****n, f** **e *r* m***!", new String[]{"mmy", "name", "iss", "legion", "for", "wwe", "are", "many"}));//"mmy name iss legion, for wwe are many!", *** **** **s *****n, f** **e *r* m***!", new String[]{"mmy", "name", "iss", "legion", "for", "wwe", "are", "many"}));
+        System.out.println(translate("a**? *c*. **e,", new String[]{"ace", "acd", "abd"}));//abd? acd. ace,
     }
 }
