@@ -2,7 +2,6 @@ package com.company.core.threads;
 
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.*;
 
 
@@ -79,9 +78,7 @@ class ArraysExample {
 
         timer.end();
         timer.printTime();
-        System.out.println(arr[10]);
-        System.out.println(arr[SIZE - 1]);
-        System.out.println();
+        System.out.println("Проверочные значения:\n"+arr[10]+"\n"+arr[SIZE - 1]+"\n");
     }
 
 
@@ -132,9 +129,7 @@ class ArraysExample {
 
         timer.end();
         timer.printTime();
-        System.out.println(arr[10]);
-        System.out.println(arr[SIZE - 1]);
-        System.out.println();
+        System.out.println("Проверочные значения:\n"+arr[10]+"\n"+arr[SIZE - 1]+"\n");
     }
 
 
@@ -150,10 +145,7 @@ class ArraysExample {
         }
         timer.end();
         timer.printTime();
-        System.out.println("Проверочные значения:");
-        System.out.println(arr[10]);
-        System.out.println(arr[SIZE - 1]);
-        System.out.println();
+        System.out.println("Проверочные значения:\n"+arr[10]+"\n"+arr[SIZE - 1]+"\n");
     }
 
 }
