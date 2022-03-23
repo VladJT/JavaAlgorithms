@@ -1,20 +1,20 @@
 package com.company.core.threads;
 
 // поток через функциональный интерфейс
-class MyRunableClass implements Runnable{
+class MyRunableClass implements Runnable {
     @Override
     public void run() {
-        for (int i=0;i<1000;i++)
-        System.out.print(i+" ["+this.hashCode()+"], ");
+        for (int i = 0; i < 1000; i++)
+            System.out.print(i + " [" + this.hashCode() + "], ");
     }
 }
 
 // поток через наследование от Thread
-class MyThread extends Thread{
+class MyThread extends Thread {
     @Override
     public void run() {
-        for (int i=0;i<100;i++)
-            System.out.print(i+" ["+this.getName()+"], ");
+        for (int i = 0; i <= 100; i++)
+            System.out.println(i + " [" + this.getName() + "], ");
     }
 }
 
@@ -31,10 +31,23 @@ class Examples {
 //        new Thread(new MyRunableClass()).start();
         MyThread t1 = new MyThread();
         MyThread t2 = new MyThread();
-        t1.setPriority(10);
-        t2.setPriority(1);
+        t1.setPriority(1);//min priority
+        t2.setPriority(10);//max priority (default = 5)
+        t1.setName("t1");
+        t2.setName("t2");
         t1.start();
         t2.start();
+        try {
+            t1.join();//основной поток ждет завершения данного thread
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println("- THE END -");
+        //   t.setDaemon(true);// заканчивает работу,когда завершаются остальные потоки
+
     }
 
 
