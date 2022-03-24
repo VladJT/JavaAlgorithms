@@ -1,10 +1,6 @@
 package com.company;
 
-import java.awt.List;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+import java.util.Arrays;
 
 class CodeWars2 {
 
@@ -45,45 +41,69 @@ class CodeWars2 {
 //    }
 
 
-    public static String translate(String speech, String[] vocabulary) {
-        ArrayList<String> vocabularyList = new ArrayList(Arrays.asList(vocabulary));
-        String[] speechArr = speech.split(" ");
+    public static int peakHeight(char[][] mountain) {
 
-        int index = 0;
-        while (index < speechArr.length) {
-            String regSt = speechArr[index].replaceAll("[,?.!]", "").replaceAll("\\*", ".");
+        int counter = 0;
+        char charMountain = 'x';
 
-            int curIndexInVoc = 0, count = 0;
-            for (int i = 0; i < vocabularyList.size(); i++) {
-                if (vocabularyList.get(i).matches(regSt) && vocabularyList.get(i).length() == regSt.length()) {
-                    count++;
-                    curIndexInVoc = i;
+        Object[] a =  Arrays.stream(mountain).flatMapToInt(x -> Arrays.stream(x));
+
+
+        while (NeedCount(mountain)) {
+            counter++;
+            for (int i = 0; i < mountain.length; i++) {
+                for (int j = 0; j < mountain[0].length; j++) {
+                    System.out.print(mountain[i][j]);
+                    if (mountain[i][j] != '^') continue;
+                    if (checkNeedPrintHeight(mountain, i, j, charMountain)) mountain[i][j] = charMountain;
                 }
-            }
-
-            // если найдено 100% одно совпадение
-            if (count == 1) {
-                String newWord = speechArr[index].replace(speechArr[index].replaceAll("[,?.!]", ""),vocabularyList.get(curIndexInVoc));
-
-                speech = " "+speech+" ";
-                speech = speech.replace(" "+speechArr[index]+" "," "+newWord+" ").trim();
-
-                speechArr[index] = vocabularyList.get(curIndexInVoc);
-                vocabularyList.remove(curIndexInVoc);
-                // speechArr.remove(index);
-                index = 0;// начинаем поиск с начала
-                continue;
-            }
-            index++;
+                System.out.println();
+            }//for i
+            System.out.println();
+            charMountain = (charMountain == 'x') ? 'V' : 'x';
         }
 
+        for (int i = 0; i < mountain.length; i++) {
+            for (int j = 0; j < mountain[0].length; j++) {
+                System.out.print(mountain[i][j]);
+            }
+            System.out.println();
+        }//for i
+        return counter;
+    }
 
-        return speech;
+    private static boolean checkNeedPrintHeight(char[][] mountain, int i, int j, char charMountain) {
+        if (i == 0 || i == (mountain.length - 1) || j == 0 || j == (mountain[0].length - 1)) return true;
+
+        String st = "" + mountain[i - 1][j] + mountain[i + 1][j] + mountain[i][j - 1] + mountain[i][j + 1];
+        st = st.replaceAll("\\^", "").replaceAll(charMountain + "", "");
+
+        if (st.length() == 0)
+            return false;
+
+        return true;
+    }
+
+    private static boolean NeedCount(char[][] mountain) {
+        for (int i = 0; i < mountain.length; i++) {
+            for (int j = 0; j < mountain[0].length; j++) {
+                if (mountain[i][j] == '^') return true;
+            }
+        }
+        return false;
     }
 
 
     public static void main(String[] args) {
-        System.out.println(translate("*** **** **s *****n, f** **e *r* m***!", new String[]{"mmy", "name", "iss", "legion", "for", "wwe", "are", "many"}));//"mmy name iss legion, for wwe are many!", *** **** **s *****n, f** **e *r* m***!", new String[]{"mmy", "name", "iss", "legion", "for", "wwe", "are", "many"}));
-        System.out.println(translate("a**? *c*. **e,", new String[]{"ace", "acd", "abd"}));//abd? acd. ace,
+        char[][] mountain = {
+                "^^^^^^        ".toCharArray(),
+                " ^^^^^^^^     ".toCharArray(),
+                "  ^^^^^^^     ".toCharArray(),
+                "  ^^^^^       ".toCharArray(),
+                "  ^^^^^^^^^^^ ".toCharArray(),
+                "  ^^^^^^      ".toCharArray(),
+                "  ^^^^        ".toCharArray()
+        };
+        System.out.println("height = " + peakHeight(mountain));//3
     }
 }

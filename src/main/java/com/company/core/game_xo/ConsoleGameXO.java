@@ -1,4 +1,4 @@
-package com.company.game_xo;
+package com.company.core.game_xo;
 
 import java.util.Arrays;
 import java.util.Random;

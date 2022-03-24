@@ -1,4 +1,4 @@
-package com.company.game_xo;
+package com.company.core.game_xo;
 
 // набор цветов для работы с консолью
 public class COLORS {
