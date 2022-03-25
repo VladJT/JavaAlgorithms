@@ -46,7 +46,6 @@ class CodeWars2 {
         int counter = 0;
         char charMountain = 'x';
 
-        Object[] a =  Arrays.stream(mountain).flatMapToInt(x -> Arrays.stream(x));
 
 
         while (NeedCount(mountain)) {
