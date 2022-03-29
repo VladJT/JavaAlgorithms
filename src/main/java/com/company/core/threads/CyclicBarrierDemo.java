@@ -14,7 +14,7 @@ class CyclicBarrierDemo {
                 try {
                     System.out.println("Поток " + w + " готовится");
                     Thread.sleep(100 + (int) (3000 * Math.random()));
-                    System.out.println("Поток " + w + " готов");
+                    System.out.println("Поток " + w + " end");
                     cb.await();
                     System.out.println("Поток " + w + " запустился");
                 } catch (Exception e) {

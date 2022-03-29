@@ -1,6 +1,9 @@
 package com.company;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 class CodeWars2 {
 
@@ -41,68 +44,49 @@ class CodeWars2 {
 //    }
 
 
-    public static int peakHeight(char[][] mountain) {
+    public static int[] distributionOf(int[] golds) {
+        System.out.println(Arrays.toString(golds));
+        int[] rez = {0, 0};
 
-        int counter = 0;
-        char charMountain = 'x';
+        int i = 0;
+        int j = golds.length - 1;
 
+        int whoTakeGold = 1;
 
+        while (i <= j) {
+            whoTakeGold = (whoTakeGold == 0) ? 1 : 0;
 
-        while (NeedCount(mountain)) {
-            counter++;
-            for (int i = 0; i < mountain.length; i++) {
-                for (int j = 0; j < mountain[0].length; j++) {
-                    System.out.print(mountain[i][j]);
-                    if (mountain[i][j] != '^') continue;
-                    if (checkNeedPrintHeight(mountain, i, j, charMountain)) mountain[i][j] = charMountain;
+            if (i == j) {
+                rez[whoTakeGold] += golds[i];
+                break;
+            }
+
+            if ((j - i) == 2) {
+                if (golds[i] >= golds[j]) {
+                    rez[whoTakeGold] += golds[i++];
+                } else {
+                    rez[whoTakeGold] += golds[j--];
                 }
-                System.out.println();
-            }//for i
-            System.out.println();
-            charMountain = (charMountain == 'x') ? 'V' : 'x';
-        }
-
-        for (int i = 0; i < mountain.length; i++) {
-            for (int j = 0; j < mountain[0].length; j++) {
-                System.out.print(mountain[i][j]);
+                continue;
             }
-            System.out.println();
-        }//for i
-        return counter;
-    }
 
-    private static boolean checkNeedPrintHeight(char[][] mountain, int i, int j, char charMountain) {
-        if (i == 0 || i == (mountain.length - 1) || j == 0 || j == (mountain[0].length - 1)) return true;
-
-        String st = "" + mountain[i - 1][j] + mountain[i + 1][j] + mountain[i][j - 1] + mountain[i][j + 1];
-        st = st.replaceAll("\\^", "").replaceAll(charMountain + "", "");
-
-        if (st.length() == 0)
-            return false;
-
-        return true;
-    }
-
-    private static boolean NeedCount(char[][] mountain) {
-        for (int i = 0; i < mountain.length; i++) {
-            for (int j = 0; j < mountain[0].length; j++) {
-                if (mountain[i][j] == '^') return true;
+            if ((golds[i] + golds[j - 1]) > (golds[i + 1] + golds[j])) {
+                rez[whoTakeGold] += golds[i];
+                i++;
+            } else {
+                rez[whoTakeGold] += golds[j];
+                j--;
             }
-        }
-        return false;
-    }
 
+        }
+        return rez;
+    }
 
     public static void main(String[] args) {
-        char[][] mountain = {
-                "^^^^^^        ".toCharArray(),
-                " ^^^^^^^^     ".toCharArray(),
-                "  ^^^^^^^     ".toCharArray(),
-                "  ^^^^^       ".toCharArray(),
-                "  ^^^^^^^^^^^ ".toCharArray(),
-                "  ^^^^^^      ".toCharArray(),
-                "  ^^^^        ".toCharArray()
-        };
-        System.out.println("height = " + peakHeight(mountain));//3
+
+        System.out.println(Arrays.toString(distributionOf(new int[]{10, 1000, 2, 1})));//1001, 12
+        System.out.println(Arrays.toString(distributionOf(new int[]{208, 407, 928, 368, 806, 628, 824, 969, 239})));//
     }
+
+
 }

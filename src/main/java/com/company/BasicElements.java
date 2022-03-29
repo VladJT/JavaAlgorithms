@@ -36,6 +36,12 @@ class BasicElements {
         return newArr;
     }
 
+    // "O tempora o mores !"  --> "igPay atinlay siay oolcay"
+    public static String pigIt(String str) {
+        return str.replaceAll("(\\w)(\\w*)", "$2$1ay");
+    }
+
+
     public static long som(long a, long b) {
         return a + b;
     }

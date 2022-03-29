@@ -23,7 +23,7 @@ class SemaphoreDemo {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    System.out.println("Поток " + w + " освободил ресурс");
+                    System.out.println("Поток " + w + " end");
                     smp.release();
                 }
             }).start();

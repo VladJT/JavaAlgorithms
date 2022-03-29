@@ -7,8 +7,8 @@ package com.company.core.threads;
 //буквы в консоль и будит поток B. Далее за счет механизма wait()/notify() эти потоки работают
 //последовательно и печать гарантированно начинается с буквы А.
 class WaitNotifyClass {
-    private final Object mon = new Object();
     private volatile char currentLetter = 'A';
+
 
     public static void main(String[] args) {
         WaitNotifyClass w = new WaitNotifyClass();
@@ -23,40 +23,38 @@ class WaitNotifyClass {
     }
 
 
-    public void printA() {
-        synchronized (mon) {
+    public synchronized void printA() {
             try {
                 for (int i = 0; i < 10; i++) {
-                    while (currentLetter != 'A') {
-                        mon.wait();
+                    if (currentLetter != 'A') {
+                        wait();
                     }
                     System.out.print("A");
                     Thread.sleep(100);
                     currentLetter = 'B';
-                    mon.notify();
+                    notify();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+
     }
 
-    public void printB() {
-        synchronized (mon) {
+    public synchronized void printB() {
             try {
                 for (int i = 0; i < 10; i++) {
-                    while (currentLetter != 'B') {
-                        mon.wait();
+                    if (currentLetter != 'B') {
+                        wait();
                     }
                     System.out.print("B");
                     Thread.sleep(100);
                     currentLetter = 'A';
-                    mon.notify();
+                    notify();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+
     }
 }
 

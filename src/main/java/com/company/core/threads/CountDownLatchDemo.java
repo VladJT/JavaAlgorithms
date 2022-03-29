@@ -23,7 +23,7 @@ class CountDownLatchDemo {
                     Thread.sleep(500 + (int) (1500 * Math.random()));
                     cdl.countDown();
                     // как только задача выполнена, уменьшаем счетчик
-                    System.out.println("Поток #" + w + " - готов");
+                    System.out.println("Поток #" + w + " - end");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
