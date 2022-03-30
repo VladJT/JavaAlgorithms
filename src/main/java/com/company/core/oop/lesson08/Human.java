@@ -1,12 +1,13 @@
-package com.company.core.lesson08;
+package com.company.core.oop.lesson08;
 
-class Cat implements Participant{
+
+class Human implements Participant {
     private final String name;
     private final int limitRun;
     private final int limitJump;
     private boolean isFinish = false;//признак, что участник закончил гонку
 
-    public Cat(String name, int limitRun, int limitJump) {
+    public Human(String name, int limitRun, int limitJump) {
         this.name = name;
         this.limitRun = limitRun;
         this.limitJump = limitJump;
@@ -44,6 +45,7 @@ class Cat implements Participant{
 
     @Override
     public String toString() {
-        return "Кот " + name + "[R: " + limitRun + ", J:" + limitJump + "]";
+        return "Человек " + name + "[R: " + limitRun + ", J:" + limitJump + "]";
     }
+
 }

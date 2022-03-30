@@ -1,4 +1,4 @@
-package com.company.core.lesson10;
+package com.company.core.oop.lesson10;
 
 import java.util.ArrayList;
 import java.util.Arrays;

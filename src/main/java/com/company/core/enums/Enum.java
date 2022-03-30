@@ -1,4 +1,4 @@
-package com.company.core;
+package com.company.core.enums;
 
 class Enum {
     enum Fruit {

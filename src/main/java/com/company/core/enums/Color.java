@@ -1,4 +1,4 @@
-package com.company.core;
+package com.company.core.enums;
 
 public enum Color {
     BLACK("Черный"), WHITE("Белый"), RED("Красный"), GRAY("Серый");

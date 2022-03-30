@@ -1,4 +1,4 @@
-package com.company.core.lesson10;
+package com.company.core.oop.lesson10;
 
 class A {
     public void showA() {

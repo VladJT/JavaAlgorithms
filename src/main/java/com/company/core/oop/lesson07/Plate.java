@@ -1,4 +1,4 @@
-package com.company.core.lesson07;
+package com.company.core.oop.lesson07;
 
 
 class Plate {

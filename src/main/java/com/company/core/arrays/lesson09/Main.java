@@ -1,7 +1,5 @@
-package com.company.core.lesson09;
+package com.company.core.arrays.lesson09;
 
-
-import java.util.Arrays;
 
 class MyArraySizeException extends Exception {
     public MyArraySizeException() {

@@ -1,4 +1,4 @@
-package com.company.core.lesson11;
+package com.company.core.oop.lesson11;
 
 import java.util.TreeMap;
 

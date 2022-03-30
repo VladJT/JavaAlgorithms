@@ -1,4 +1,4 @@
-package com.company.core.lesson08;
+package com.company.core.oop.lesson08;
 
 interface Obstacle {
     boolean checkAction(Participant participant);
