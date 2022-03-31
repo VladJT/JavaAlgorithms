@@ -44,48 +44,72 @@ class CodeWars2 {
 //    }
 
 
-    public static int[] distributionOf(int[] golds) {
-        System.out.println(Arrays.toString(golds));
-        int[] rez = {0, 0};
+    public static String fixCutPaste(String text) {
+        System.out.println(text);
+        String[] s = text.split(" ");
 
+        String result = "";
         int i = 0;
-        int j = golds.length - 1;
-
-        int whoTakeGold = 1;
-
-        while (i <= j) {
-            whoTakeGold = (whoTakeGold == 0) ? 1 : 0;
-
-            if (i == j) {
-                rez[whoTakeGold] += golds[i];
-                break;
-            }
-
-            if ((j - i) == 2) {
-                if (golds[i] >= golds[j]) {
-                    rez[whoTakeGold] += golds[i++];
-                } else {
-                    rez[whoTakeGold] += golds[j--];
-                }
+        while (i < s.length) {
+            String mask = s[i];
+            if (Arrays.stream(s).filter(x -> x.equals(mask)).count() == 1) {
+                result += s[i] + " ";
+                i++;
                 continue;
             }
 
-            if ((golds[i] + golds[j - 1]) > (golds[i + 1] + golds[j])) {
-                rez[whoTakeGold] += golds[i];
-                i++;
-            } else {
-                rez[whoTakeGold] += golds[j];
-                j--;
+            int dupIndex = 0;
+            for (int j = i + 1; j < s.length; j++) {
+                if (s[i].equals(s[j])) {
+                    dupIndex = j;
+                    break;
+                }
             }
 
-        }
-        return rez;
+            int length = dupIndex - i;
+            boolean isDuplicate = true;
+            for (int x = 0; x < length; x++) {
+                if (!s[i + x].equals(s[dupIndex + x])) isDuplicate = false;
+            }
+            if (isDuplicate) {
+                for (int x = 0; x < length; x++) {
+                    result += s[i + x] + " ";
+                }
+                i = dupIndex+length-1;
+            } else {
+                result += s[i] + " ";
+                i++;
+            }
+
+
+//            int counter = 0;
+//            while (true) {
+//                if (dupIndex + counter >= s.length) break;
+//                if (!s[i + counter].equals(s[dupIndex + counter])){
+//                    break;
+//                }
+//                counter++;
+//            }
+//
+//            if (i + counter == dupIndex) {
+//                for (int x = 0; x < counter; x++) {
+//                    result += s[i + x] + " ";
+//                }
+//                i = dupIndex + counter;
+//            }
+
+
+        }//while
+
+
+        return result.trim();
     }
 
     public static void main(String[] args) {
-
-        System.out.println(Arrays.toString(distributionOf(new int[]{10, 1000, 2, 1})));//1001, 12
-        System.out.println(Arrays.toString(distributionOf(new int[]{208, 407, 928, 368, 806, 628, 824, 969, 239})));//
+        String in = "Here is some piece of text piece of text that was was accidentally double double pasted.";
+        String out = "Here is some piece of text that was accidentally double pasted.";
+           System.out.println(fixCutPaste(in));
+        System.out.println(fixCutPaste("REPEATED REPEATED REPEATED words at the start"));
     }
 
 
