@@ -1,9 +1,7 @@
 package com.company.core.oop;
 
 
-import com.company.core.Color;
-
-import javax.naming.BinaryRefAddr;
+import com.company.core.enums.Color;
 
 interface DDD {
     abstract void show(int x);

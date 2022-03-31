@@ -10,16 +10,13 @@ import java.util.concurrent.locks.ReentrantLock;
 
 class StreetRaceExample {
     public static final int CARS_COUNT = 4;
-    public static final CyclicBarrier cyclicBarrier = new CyclicBarrier(CARS_COUNT);
-    public static final Semaphore tunnelSemaphore = new Semaphore(CARS_COUNT / 2);
-    public static final Lock lockFinishRace = new ReentrantLock();
     public static final CountDownLatch cdlStart = new CountDownLatch(CARS_COUNT);
     public static final CountDownLatch cdlFinish = new CountDownLatch(CARS_COUNT);
     public static int placeResult = 1;
 
     public static void main(String[] args) {
         String names[] = {"🛺 #1", "🛸 #2", "🪂 #3", "🛻 #4"};
-        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
+        System.out.println("☠️ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
         Race race = new Race(new Road(60), new Tunnel(), new Road(40));
         Car[] cars = new Car[CARS_COUNT];
         for (int i = 0; i < cars.length; i++) {
@@ -31,10 +28,10 @@ class StreetRaceExample {
 
         try {
             cdlStart.await();
-            System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
+            System.out.println("🏴‍☠️ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
 
             cdlFinish.await();
-            System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
+            System.out.println("🏴‍☠️ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -42,6 +39,9 @@ class StreetRaceExample {
 }
 
 class Car implements Runnable {
+    private static final CyclicBarrier cyclicBarrier = new CyclicBarrier(StreetRaceExample.CARS_COUNT);
+    private static final Lock lockFinishRace = new ReentrantLock();
+
     private long startTime;
     private Race race;
     private int speed;
@@ -67,7 +67,7 @@ class Car implements Runnable {
             System.out.println(this.name + " готовится. speed = " + speed);
             Thread.sleep(500 + (int) (Math.random() * 800));
             System.out.println(this.name + " готов");
-            StreetRaceExample.cyclicBarrier.await();//Все участники должны стартовать одновременно, несмотря на разное время подготовки
+            cyclicBarrier.await();//Все участники должны стартовать одновременно, несмотря на разное время подготовки
             startTime = System.currentTimeMillis();
             StreetRaceExample.cdlStart.countDown();
         } catch (Exception e) {
@@ -78,13 +78,13 @@ class Car implements Runnable {
         }
 
         try {
-            StreetRaceExample.lockFinishRace.lock();
+            lockFinishRace.lock();
             if (StreetRaceExample.placeResult == 1) {
                 System.out.println(this.name + " - WIN 👑");
             }
             System.out.println(this.name + " занял " + StreetRaceExample.placeResult++ + " место. Время в пути (милисек.) = " + (System.currentTimeMillis() - startTime));
         } finally {
-            StreetRaceExample.lockFinishRace.unlock();
+            lockFinishRace.unlock();
         }
         StreetRaceExample.cdlFinish.countDown();
     }
@@ -115,21 +115,23 @@ class Road extends Stage {
 }
 
 class Tunnel extends Stage {
+    private static final Semaphore tunnelSemaphore = new Semaphore(StreetRaceExample.CARS_COUNT / 2);
+
     public Tunnel() {
         this.length = 80;
-        this.description = "Тоннель " + length + " метров";
+        this.description = "[🗝️] Тоннель " + length + " метров";
     }
 
     @Override
     public void go(Car c) {
         try {
             try {
-                System.out.println(c.getName() + " готовится к этапу(ждет): " +
+                System.out.println(c.getName() + " готовится заехать в: " +
                         description);
 
                 long time = System.currentTimeMillis();
                 // В тоннель не может одновременно заехать больше половины участников (условность).
-                StreetRaceExample.tunnelSemaphore.acquire();
+                tunnelSemaphore.acquire();
                 System.out.println(c.getName() + " начал этап: " + description+". Ожидание составило (милисек.) = " + (System.currentTimeMillis() - time));
                 Thread.sleep(length / c.getSpeed() * 1000);
             } catch (InterruptedException e) {
@@ -137,7 +139,7 @@ class Tunnel extends Stage {
             } finally {
                 System.out.println(c.getName() + " закончил этап: " +
                         description);
-                StreetRaceExample.tunnelSemaphore.release();
+                tunnelSemaphore.release();
             }
         } catch (Exception e) {
             e.printStackTrace();
