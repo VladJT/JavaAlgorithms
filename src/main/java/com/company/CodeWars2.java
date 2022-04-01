@@ -1,115 +1,49 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Comparator;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 
 class CodeWars2 {
 
 
-//    static int find(String needle, String haystack) {
-//        String regSt = Arrays.stream(needle.split("\\$"))
-//                .collect(Collectors.joining("[$]"))
-//                .replaceAll("_", ".");
-//
-//        Pattern pattern = Pattern.compile(regSt);
-//        Matcher matcher = pattern.matcher(haystack);
-//        if (matcher.find()) {
-//            return matcher.start();
-//        } else return -1;
-//    }
+    public static String orderWeight(String strng) {
+        System.out.println("input->" + strng);
 
-
-    //GPA (descending)
-//First letter of last name (ascending)
-//Age (ascending)
-//    public static String sort2(List<Student> students) {
-//        return students.stream()
-//                .sorted(new Comparator<Student>() {
-//                    @Override
-//                    public int compare(Student o1, Student o2) {
-//                        if (o1.getGpa() != o2.getGpa()) return o2.getGpa() - o1.getGpa();
-//
-//                        String lastName1 = o1.getFullName().split(" ")[1];
-//                        String lastName2 = o2.getFullName().split(" ")[1];
-//
-//                        if (lastName1.charAt(0) != lastName2.charAt(0))
-//                            return lastName1.charAt(0) - lastName2.charAt(0);
-//                        return o1.getAge() - o2.getAge();
-//                    }
-//                })
-//                .map(s -> s.getFullName())
-//                .collect(Collectors.joining(","));
-//    }
-
-
-    public static String fixCutPaste(String text) {
-        System.out.println(text);
-        String[] s = text.split(" ");
-
-        String result = "";
-        int i = 0;
-        while (i < s.length) {
-            String mask = s[i];
-            if (Arrays.stream(s).filter(x -> x.equals(mask)).count() == 1) {
-                result += s[i] + " ";
-                i++;
-                continue;
-            }
-
-            int dupIndex = 0;
-            for (int j = i + 1; j < s.length; j++) {
-                if (s[i].equals(s[j])) {
-                    dupIndex = j;
-                    break;
+        return Arrays.stream(strng.split("[\s+]")).sorted(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                long n1 = Long.parseLong(o1);
+                long n2 = Long.parseLong(o2);
+                int sum1 = 0, sum2 = 0;
+                while (n1 != 0) {
+                    //Суммирование цифр числа
+                    sum1 += (n1 % 10);
+                    n1 /= 10;
                 }
-            }
-
-            int length = dupIndex - i;
-            boolean isDuplicate = true;
-            for (int x = 0; x < length; x++) {
-                if (!s[i + x].equals(s[dupIndex + x])) isDuplicate = false;
-            }
-            if (isDuplicate) {
-                for (int x = 0; x < length; x++) {
-                    result += s[i + x] + " ";
+                while (n2 != 0) {
+                    //Суммирование цифр числа
+                    sum2 += (n2 % 10);
+                    n2 /= 10;
                 }
-                i = dupIndex+length-1;
-            } else {
-                result += s[i] + " ";
-                i++;
+                String s1 = String.valueOf(o1);
+                String s2 = String.valueOf(o2);
+
+                if (sum1 != sum2) return (sum1 - sum2);
+                else
+                    return s1.compareTo(s2);
             }
+        }).collect(Collectors.joining(" "));
 
 
-//            int counter = 0;
-//            while (true) {
-//                if (dupIndex + counter >= s.length) break;
-//                if (!s[i + counter].equals(s[dupIndex + counter])){
-//                    break;
-//                }
-//                counter++;
-//            }
-//
-//            if (i + counter == dupIndex) {
-//                for (int x = 0; x < counter; x++) {
-//                    result += s[i + x] + " ";
-//                }
-//                i = dupIndex + counter;
-//            }
-
-
-        }//while
-
-
-        return result.trim();
     }
 
     public static void main(String[] args) {
-        String in = "Here is some piece of text piece of text that was was accidentally double double pasted.";
-        String out = "Here is some piece of text that was accidentally double pasted.";
-           System.out.println(fixCutPaste(in));
-        System.out.println(fixCutPaste("REPEATED REPEATED REPEATED words at the start"));
+        System.out.println(orderWeight("3 16 9 38 95 1131268 49455 347464 59544965313 496636983114762 85246814996697"));//2000 103 123 4444 99
+        System.out.println(orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"));//2000 103 123 4444 99
     }
 
 
