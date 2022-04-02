@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -27,9 +28,19 @@ import java.util.stream.Stream;
 class CalculatorTest {
     Calculator calc;
 
-   @After
-    public void finish(){
-           System.out.println("ТЕСТИРОВАНИЕ ЗАВЕРШЕНО");
+    @BeforeEach
+    void startUp() {
+        System.out.println("start тест");
+    }
+
+    @AfterEach
+    void shutdown() {
+        System.out.println("shutdown тест");
+    }
+
+    @After
+    public void finish() {
+        System.out.println("ТЕСТИРОВАНИЕ ЗАВЕРШЕНО");
     }
 
     @Test
@@ -40,6 +51,15 @@ class CalculatorTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @DisplayName("Проверка таймаута")
+    @Test
+    public void timeTest2() {
+        Assertions.assertTimeout(Duration.ofMillis(800), () -> {
+                    Thread.sleep(600);
+                }
+        );
     }
 
     @BeforeEach
@@ -53,17 +73,17 @@ class CalculatorTest {
     public void testAddOperation(int a, int b, int result) {
         Assertions.assertEquals(result, calc.add(a, b));
     }
+
     public static Stream<Arguments> dataForAddOperation() {
         List<Arguments> out = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            int a = (int)(Math.random() * 1000);
-            int b = (int)(Math.random() * 1000);
+            int a = (int) (Math.random() * 1000);
+            int b = (int) (Math.random() * 1000);
             int result = a + b;
             out.add(Arguments.arguments(a, b, result));
         }
         return out.stream();
     }
-
 
 
     @CsvSource({
@@ -73,7 +93,7 @@ class CalculatorTest {
             "12, 12, 24"
     })
     @ParameterizedTest
-    void add(int a, int b, int result)  {
+    void add(int a, int b, int result) {
         Assertions.assertEquals(result, calc.add(a, b));
     }
 
@@ -92,6 +112,12 @@ class CalculatorTest {
     void divZero() {
         Assertions.assertEquals(0, calc.div(12, 0));
         Assertions.fail("bad");
+    }
+
+    @DisplayName("Проверка выброса исключения")
+    @Test
+    void testException() {
+        Assertions.assertThrows(ArithmeticException.class, () -> calc.div(12, 0));
     }
 
     @Test

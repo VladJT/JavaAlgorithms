@@ -1,0 +1,5 @@
+SEVERE	Fri Apr 01 21:26:22 GMT+03:00 2022	Логирование SEVERE
+FINER	Fri Apr 01 21:26:22 GMT+03:00 2022	логирование finer
+INFO	Fri Apr 01 21:26:22 GMT+03:00 2022	info сообщение
+WARNING	Fri Apr 01 21:26:22 GMT+03:00 2022	Warning сообщение
+CONFIG	Fri Apr 01 21:26:22 GMT+03:00 2022	Config сообщение

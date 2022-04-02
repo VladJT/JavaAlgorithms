@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-04-02T12:19:59.527911300Z</date>
+  <millis>1648901999527</millis>
+  <nanos>911300</nanos>
+  <sequence>0</sequence>
+  <logger>myXmlLogger</logger>
+  <level>INFO</level>
+  <class>com.company.core.testjunit.junitandlogger.Method7</class>
+  <method>checkBalance</method>
+  <thread>1</thread>
+  <message>Дан массив: [2, 2, 2, 1, 2, 2, 10, 1], результат проверки баланса: true</message>
+</record>
+<record>
+  <date>2022-04-02T12:19:59.545910800Z</date>
+  <millis>1648901999545</millis>
+  <nanos>910800</nanos>
+  <sequence>1</sequence>
+  <logger>myXmlLogger</logger>
+  <level>INFO</level>
+  <class>com.company.core.testjunit.junitandlogger.Method7</class>
+  <method>checkBalance</method>
+  <thread>1</thread>
+  <message>Дан массив: [1, 1, 1, 2, 5], результат проверки баланса: true</message>
+</record>
+<record>
+  <date>2022-04-02T12:19:59.546910200Z</date>
+  <millis>1648901999546</millis>
+  <nanos>910200</nanos>
+  <sequence>2</sequence>
+  <logger>myXmlLogger</logger>
+  <level>INFO</level>
+  <class>com.company.core.testjunit.junitandlogger.Method7</class>
+  <method>checkBalance</method>
+  <thread>1</thread>
+  <message>Дан массив: [1, 1, 1, 5, 1], результат проверки баланса: false</message>
+</record>
+</log>
