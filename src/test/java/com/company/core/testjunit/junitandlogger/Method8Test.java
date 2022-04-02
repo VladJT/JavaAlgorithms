@@ -17,13 +17,13 @@ class Method8Test {
 
     @BeforeAll
     static void mainStart() {
-        System.out.println("MAIN START");
+        System.out.println("--MAIN START--");
         method8 = new Method8();
     }
 
     @AfterAll
     static void mainEnd() {
-        System.out.println("MAIN END");
+        System.out.println("--MAIN END--");
     }
 
     @CsvSource({

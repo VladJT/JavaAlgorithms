@@ -13,13 +13,13 @@ class Method7Test {
 
     @BeforeAll
     static void mainStart() {
-        System.out.println("MAIN START");
+        System.out.println("--MAIN START--");
         method7 = new Method7();
     }
 
     @AfterAll
     static void mainEnd() {
-        System.out.println("MAIN END");
+        System.out.println("--MAIN END--");
     }
 
 

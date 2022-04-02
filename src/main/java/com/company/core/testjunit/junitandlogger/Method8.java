@@ -6,16 +6,19 @@ import org.apache.log4j.PropertyConfigurator;
 import java.util.Arrays;
 
 class Method8 {
+    Logger logger;
+
+    Method8() {
+        PropertyConfigurator.configure("src/main/resources/logs/configs/log4j.properties");
+        logger = Logger.getLogger("method8_logger");
+    }
+
+
     public static void main(String[] args) {
         new Method8().run();
     }
 
-    Logger logger;
-
     private void run() {
-        PropertyConfigurator.configure("src/main/resources/logs/configs/log4j.properties");
-        logger = Logger.getLogger("method8_logger");
-
         int[] intArray = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, -1};
         System.out.println(Arrays.toString(intArray));
         rotateArray(intArray, 14);

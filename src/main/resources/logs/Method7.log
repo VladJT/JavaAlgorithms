@@ -2,39 +2,75 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2022-04-02T12:19:59.527911300Z</date>
-  <millis>1648901999527</millis>
-  <nanos>911300</nanos>
+  <date>2022-04-02T13:04:50.894847800Z</date>
+  <millis>1648904690894</millis>
+  <nanos>847800</nanos>
   <sequence>0</sequence>
-  <logger>myXmlLogger</logger>
+  <logger>method7_xmlLogger</logger>
   <level>INFO</level>
   <class>com.company.core.testjunit.junitandlogger.Method7</class>
   <method>checkBalance</method>
   <thread>1</thread>
-  <message>Дан массив: [2, 2, 2, 1, 2, 2, 10, 1], результат проверки баланса: true</message>
+  <message>Дан массив: [0], результат проверки баланса: false</message>
 </record>
 <record>
-  <date>2022-04-02T12:19:59.545910800Z</date>
-  <millis>1648901999545</millis>
-  <nanos>910800</nanos>
+  <date>2022-04-02T13:04:50.945845Z</date>
+  <millis>1648904690945</millis>
+  <nanos>845000</nanos>
   <sequence>1</sequence>
-  <logger>myXmlLogger</logger>
+  <logger>method7_xmlLogger</logger>
   <level>INFO</level>
   <class>com.company.core.testjunit.junitandlogger.Method7</class>
   <method>checkBalance</method>
   <thread>1</thread>
-  <message>Дан массив: [1, 1, 1, 2, 5], результат проверки баланса: true</message>
+  <message>Дан массив: [1, 2, 3, 4, 2], результат проверки баланса: true</message>
 </record>
 <record>
-  <date>2022-04-02T12:19:59.546910200Z</date>
-  <millis>1648901999546</millis>
-  <nanos>910200</nanos>
+  <date>2022-04-02T13:04:50.950844600Z</date>
+  <millis>1648904690950</millis>
+  <nanos>844600</nanos>
   <sequence>2</sequence>
-  <logger>myXmlLogger</logger>
+  <logger>method7_xmlLogger</logger>
   <level>INFO</level>
   <class>com.company.core.testjunit.junitandlogger.Method7</class>
   <method>checkBalance</method>
   <thread>1</thread>
-  <message>Дан массив: [1, 1, 1, 5, 1], результат проверки баланса: false</message>
+  <message>Дан массив: [1, 2, 1, 7, 9], результат проверки баланса: false</message>
+</record>
+<record>
+  <date>2022-04-02T13:04:50.953848700Z</date>
+  <millis>1648904690953</millis>
+  <nanos>848700</nanos>
+  <sequence>3</sequence>
+  <logger>method7_xmlLogger</logger>
+  <level>INFO</level>
+  <class>com.company.core.testjunit.junitandlogger.Method7</class>
+  <method>checkBalance</method>
+  <thread>1</thread>
+  <message>Дан массив: [8, 3, -4, 0, 2], результат проверки баланса: false</message>
+</record>
+<record>
+  <date>2022-04-02T13:04:50.955849Z</date>
+  <millis>1648904690955</millis>
+  <nanos>849000</nanos>
+  <sequence>4</sequence>
+  <logger>method7_xmlLogger</logger>
+  <level>INFO</level>
+  <class>com.company.core.testjunit.junitandlogger.Method7</class>
+  <method>checkBalance</method>
+  <thread>1</thread>
+  <message>Дан массив: [1, 3, -7, -1, -2], результат проверки баланса: true</message>
+</record>
+<record>
+  <date>2022-04-02T13:04:50.957848800Z</date>
+  <millis>1648904690957</millis>
+  <nanos>848800</nanos>
+  <sequence>5</sequence>
+  <logger>method7_xmlLogger</logger>
+  <level>INFO</level>
+  <class>com.company.core.testjunit.junitandlogger.Method7</class>
+  <method>checkBalance</method>
+  <thread>1</thread>
+  <message>Дан массив: [], результат проверки баланса: false</message>
 </record>
 </log>
