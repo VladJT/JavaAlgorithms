@@ -8,59 +8,43 @@ import java.util.stream.Collectors;
 class CodeWars2 {
 
 
-    enum DIRECTION {
-        RIGHT, DOWN, LEFT, UP;
+    public static String formatDuration(int seconds) {
+        System.out.println(seconds);
+        if (seconds == 0) return "now";
 
-        public DIRECTION getNextDirection() {
-            if (this==RIGHT) return DOWN;
-            if (this==DOWN) return LEFT;
-            if (this==LEFT) return UP;
-            if (this==UP) return RIGHT;
-            return null;
-        }
-    }
+        long mSec = seconds;
+
+        long years = mSec / (3600 * 24 * 365);
+        mSec = mSec - years * (3600 * 24 * 365);
+        long days = mSec / (3600 * 24);
+        mSec = mSec - days*(3600 * 24);
+        long hour = mSec / 3600, min = mSec / 60 % 60, sec = mSec % 60;
 
 
-    public static int[] snail(int[][] array) {
-        int n = array.length;
-        int[] rez = new int[n * n];
 
-        DIRECTION curDir = DIRECTION.RIGHT;
+        StringBuilder sb = new StringBuilder();
+        if (years > 0) sb.append(years).append(" year").append(years > 1 ? "s" : "").append(", ");
+        if (days > 0) sb.append(days).append(" day").append(days > 1 ? "s" : "").append(", ");
+        if (hour > 0) sb.append(hour).append(" hour").append(hour > 1 ? "s" : "").append(", ");
+        if (min > 0) sb.append(min).append(" minute").append(min > 1 ? "s" : "").append(", ");
+        if (sec > 0) sb.append(sec).append(" second").append(sec > 1 ? "s" : "").append(", ");
 
-        int x = 0, y = 0;
-        for (int i = 0; i < n * n; i++) {
-            System.out.println(i + ", " + curDir + ", ");
-            switch (curDir) {
-                case RIGHT -> {
-                    curDir = curDir.getNextDirection();
-                }
-                case DOWN -> {
-                    curDir = curDir.getNextDirection();
-                }
-                case LEFT -> {
-                    curDir = curDir.getNextDirection();
-                }
-                case UP -> {
-                    curDir = curDir.getNextDirection();
-                }
-            }
+        String result = sb.toString();
+        result = result.substring(0,result.lastIndexOf(", "));
 
+        if(result.contains(", ")){
+            result = result.replaceAll(",\\s(\\d+)\\s(\\w+)$", " and $1 $2");
         }
 
-        return rez;
+        return result;
     }
 
 
     public static void main(String[] args) {
-        int[][] array
-                = {{1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}};
-        int[] r = {1, 2, 3, 6, 9, 8, 7, 4, 5};
-        System.out.println(Arrays.asList(snail(array)));//{1, 2, 3, 6, 9, 8, 7, 4, 5};
 
-
+        System.out.println(formatDuration(1));//"1 second"
+        System.out.println(formatDuration(62));//"1 minute and 2 seconds",
+        System.out.println(formatDuration(3662));//1 hour, 1 minute and 2 seconds
     }
-
 
 }
