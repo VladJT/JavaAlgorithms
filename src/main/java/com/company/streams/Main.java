@@ -89,6 +89,11 @@ class Main {
         // найти максимальное значение
         System.out.println(li.stream().max(Comparator.comparingInt(Integer::intValue)));
 
+        String maze="123\n456\n789";
+        // получить из строки двумерный массив символов
+        char[][] matrix = Arrays.stream(maze.split("\n")).map(row -> row.toCharArray()).toArray(char[][]::new);
+
+
     }
 
 }
