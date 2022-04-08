@@ -6,67 +6,56 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 class CodeWars2 {
 
-    static Map<String, Integer> dictionary = new HashMap<>() {{
-        put("zero", 0);
-        put("one", 1);
-        put("two", 2);
-        put("three", 3);
-        put("four", 4);
-        put("five", 5);
-        put("six", 6);
-        put("seven", 7);
-        put("eight", 8);
-        put("nine", 9);
-        put("ten", 10);
-        put("eleven", 11);
-        put("twelve", 12);
-        put("thirteen", 13);
-        put("fourteen", 14);
-        put("fifteen", 15);
-        put("sixteen", 16);
-        put("seventeen", 17);
-        put("eighteen", 18);
-        put("nineteen", 19);
-        put("twenty", 20);
-        put("thirty", 30);
-        put("forty", 40);
-        put("fifty", 50);
-        put("sixty", 60);
-        put("seventy", 70);
-        put("eighty", 80);
-        put("ninety", 90);
-    }};
+    public static int solveExpression(final String expression) {
+        Pattern pattern = Pattern.compile("(-?+[0-9\\?]+)([*+-])(-?+[0-9\\?]+)=(.*)"); // Expr always has form: (num)[op](num)=(num)
+        Matcher matcher = pattern.matcher(expression);
+        matcher.matches();
+        String num1 = matcher.group(1);
+        String operator = matcher.group(2);
+        String num2 = matcher.group(3);
+        String result = matcher.group(4);
 
-    public static int parseInt(String numStr) {
-        int n = 1;
-        int rez = 0;
-
-        String[] st = numStr.split("[\\s-]");
-        for (int i = st.length - 1; i >= 0; i--) {
-            if (dictionary.containsKey(st[i])) {
-                rez += dictionary.get(st[i]) * n;
-            } else {
-                if (st[i].equals("hundred")) n *= 100;
-                if (st[i].equals("thousand")) n = 1000;
-                if (st[i].equals("million")) n = 1000000;
+        for (int i = 0; i <= 9; i++) {
+            int number1 = Integer.parseInt(num1.replaceAll("\\?", i + ""));
+            int number2 = Integer.parseInt(num2.replaceAll("\\?", i + ""));
+            int numberResult = Integer.parseInt(result.replaceAll("\\?", i + ""));
+            //1. check 0xxx
+            if(num1.length()!=(number1+"").length() || num2.length()!=(number2+"").length() || result.length()!=(numberResult+"").length()){
+                continue;
             }
+            //2. check exists i in expression
+            if(expression.contains(i+"")) continue;
+
+            int n = 0;
+            if (operator.equals("+")) n = number1 + number2;
+            if (operator.equals("-")) n = number1 - number2;
+            if (operator.equals("*")) n = number1 * number2;
+            if (n == numberResult) return i;
         }
-        return rez;
+        return -1;
     }
 
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
         //-------------------------
+        System.out.println(solveExpression("19-45=5?"));//-1
+        System.out.println(solveExpression("19--45=5?"));//-1
+        System.out.println(solveExpression("1--1=?"));//2
+        System.out.println(solveExpression("1+1=?"));//2
+        System.out.println(solveExpression("123*45?=5?088"));//6
+        System.out.println(solveExpression("-5?*-1=5?"));//0
 
-        System.out.println(parseInt("five hundred twenty-one"));// 541
-        System.out.println(parseInt("one million"));//
-        System.out.println(parseInt("two hundred six"));//206
-        System.out.println(parseInt("seven hundred eighty-three thousand nine hundred and nineteen"));//783919
 
+//        assertEquals( "Answer for expression '??*??=302?' " , 5 , Runes.solveExpression("??*??=302?") );
+//        assertEquals( "Answer for expression '?*11=??' " , 2 , Runes.solveExpression("?*11=??") );
+//        assertEquals( "Answer for expression '??*1=??' " , 2 , Runes.solveExpression("??*1=??") );
+//        assertEquals( "Answer for expression '??+??=??' " , -1 , Runes.solveExpression("??+??=??") );
 
         //-------------------------
         System.out.println("Время выполнения (милисек.): " + (System.currentTimeMillis() - startTime));
