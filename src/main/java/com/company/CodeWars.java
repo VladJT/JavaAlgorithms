@@ -1,219 +1,200 @@
 package com.company;
 
 
-import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
-class CodeWars extends Object {
+class CodeWars {
 
-    private static class MyTime {
-        private long sTime = 0;
 
-        public void start() {
-            sTime = System.currentTimeMillis();
-        }
+    public static int[] theLift(final int[][] queues, final int capacity) {
+        System.out.println("capacity: " + capacity);
+        printFloors(queues);
 
-        public void end() {
-            sTime = System.currentTimeMillis() - sTime;
-        }
+        ArrayList<Integer> lift = new ArrayList<>(); // lift [capacity]
+        ArrayList<Integer> route = new ArrayList<>();// lift's route
+        int liftPos = 0;
+        char direction = '^'; // = ^ or v
+        moveLift(liftPos, direction, lift, capacity, queues);
+        route.add(liftPos);
 
-        public void printTime() {
-            System.out.println("Операция заняла: " + sTime + " милисек.");
-        }
-    }
-
-    private static MyTime timer = new MyTime();
-
-    static Set<String> bananas(final String s) {
-        timer.start();
-        Set<String> stSet = new HashSet<>();
-        if (s.equals("banana")) {
-            stSet.add(s);
-            return stSet;
-        }
-
-        String tempS = s.substring(0, s.length() - 5);
-
-        int bIndex = tempS.indexOf('b');
         while (true) {
+            int maxFloorWithPeople = getMaxFloorWithPeople(queues);
+            int minFloorWithPeople = getMinFloorWithPeople(queues);
 
-            // todo
+            int maxFloorByPeopleInLift = -1;
+            if (!lift.isEmpty()) maxFloorByPeopleInLift = Collections.max(lift);
+            int upDestination = Math.max(maxFloorWithPeople, maxFloorByPeopleInLift);
 
+            int minFloorByPeopleInLift = -1;
+            if (!lift.isEmpty()) minFloorByPeopleInLift = Collections.min(lift);
+            int downDestination = 0;
+            if (minFloorWithPeople >= 0) downDestination = minFloorWithPeople;
+            if (minFloorByPeopleInLift >= 0 && minFloorByPeopleInLift < downDestination)
+                downDestination = minFloorByPeopleInLift;
 
-            tempS = s.substring(bIndex + 1, s.length() - 5);
-            if (!tempS.contains("b")) break;
-            bIndex = (bIndex + 1) + tempS.indexOf('b');
-        }
+            boolean hasStop = false;
 
-
-        int[] arr = new int[s.length() - 6];
-        int[] maxArr = new int[s.length() - 6];
-
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = bIndex + i;
-            maxArr[i] = i + 6;
-
-        }
-
-        Thread[] t = new Thread[1000000];
-        int counter = 0;
-
-        while (!Arrays.equals(arr, maxArr)) {
-            t[counter] = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    checkBanana(s, stSet, arr);
-
-                    boolean exit = false;
-                    do {
-                        for (int i = 0; i < arr.length; i++) {
-                            if (arr[i] < maxArr[i]) {
-                                arr[i]++;
-                                break;
-                            } else {
-                                arr[i] = i;
-                            }
-                        }
-                        if (Arrays.equals(arr, maxArr)) exit = true;
-
-
-                        int firstN = 0;
-
-                        while (true) {
-                            int finalFirstN = firstN;
-                            if (Arrays.stream(arr).filter(n -> n == finalFirstN).count() == 0) break;
-                            firstN++;
-                        }
-                        if (s.charAt(firstN) == 'b') exit = true;
-
-                    } while (exit == false);
-
-                    // последняя итерация
-                    if (Arrays.equals(arr, maxArr)) {
-                        checkBanana(s, stSet, maxArr);
-                    }
+            if (direction == '^') {
+                if (liftPos < upDestination) {
+                    hasStop = moveLift(++liftPos, direction, lift, capacity, queues);
+                } else {
+                    direction = 'v';
+                    hasStop = moveLift(liftPos, direction, lift, capacity, queues);// try to set peoples in Lift
                 }
-            });
-
-            t[counter].start();
-            try {
-                t[counter].join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
-            counter++;
-        }
-
-
-        System.out.println(counter + " !!");
-
-        timer.end();
-        timer.printTime();
-        return stSet.isEmpty() ? Collections.EMPTY_SET : stSet;
-    }
-
-
-    static Set<String> bananas_old(final String s) {
-        timer.start();
-        Set<String> stSet = new HashSet<>();
-        if (s.equals("banana")) {
-            stSet.add(s);
-            return stSet;
-        }
-
-        String tempS = s.substring(0, s.length() - 5);
-
-        int bIndex = tempS.indexOf('b');
-
-
-        int[] arr = new int[s.length() - 6];
-        int[] maxArr = new int[s.length() - 6];
-
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = bIndex + i;
-            maxArr[i] = i + 6;
-
-        }
-
-        Thread[] t = new Thread[1000000];
-        int counter = 0;
-
-        while (!Arrays.equals(arr, maxArr)) {
-            t[counter] = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    checkBanana(s, stSet, arr);
-
-                    boolean exit = false;
-                    do {
-                        for (int i = 0; i < arr.length; i++) {
-                            if (arr[i] < maxArr[i]) {
-                                arr[i]++;
-                                break;
-                            } else {
-                                arr[i] = i;
-                            }
-                        }
-                        if (Arrays.equals(arr, maxArr)) exit = true;
-
-
-                        int firstN = 0;
-
-                        while (true) {
-                            int finalFirstN = firstN;
-                            if (Arrays.stream(arr).filter(n -> n == finalFirstN).count() == 0) break;
-                            firstN++;
-                        }
-                        if (s.charAt(firstN) == 'b') exit = true;
-
-                    } while (exit == false);
-
-                    // последняя итерация
-                    if (Arrays.equals(arr, maxArr)) {
-                        checkBanana(s, stSet, maxArr);
-                    }
+            else {//if (direction == 'v')
+                if (liftPos > downDestination) {
+                    hasStop = moveLift(--liftPos, direction, lift, capacity, queues);
+                } else {
+                    direction = '^';
+                    hasStop = moveLift(liftPos, direction, lift, capacity, queues);
                 }
-            });
-
-            t[counter].start();
-            try {
-                t[counter].join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
-            counter++;
+            if (hasStop && (route.get(route.size() - 1) != liftPos)) route.add(liftPos);
+
+            if (isEmpty(queues) && lift.isEmpty()) break;
         }
 
-
-        System.out.println(counter + " !!");
-
-        timer.end();
-        timer.printTime();
-        return stSet.isEmpty() ? Collections.EMPTY_SET : stSet;
+        if (liftPos != 0) route.add(0);
+        return route.stream().mapToInt(i -> i).toArray();
     }
 
-    private static void checkBanana(String s, Set<String> stSet, int[] arr) {
-        String rez = getBananaString(s, arr);
-        if (rez.replaceAll("-", "").equals("banana")) {
-            stSet.add(rez);
+    private static boolean moveLift(int stage, char direction, ArrayList<Integer> lift, int capacity, int[][] queues) {
+        boolean hasStop = false;
+        hasStop = getOupFromLift(stage, lift);
+        for (int i = 0; i < queues[stage].length; i++) {
+            if (direction == '^' && queues[stage][i] > stage && queues[stage][i] != -1) {
+                setPeoplesToLift(lift, capacity, queues, stage, i);
+                hasStop = true;
+            }
+            if (direction == 'v' && queues[stage][i] < stage && queues[stage][i] != -1) {
+                setPeoplesToLift(lift, capacity, queues, stage, i);
+                hasStop = true;
+            }
+        }
+        return hasStop;
+    }
+
+    private static void setPeoplesToLift(ArrayList<Integer> lift, int capacity, int[][] queues, int stage, int index) {
+        if (lift.size() < capacity) {// set to lift
+            lift.add(queues[stage][index]);
+            queues[stage][index] = -1; // no people
         }
     }
 
-    private static String getBananaString(String s, int[] arr) {
-        char[] c = s.toCharArray();
-        for (int j : arr) c[j] = '-';
-        return String.valueOf(c);
+    private static boolean getOupFromLift(int stage, ArrayList<Integer> lift) {
+        boolean hasStop = false;
+        while (lift.contains((Object) stage)) {
+            lift.remove((Object) stage);// get out peoples
+            hasStop = true;
+        }
+        return hasStop;
     }
+
+    private static void printFloors(int[][] queues) {
+        for (int i = queues.length - 1; i >= 0; i--) {
+            System.out.print(i + "|| ");
+            for (int j = 0; j < queues[i].length; j++) {
+                System.out.print(queues[i][j] + ", ");
+            }
+            System.out.println();
+        }
+        System.out.println("------");
+    }
+
+    private static int getMinFloorWithPeople(int[][] queues) {
+        for (int i = 0; i < queues.length; i++) {
+            for (int j = 0; j < queues[i].length; j++) {
+                if (queues[i][j] != -1) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    private static int getMaxFloorWithPeople(int[][] queues) {
+        for (int i = queues.length - 1; i >= 0; i--) {
+            for (int j = 0; j < queues[i].length; j++) {
+                if (queues[i][j] != -1) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    private static boolean isEmpty(int[][] queues) {
+        return Arrays.stream(queues).flatMapToInt(Arrays::stream).filter(i -> i != -1).count() == 0;
+    }
+
+    static int[][] queues_2 = {
+            new int[0], // G
+            new int[0], // 1
+            new int[]{5, 5, 5}, // 2
+            new int[0], // 3
+            new int[0], // 4
+            new int[0], // 5
+            new int[0], // 6
+    };
+    static int[][] queues_1 = {
+            new int[0], // G
+            new int[]{3}, // 1
+            new int[]{4}, // 2
+            new int[0], // 3
+            new int[]{5}, // 4
+            new int[0], // 5
+            new int[0], // 6
+    };
+
+    static int[][] queues_3 = {
+            new int[0], // G
+            new int[0], // 1
+            new int[]{1, 1}, // 2
+            new int[0], // 3
+            new int[0], // 4
+            new int[0], // 5
+            new int[0], // 6
+    };
+
+    static int[][] queues_4 = {
+            new int[0], // G
+            new int[0], // 1
+            new int[]{4, 4, 4, 4}, // 2
+            new int[0], // 3
+            new int[]{2, 2, 2, 2}, // 4
+            new int[0], // 5
+            new int[0], // 6
+    };
+
+    static int[][] queues_5 = {
+            new int[0], // G
+            new int[]{0, 0, 0, 0}, // 1
+            new int[]{0, 0, 0, 0}, // 2
+            new int[]{0, 0, 0, 0}, // 3
+            new int[]{0, 0, 0, 0}, // 4
+            new int[]{0, 0, 0, 0}, // 5
+            new int[]{0, 0, 0, 0}, // 6
+    };
 
     public static void main(String[] args) {
-        String input = "baaanannanbn";//[b--ana-na---, ba--na-na---, b-a-na-na---, b--anan-a---, b-a-nan-a---, ba--nan-a---]
-        Set<String> expected = bananas(input);
-        for (String s : expected) {
-            System.out.println(s);
-        }
+        long startTime = System.currentTimeMillis();
+        //-------------------------
+        System.out.println(Arrays.toString(theLift(queues_5, 5)));
+        System.out.println("===========================");
+        System.out.println(Arrays.toString(theLift(queues_4, 5)));//0,5,4,3,2,1,0
+        System.out.println("===========================");
+        System.out.println(Arrays.toString(theLift(queues_3, 5)));//0,2,1,0
+        System.out.println("===========================");
+        System.out.println(Arrays.toString(theLift(queues_1, 5)));//0,1,2,3,4,5,0
+        System.out.println("===========================");
+        System.out.println(Arrays.toString(theLift(queues_2, 5)));//0,2,5,0
+        System.out.println("===========================");
+
+        //-------------------------
+        System.out.println("Время выполнения (милисек.): " + (System.currentTimeMillis() - startTime));
     }
 
 
