@@ -5,7 +5,7 @@ class Main {
 
     // функциональный интерфейс
     @FunctionalInterface
-    interface Math{
+    interface Math {
         abstract int call(int x, int y);
     }
 
@@ -16,7 +16,8 @@ class Main {
     }
 
     public static void main(String[] args) {
-        // functional interface
+
+        // Анонимный класс
         Runnable obj = new Runnable() {
             @Override
             public void run() {
@@ -26,25 +27,22 @@ class Main {
         };
         obj.run();
 
-
-        //Thread
-        new Thread(() -> {
-            System.out.println("2");
-        }).start();
-
-
         // lambda
         Runnable r1 = () -> {
-            System.out.println("3");
+            System.out.println("2");
         };
-        new Thread(r1).start();
+        r1.run();
 
-        Math summa = (x, y) -> {return x+y;};
-        Math minus = (x, y) -> {return x-y;};
-        System.out.println(summa.call(7,5));
-        System.out.println(minus.call(7,5));
+        Math summa = (x, y) -> {
+            return x + y;
+        };
+        Math minus = (x, y) -> {
+            return x - y;
+        };
+        System.out.println("7+5 = " + summa.call(7, 5));
+        System.out.println("7-5 = " + minus.call(7, 5));
 
-        int i = mathFunc(summa, 5, 6) -  mathFunc(summa, 2, 3);//11-5=6
-        System.out.println(i);
+        int i = mathFunc(summa, 5, 6) - mathFunc(summa, 2, 3);//11-5=6
+        System.out.println("11-5 = " + i);
     }
 }

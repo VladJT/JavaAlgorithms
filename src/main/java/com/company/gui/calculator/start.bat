@@ -1,2 +1,2 @@
-java com.company.gui.calculator.Calculator
+java -Dfile.encoding=UTF-8 Calculator.java
 pause
