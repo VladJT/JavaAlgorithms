@@ -1,6 +1,7 @@
 package com.company.core.oop.lesson11;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,12 +19,12 @@ class Main {
 
 
         // Посчитать, сколько раз встречается каждое слово.
-        Comparator<Object> mySortOrder = Comparator.comparingInt(s->(Integer.parseInt(s.toString().split(": ")[1]))).reversed();
+        Comparator<Object> mySortOrder = Comparator.comparingInt(s -> (Integer.parseInt(s.toString().split(": ")[1]))).reversed();
 
-        System.out.println("Подсчет повторов слов (по убыванию): "+
+        System.out.println("Подсчет повторов слов (по убыванию): " +
                 Arrays.stream(words)
                         .distinct()
-                        .map(n->n + ": " + Stream.of(words).filter(s -> s.equals(n)).count())
+                        .map(n -> n + ": " + Stream.of(words).filter(s -> s.equals(n)).count())
                         .sorted(mySortOrder)
                         .collect(Collectors.joining("; ")));
     }

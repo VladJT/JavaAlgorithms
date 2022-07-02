@@ -1,8 +1,8 @@
 package com.company;
 
 
-import java.math.BigInteger;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 class CodeWars2 {
 
@@ -19,11 +19,12 @@ class CodeWars2 {
         for (int i = startString.length(); i < arr.length; i++) {
             if (arr[i] == mask[indexChar]) {
                 if (startString.length() + mask.length - indexChar < arr.length) {
-                    findBananas(startString+"-", arr, indexChar); // find another variants
+                    findBananas(startString + "-", arr, indexChar); // find another variants
                 }
-                if (indexChar == 5) result.add(startString+mask[indexChar]+"-".repeat(arr.length-startString.length()-1));
+                if (indexChar == 5)
+                    result.add(startString + mask[indexChar] + "-".repeat(arr.length - startString.length() - 1));
                 else {
-                    findBananas(startString+mask[indexChar], arr, indexChar + 1);
+                    findBananas(startString + mask[indexChar], arr, indexChar + 1);
                 }
             }
             startString += '-';

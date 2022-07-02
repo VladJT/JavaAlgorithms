@@ -1,34 +1,33 @@
 package com.company.core.annotations;
 
-import com.sun.jdi.Method;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Data
-class Cat{
+class Cat {
     @Getter
     @Setter
     private String name;
 
     @Deprecated
-    public void Meow(){
+    public void Meow() {
         System.out.println("Meow!");
     }
 }
 
-class IncFunc{
+class IncFunc {
 
     @MyAnnotation(incNumber = 2)
     static int inc(int x) {
-     //   MyAnnotation com = ;
+        //   MyAnnotation com = ;
         return x + 1;
     }
 }
 
 class Main {
 
-    void test(@MyAnnotation int z){
+    void test(@MyAnnotation int z) {
 
     }
 

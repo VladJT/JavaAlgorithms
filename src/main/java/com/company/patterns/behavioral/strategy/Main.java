@@ -41,7 +41,6 @@ import java.util.List;
  * <font color="fa8eff">и стратегия, и декоратор могут применяться для изменения поведения конкретных классов.<br>
  * Достоинство стратегии в том, что интерфейс кастомизации не совпадает с публичным интерфейсом и может быть куда более удобным.<br>
  * Недостаток стратегии в том, что для использования стратегии необходимо изначально проектировать класс с возможностью регистрации стратегий.</font>
- *
  */
 
 
@@ -57,27 +56,28 @@ class CreditCardStrategy implements PaymentStrategy {
     private String cvv;
     private String dateOfExpiry;
 
-    public CreditCardStrategy(String nm, String ccNum, String cvv, String expiryDate){
-        this.name=nm;
-        this.cardNumber=ccNum;
-        this.cvv=cvv;
-        this.dateOfExpiry=expiryDate;
+    public CreditCardStrategy(String nm, String ccNum, String cvv, String expiryDate) {
+        this.name = nm;
+        this.cardNumber = ccNum;
+        this.cvv = cvv;
+        this.dateOfExpiry = expiryDate;
     }
+
     @Override
     public void pay(int amount) {
-        System.out.println(amount +" paid with credit/debit card");
+        System.out.println(amount + " paid with credit/debit card");
     }
 
 }
 
 // реализация оплаты через Paypal
-class PaypalStrategy implements PaymentStrategy{
+class PaypalStrategy implements PaymentStrategy {
     private String emailId;
     private String password;
 
-    public PaypalStrategy(String email, String pwd){
-        this.emailId=email;
-        this.password=pwd;
+    public PaypalStrategy(String email, String pwd) {
+        this.emailId = email;
+        this.password = pwd;
     }
 
     @Override
@@ -91,9 +91,9 @@ class Item {
     private String upcCode;
     private int price;
 
-    public Item(String upc, int cost){
-        this.upcCode=upc;
-        this.price=cost;
+    public Item(String upc, int cost) {
+        this.upcCode = upc;
+        this.price = cost;
     }
 
     public String getUpcCode() {
@@ -111,27 +111,27 @@ class ShoppingCart {
     //List of items
     List<Item> items;
 
-    public ShoppingCart(){
-        this.items=new ArrayList<Item>();
+    public ShoppingCart() {
+        this.items = new ArrayList<Item>();
     }
 
-    public void addItem(Item item){
+    public void addItem(Item item) {
         this.items.add(item);
     }
 
-    public void removeItem(Item item){
+    public void removeItem(Item item) {
         this.items.remove(item);
     }
 
-    public int calculateTotal(){
+    public int calculateTotal() {
         int sum = 0;
-        for(Item item : items){
+        for (Item item : items) {
             sum += item.getPrice();
         }
         return sum;
     }
 
-    public void pay(PaymentStrategy paymentMethod){
+    public void pay(PaymentStrategy paymentMethod) {
         int amount = calculateTotal();
         paymentMethod.pay(amount);
     }
@@ -141,8 +141,8 @@ class ShoppingCart {
 class Main {
     public static void main(String[] args) {
         ShoppingCart cart = new ShoppingCart();
-        Item item1 = new Item("Сок",10);
-        Item item2 = new Item("Печенье",40);
+        Item item1 = new Item("Сок", 10);
+        Item item2 = new Item("Печенье", 40);
         cart.addItem(item1);
         cart.addItem(item2);
 

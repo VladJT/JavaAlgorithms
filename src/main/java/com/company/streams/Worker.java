@@ -1,9 +1,8 @@
 package com.company.streams;
 
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 class Worker {
@@ -113,10 +112,10 @@ class Worker {
 
 
         //Найдем человека с максимальным возрастом
-        Worker age  = workers.stream().max(new Comparator<Worker>() {
+        Worker age = workers.stream().max(new Comparator<Worker>() {
             @Override
             public int compare(Worker o1, Worker o2) {
-                return o1.age-o2.age;
+                return o1.age - o2.age;
             }
         }).get();
 
@@ -124,7 +123,7 @@ class Worker {
 
         //reduce позволяет выполнять агрегатные функции на всей коллекцией
         //Получить сумму з\п или вернуть 0
-        int salary = workers.stream().mapToInt(p-> (int) p.salary).reduce(Integer::sum).orElse(0);
+        int salary = workers.stream().mapToInt(p -> (int) p.salary).reduce(Integer::sum).orElse(0);
         System.out.println(salary);
     }
 }

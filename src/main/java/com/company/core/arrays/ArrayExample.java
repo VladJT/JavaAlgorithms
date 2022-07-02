@@ -1,7 +1,5 @@
 package com.company.core.arrays;
 
-import java.util.Arrays;
-
 class ArrayExample {
 
     public static void main(String[] args) {

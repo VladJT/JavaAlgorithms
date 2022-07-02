@@ -8,7 +8,7 @@ interface IAnimal {
 
     void swim(int distance);
 
-    default void eat(){
+    default void eat() {
         System.out.println("Животное поело");
     }
 }

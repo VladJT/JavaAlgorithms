@@ -151,26 +151,24 @@ class Example_SB_4 {
     //удерживающий объект lock, не освободит его через метод unlock(). Тогда этот объект смогут
     //захватить другие потоки.
     public void method() {
-        System.out.println(" ["+Thread.currentThread().getName()+"] start");
+        System.out.println(" [" + Thread.currentThread().getName() + "] start");
         try {
             lock.lock();
             for (int i = 0; i < 5; i++) {
-                System.out.println(i+" ["+Thread.currentThread().getName()+"]");
+                System.out.println(i + " [" + Thread.currentThread().getName() + "]");
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             lock.unlock();
         }
 
-        System.out.println(" ["+Thread.currentThread().getName()+"] finish");
+        System.out.println(" [" + Thread.currentThread().getName() + "] finish");
     }
 }
 

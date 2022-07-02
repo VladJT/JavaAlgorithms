@@ -14,7 +14,7 @@ package com.company.patterns.structural.facade;
  * <p>
  * <font color="#fa8e47">Признаки применения паттерна:<br></font>Фасад угадывается в классе, который имеет простой интерфейс,
  * но делегирует основную часть работы другим классам. Чаще всего, фасады сами следят за жизненным циклом объектов сложной системы.
- *  <p>
+ * <p>
  * Это одна из полезных особенностей данного паттерна – мы вольны работать с классами, которые скрыты интерфейсом (фасадом), напрямую, если в этом есть необходимость.
  * Если вам необходимо упростить работу с каким-либо интерфейсом или изолировать клиента от сложной системы, то паттерн Фасад будет идеальным выбором.
  */
@@ -26,19 +26,19 @@ package com.company.patterns.structural.facade;
 
 
 // 1- класс для управления питанием
-class GPSPower{
-    public void powerOn(){
+class GPSPower {
+    public void powerOn() {
         System.out.println("Power ON");
     }
 
-    public void powerOff(){
+    public void powerOff() {
         System.out.println("Power OFF");
     }
 }
 
 // 2- класс  за получение информации о пробках на дорогах
-class GPSNotifier{
-    public void downloadRoadInfo(){
+class GPSNotifier {
+    public void downloadRoadInfo() {
         System.out.println("Downloading road information...");
         System.out.println("Download complete!");
     }
@@ -46,25 +46,25 @@ class GPSNotifier{
 
 
 // 3- класс чтобы проложить оптимальный маршрут
-class RoadAdvisor{
-    public void route(){
+class RoadAdvisor {
+    public void route() {
         System.out.println("Create a route");
     }
 }
 
 // в качестве фасада, будет выступать класс GPSInterface, который будет за водителя выполнять однотипные действия:
-class GPSInterface{
+class GPSInterface {
     private GPSPower power;
     private GPSNotifier notifier;
     private RoadAdvisor advisor;
 
-    public GPSInterface(GPSPower power, GPSNotifier notifier, RoadAdvisor advisor){
+    public GPSInterface(GPSPower power, GPSNotifier notifier, RoadAdvisor advisor) {
         this.power = power;
         this.notifier = notifier;
         this.advisor = advisor;
     }
 
-    public void activate(){
+    public void activate() {
         power.powerOn();
         notifier.downloadRoadInfo();
         advisor.route();

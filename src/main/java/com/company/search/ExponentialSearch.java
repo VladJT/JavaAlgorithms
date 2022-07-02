@@ -21,7 +21,7 @@ class ExponentialSearch {
             base *= 2;
         }
 
-        System.out.println("Экспоненциальный поиск. Итераций: "+i);
-        return BinarySearch.search(arr, num2Find, base/2+1, Math.min(base-1, arr.length-1));
+        System.out.println("Экспоненциальный поиск. Итераций: " + i);
+        return BinarySearch.search(arr, num2Find, base / 2 + 1, Math.min(base - 1, arr.length - 1));
     }
 }

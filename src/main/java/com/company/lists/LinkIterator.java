@@ -97,7 +97,7 @@ class LinkIterator {
 
         i.reset();
         i.insertBefore("Stas", 40);
-        while(!i.atEnd()){
+        while (!i.atEnd()) {
             i.nextLink();
         }
         i.getCurrent().display();

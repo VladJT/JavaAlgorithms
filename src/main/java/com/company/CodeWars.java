@@ -1,10 +1,6 @@
 package com.company;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 class CodeWars {
 
 
@@ -14,9 +10,9 @@ class CodeWars {
     }
 
     private static void printArray(String arr[]) {
-       for(String s : arr){
-           System.out.println(s);
-       }
+        for (String s : arr) {
+            System.out.println(s);
+        }
     }
 
     public static void main(String[] args) {
@@ -24,7 +20,7 @@ class CodeWars {
         //-------------------------
 
         String shape = String.join("\n", new String[]
-                       {"+------------+",
+                {"+------------+",
                         "|            |",
                         "|            |",
                         "|            |",

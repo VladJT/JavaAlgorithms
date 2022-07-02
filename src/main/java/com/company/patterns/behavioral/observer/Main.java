@@ -47,7 +47,9 @@ import java.util.List;
 // 1)Observable - некий культ, который будет вещать своей пастве о чем-либо, в котором можно зарегистрироваться или наоборот выйти из него
 interface Observable {
     void registerObserver(Observer o);
+
     void removeObserver(Observer o);
+
     void notifyObservers();
 }
 

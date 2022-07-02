@@ -24,36 +24,36 @@ class WaitNotifyClass {
 
 
     public synchronized void printA() {
-            try {
-                for (int i = 0; i < 10; i++) {
-                    if (currentLetter != 'A') {
-                        wait();
-                    }
-                    System.out.print("A");
-                    Thread.sleep(100);
-                    currentLetter = 'B';
-                    notify();
+        try {
+            for (int i = 0; i < 10; i++) {
+                if (currentLetter != 'A') {
+                    wait();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.print("A");
+                Thread.sleep(100);
+                currentLetter = 'B';
+                notify();
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public synchronized void printB() {
-            try {
-                for (int i = 0; i < 10; i++) {
-                    if (currentLetter != 'B') {
-                        wait();
-                    }
-                    System.out.print("B");
-                    Thread.sleep(100);
-                    currentLetter = 'A';
-                    notify();
+        try {
+            for (int i = 0; i < 10; i++) {
+                if (currentLetter != 'B') {
+                    wait();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.print("B");
+                Thread.sleep(100);
+                currentLetter = 'A';
+                notify();
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 }

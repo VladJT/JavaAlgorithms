@@ -1,7 +1,5 @@
 package com.company.hash;
 
-import java.util.Arrays;
-
 class HashTableImpl<K, V> implements IHashTable<K, V> {
 
     private final Item<K, V>[] data;
@@ -59,7 +57,7 @@ class HashTableImpl<K, V> implements IHashTable<K, V> {
         size++;
         int n = 0;
 
-        while (data[index] != null && data[index]!=emptyItem) {
+        while (data[index] != null && data[index] != emptyItem) {
             if (isKeyEquals(data[index], key)) {
                 return true;
             }
@@ -88,7 +86,7 @@ class HashTableImpl<K, V> implements IHashTable<K, V> {
     }
 
     private boolean isKeyEquals(Item<K, V> item, K key) {
-        if (item==emptyItem) return false;
+        if (item == emptyItem) return false;
         return (item.getKey() == null) ? (key == null) : item.getKey().equals(key);
     }
 
@@ -96,7 +94,7 @@ class HashTableImpl<K, V> implements IHashTable<K, V> {
     @Override
     public V get(K key) {
         int index = indexOf(key);
-        return (index==-1)?null:data[index].getValue();
+        return (index == -1) ? null : data[index].getValue();
     }
 
     private int indexOf(K key) {
@@ -106,9 +104,8 @@ class HashTableImpl<K, V> implements IHashTable<K, V> {
             if (data[index] == null) break;
             if (isKeyEquals(data[index], key)) {
                 return index;
-            }
-            else index+=getStepDoubleHash(key);
-            index%= data.length;
+            } else index += getStepDoubleHash(key);
+            index %= data.length;
         }
         return -1;
     }
@@ -116,7 +113,7 @@ class HashTableImpl<K, V> implements IHashTable<K, V> {
     @Override
     public V remove(K key) {
         int index = indexOf(key);
-        if (index==-1) return null;
+        if (index == -1) return null;
 
         Item<K, V> removed = data[index];
         data[index] = emptyItem;
@@ -131,7 +128,7 @@ class HashTableImpl<K, V> implements IHashTable<K, V> {
 
     @Override
     public boolean isEmpty() {
-        return (size==0);
+        return (size == 0);
     }
 
     @Override

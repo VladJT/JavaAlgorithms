@@ -70,6 +70,7 @@ class Rectangle extends Shape {
         color.fillColor();
     }
 }
+
 class Triangle extends Shape {
     public Triangle(Color color) {
         super(color);
@@ -100,12 +101,14 @@ class BlackColor implements Color {
         System.out.println("Filling in black color");
     }
 }
+
 class GreenColor implements Color {
     @Override
     public void fillColor() {
         System.out.println("Filling in green color");
     }
 }
+
 class RedColor implements Color {
     @Override
     public void fillColor() {
@@ -114,11 +117,9 @@ class RedColor implements Color {
 }
 
 
-
-
 class Main {
     public static void main(String[] args) {
-        Shape[] shapes = {new Rectangle(new BlackColor()), new Triangle(new RedColor()) };
+        Shape[] shapes = {new Rectangle(new BlackColor()), new Triangle(new RedColor())};
         shapes[0].draw();
         shapes[1].draw();
     }

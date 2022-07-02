@@ -1,6 +1,8 @@
 package com.company.hash;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 class ELinkedHashTable<K, V> implements IHashTable<K, V> {

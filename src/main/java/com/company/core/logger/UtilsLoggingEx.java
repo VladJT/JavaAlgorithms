@@ -35,7 +35,7 @@ class UtilsLoggingEx {
         handler.setFormatter(new Formatter() {
             @Override
             public String format(LogRecord record) {
-                return String.format("%s\t%s\t%s\n",record.getLevel(), new Date(record.getMillis()),record.getMessage());
+                return String.format("%s\t%s\t%s\n", record.getLevel(), new Date(record.getMillis()), record.getMessage());
             }
         });
         handler.setLevel(Level.ALL);

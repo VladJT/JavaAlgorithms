@@ -14,8 +14,9 @@ interface IHashTable<K, V> {
 
     void display();
 
-    interface Entry<K, V>{
+    interface Entry<K, V> {
         K getKey();
+
         V getValue();
 
         void setValue(V value);

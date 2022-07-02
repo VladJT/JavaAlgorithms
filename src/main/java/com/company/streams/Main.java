@@ -55,9 +55,9 @@ class Main {
         System.out.println("\n---------");
 
         // Примеры использования filter, findFirst, findAny, skip, limit и count
-        String t= "asdsf,cxx,wwer";
-        String[] tempString =  Arrays.stream(t.split(",")).filter(n -> n.contains("xxx" + " ")).toArray(String[]::new);//поиск всех вхождений ххх
-        List<String> ls = new ArrayList<>(Arrays.asList("a1", "a2", "a3", "a1", "a18","b2","b3"));
+        String t = "asdsf,cxx,wwer";
+        String[] tempString = Arrays.stream(t.split(",")).filter(n -> n.contains("xxx" + " ")).toArray(String[]::new);//поиск всех вхождений ххх
+        List<String> ls = new ArrayList<>(Arrays.asList("a1", "a2", "a3", "a1", "a18", "b2", "b3"));
         var i = ls.stream().filter("a1"::equals).count();//Вернуть количество вхождений объекта «a1»
         String s = ls.stream().findFirst().orElse("0");//Вернуть первый элемент коллекции или 0, если коллекция пуста
         s = ls.stream().skip(ls.size() - 1).findAny().orElse("empty");//Вернуть последний элемент коллекции или «empty», если коллекция пуста
@@ -67,29 +67,29 @@ class Main {
         ls.stream().filter(n -> n.contains("1")).collect(Collectors.toList());//Выбрать все элементы по шаблону - содержит 1
 
         // без дубликатов
-       ls.stream().distinct().collect(Collectors.toList());
+        ls.stream().distinct().collect(Collectors.toList());
 
-       //убрать первый символ и вернуть массив чисел (int[])
-        int[] arr = ls.stream().map(n->n.substring(1)).mapToInt(n->Integer.parseInt(n)).toArray();
+        //убрать первый символ и вернуть массив чисел (int[])
+        int[] arr = ls.stream().map(n -> n.substring(1)).mapToInt(n -> Integer.parseInt(n)).toArray();
         System.out.println(Arrays.toString(arr));
 
         //получить сумму всех чисел, перечисленных через запятую
-        int sum  = ls.stream().mapToInt(n->Integer.parseInt(n.substring(1))).sum();
+        int sum = ls.stream().mapToInt(n -> Integer.parseInt(n.substring(1))).sum();
         System.out.println(sum);
 
         //Объединить все элементы в одну строку через разделитель: и обернуть тегами <b>… </b>
-        String rez2 = ls.stream().collect(Collectors.joining(":","<br>","</br>"));
+        String rez2 = ls.stream().collect(Collectors.joining(":", "<br>", "</br>"));
         System.out.println(rez2);
 
         //Преобразовать в map, сгруппировав по первому символу строки
-        Map<Object, List<String>> map = ls.stream().collect(Collectors.groupingBy((p->p.substring(0,1))));
+        Map<Object, List<String>> map = ls.stream().collect(Collectors.groupingBy((p -> p.substring(0, 1))));
         System.out.println(map);
 
-        List<Integer> li = List.of(3,2,1,4,5,6,9,7,8);
+        List<Integer> li = List.of(3, 2, 1, 4, 5, 6, 9, 7, 8);
         // найти максимальное значение
         System.out.println(li.stream().max(Comparator.comparingInt(Integer::intValue)));
 
-        String maze="123\n456\n789";
+        String maze = "123\n456\n789";
         // получить из строки двумерный массив символов
         char[][] matrix = Arrays.stream(maze.split("\n")).map(row -> row.toCharArray()).toArray(char[][]::new);
 

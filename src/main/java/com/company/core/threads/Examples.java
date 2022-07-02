@@ -48,8 +48,8 @@ class Examples {
 //        }
 //
 
-       // testExecutor();
-      //  testScheduledExecutorService2();
+        // testExecutor();
+        //  testScheduledExecutorService2();
         testCollection();
         System.out.println("- THE END -");
         //   t.setDaemon(true);// заканчивает работу,когда завершаются остальные потоки
@@ -62,41 +62,39 @@ class Examples {
         Map<String, String> chm = new ConcurrentHashMap<>();
 
 
-
-
     }
 
     private static void testScheduledExecutorService() {
         ScheduledExecutorService es = Executors.newScheduledThreadPool(1);
-        es.scheduleAtFixedRate(()->{
-            System.out.println("Start "+new Date());
+        es.scheduleAtFixedRate(() -> {
+            System.out.println("Start " + new Date());
             try {
-                Thread.sleep(new Random().nextInt(3000)+2000);
+                Thread.sleep(new Random().nextInt(3000) + 2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("End "+new Date());
-        },0,5000, TimeUnit.MILLISECONDS);
+            System.out.println("End " + new Date());
+        }, 0, 5000, TimeUnit.MILLISECONDS);
     }
 
     private static void testScheduledExecutorService2() {
         ScheduledExecutorService es = Executors.newScheduledThreadPool(1);
-        es.scheduleWithFixedDelay(()->{
-            System.out.println("Start "+new Date());
+        es.scheduleWithFixedDelay(() -> {
+            System.out.println("Start " + new Date());
             try {
-                Thread.sleep(new Random().nextInt(3000)+2000);
+                Thread.sleep(new Random().nextInt(3000) + 2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("End "+new Date());
-        },0,5000, TimeUnit.MILLISECONDS);
+            System.out.println("End " + new Date());
+        }, 0, 5000, TimeUnit.MILLISECONDS);
     }
 
     private static void testExecutor() {
         ExecutorService pool = Executors.newFixedThreadPool(3);
-        for(int i =0;i<20;i++){
-            int k=i;
-            pool.execute(()->System.out.println(k+" - "+Thread.currentThread().getName()));
+        for (int i = 0; i < 20; i++) {
+            int k = i;
+            pool.execute(() -> System.out.println(k + " - " + Thread.currentThread().getName()));
         }
         pool.shutdown();
     }

@@ -83,14 +83,13 @@ class TwoSidedLinkedList {
         return current;
     }
 
-    public String delete2(){
+    public String delete2() {
         Link temp = first;
         if (first.next == null)
             last = null;
         first = first.next;
         return temp.name;
     }
-
 
 
     public static void main(String[] args) {

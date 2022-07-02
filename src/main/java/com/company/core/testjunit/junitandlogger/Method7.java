@@ -1,7 +1,5 @@
 package com.company.core.testjunit.junitandlogger;
 
-import lombok.Getter;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.*;
@@ -50,7 +48,7 @@ class Method7 {
 
     public boolean checkBalance(int[] arr) {
         boolean result = false;
-        if (arr.length < 2){
+        if (arr.length < 2) {
             MyLogger.getInstance().getLogger().info("Дан массив: " + Arrays.toString(arr) + ", результат проверки баланса: " + result);
             return false;
         }

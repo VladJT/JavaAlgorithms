@@ -3,7 +3,7 @@ package com.company.gui.sample;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.File;
 
-class CreateChildNodes implements Runnable  {
+class CreateChildNodes implements Runnable {
     private DefaultMutableTreeNode root;
 
     private File fileRoot;

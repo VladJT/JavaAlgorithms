@@ -12,7 +12,7 @@ class LinkedList {
         this.first = first;
     }
 
-    public LinkIterator getIterator(){
+    public LinkIterator getIterator() {
         return new LinkIterator(this);
     }
 

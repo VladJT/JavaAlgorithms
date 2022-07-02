@@ -1,6 +1,6 @@
 package com.company.core.oop.lesson08;
 
-class Robot implements Participant{
+class Robot implements Participant {
     private final String name;
     private final int limitRun;
     private final int limitJump;

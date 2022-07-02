@@ -1,7 +1,8 @@
 package com.company.core.logger;
 
 
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 
 class Log4jEx {

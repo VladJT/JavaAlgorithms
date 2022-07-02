@@ -46,6 +46,7 @@ class Vertex {
     public void setInTree(boolean inTree) {
         isInTree = inTree;
     }
+
     public boolean isInTree() {
         return isInTree;
     }

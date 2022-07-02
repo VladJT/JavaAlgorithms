@@ -38,9 +38,9 @@ class Channel {
     private double frequency;
     private ChannelTypeEnum TYPE;
 
-    public Channel(double freq, ChannelTypeEnum type){
-        this.frequency=freq;
-        this.TYPE=type;
+    public Channel(double freq, ChannelTypeEnum type) {
+        this.frequency = freq;
+        this.TYPE = type;
     }
 
     public double getFrequency() {
@@ -52,8 +52,8 @@ class Channel {
     }
 
     @Override
-    public String toString(){
-        return "Frequency="+this.frequency+", Type="+this.TYPE;
+    public String toString() {
+        return "Frequency=" + this.frequency + ", Type=" + this.TYPE;
     }
 
 }
@@ -64,13 +64,16 @@ class Channel {
 interface ChannelCollection {
 
     public void addChannel(Channel c);
+
     public void removeChannel(Channel c);
+
     public ChannelIterator iterator(ChannelTypeEnum type);
 
 }
 
 interface ChannelIterator {
     public boolean hasNext();
+
     public Channel next();
 }
 
@@ -130,7 +133,6 @@ class ChannelCollectionImpl implements ChannelCollection {
 
     }//ChannelIteratorImpl
 }
-
 
 
 class Main {

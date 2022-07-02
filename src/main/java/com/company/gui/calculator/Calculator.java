@@ -114,10 +114,10 @@ class Calculator extends JFrame {
                             labelResult.setText(" = " + String.valueOf(x - y));
                             break;
                         case "/":
-                            labelResult.setText(" = " + String.format ("%.4f",x / y));
+                            labelResult.setText(" = " + String.format("%.4f", x / y));
                             break;
                         case "*":
-                            labelResult.setText(" = " + String.format ("%.4f",x * y));
+                            labelResult.setText(" = " + String.format("%.4f", x * y));
                             break;
                         case "Степень":
                             // степень должна быть целым числом

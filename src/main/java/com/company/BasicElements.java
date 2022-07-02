@@ -22,7 +22,7 @@ class BasicElements {
 
     // функциональный интерфейс
     @FunctionalInterface
-    interface Expression{
+    interface Expression {
         long call(long a, long b);
     }
 
@@ -56,9 +56,9 @@ class BasicElements {
     }
 
     // BiFunction является functional interface, представляющим оператор, который принимает 2 значения и возвращает 1.
-    void l(){
+    void l() {
         BiFunction<Integer, Integer, Integer> mul = (x, y) -> x * y;
-        int rez = mul.apply(5,2);//10
+        int rez = mul.apply(5, 2);//10
     }
 
     // поиск самого короткого слова в строке и вывод его длины
@@ -71,8 +71,8 @@ class BasicElements {
     }
 
     // получить отсортированный массив только из нечетных чисел
-    static void sortOddNumInArray(){
-        int[]array = new int[]{ 5, 3, 2, 8, 1, 4 };
+    static void sortOddNumInArray() {
+        int[] array = new int[]{5, 3, 2, 8, 1, 4};
         int[] sortedOdd = Arrays.stream(array).filter(e -> e % 2 == 1).sorted().toArray();
     }
 

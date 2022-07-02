@@ -13,7 +13,7 @@ public class COLORS {
     private static final String MENU_BG = "\u001b[100m";
 
     public static void setGreyBackgroundColor() {
-        System.out.print(SYS+MENU_BG);
+        System.out.print(SYS + MENU_BG);
     }
 
     public static void resetColors() {

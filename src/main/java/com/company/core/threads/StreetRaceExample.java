@@ -93,6 +93,7 @@ class Car implements Runnable {
 abstract class Stage {
     protected int length;
     protected String description;
+
     public abstract void go(Car c);
 }
 
@@ -132,7 +133,7 @@ class Tunnel extends Stage {
                 long time = System.currentTimeMillis();
                 // В тоннель не может одновременно заехать больше половины участников (условность).
                 tunnelSemaphore.acquire();
-                System.out.println(c.getName() + " начал этап: " + description+". Ожидание составило (милисек.) = " + (System.currentTimeMillis() - time));
+                System.out.println(c.getName() + " начал этап: " + description + ". Ожидание составило (милисек.) = " + (System.currentTimeMillis() - time));
                 Thread.sleep(length / c.getSpeed() * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

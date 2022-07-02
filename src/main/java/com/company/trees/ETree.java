@@ -290,7 +290,7 @@ class ETree<E extends Comparable<? super E>> implements ITree<E> {
         Random random = new Random();
         for (int i = 0; i < t.length; i++) {
             t[i] = new ETree<>();
-            System.out.println("                           🎄 Дерево № " + (i + 1)+"");
+            System.out.println("                           🎄 Дерево № " + (i + 1) + "");
             int newValue = 0;
             while (true) {
                 if (t[i].getDepth(t[i].root) > DEPTH) break;
@@ -302,7 +302,7 @@ class ETree<E extends Comparable<? super E>> implements ITree<E> {
             t[i].remove(newValue);// удаляем элемент из-за которого завершился цикл (5-ый уровень)
             t[i].display();
             // выводим данные о дереве
-            System.out.println("Количество узлов 🎗 = "+t[i].size);
+            System.out.println("Количество узлов 🎗 = " + t[i].size);
             System.out.println("Глубина левого поддерева = " + t[i].getDepth(t[i].root.getLeftChild()));
             System.out.println("Глубина правого поддерева = " + t[i].getDepth(t[i].root.getRightChild()));
             System.out.println("Сбалансированность дерева = " + t[i].isBalanced(t[i].root));
@@ -314,7 +314,7 @@ class ETree<E extends Comparable<? super E>> implements ITree<E> {
         for (int cc : unbalanceTreeCount) {
             sum += cc;
         }
-        System.out.printf("Несбалансированных деревьев = %d из %d (%.2f процентов)", sum, unbalanceTreeCount.length, (float)sum / unbalanceTreeCount.length * 100);
+        System.out.printf("Несбалансированных деревьев = %d из %d (%.2f процентов)", sum, unbalanceTreeCount.length, (float) sum / unbalanceTreeCount.length * 100);
     }
 
 

@@ -41,7 +41,7 @@ class Player {
         this.money = money;
     }
 
-    public void show(){
+    public void show() {
         System.out.println(this);
     }
 
@@ -60,8 +60,8 @@ class Player {
         Player p2 = new Player("stas", 1, 12, 90);
         Player p3 = new Player("newbe");
 
-        Player[] players={p1,p2,p3};
-        for(Player p : players){
+        Player[] players = {p1, p2, p3};
+        for (Player p : players) {
             p.show();
         }
     }

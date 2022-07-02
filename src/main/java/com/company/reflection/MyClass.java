@@ -60,7 +60,8 @@ class Main {
             Class[] params = {int.class, String.class};
             myClass = (MyClass) rntmClass.getConstructor(params).newInstance(12, "SecondClass");
             printData(myClass);
-        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException |
+                 NoSuchMethodException e) {
             e.printStackTrace();
         }
     }

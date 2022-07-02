@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 class HashApp {
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         Item aDataItem;
         int aKey, size, n, keysPerCell;
         // Ввод размеров
@@ -17,16 +17,16 @@ class HashApp {
         keysPerCell = 10;
         // Создание таблицы
         HashTable theHashTable = new HashTable(size);
-        for(int j=0; j<n; j++){
-            aKey = (int)(java.lang.Math.random() * keysPerCell * size);
+        for (int j = 0; j < n; j++) {
+            aKey = (int) (java.lang.Math.random() * keysPerCell * size);
             aDataItem = new Item(aKey);
             theHashTable.insert(aDataItem);
         }
-        while(true){
+        while (true) {
             System.out.print("Enter first letter of ");
             System.out.print("show, insert, delete, or find: ");
             char choice = getChar();
-            switch(choice){
+            switch (choice) {
                 case 's':
                     theHashTable.display();
                     break;
@@ -45,9 +45,9 @@ class HashApp {
                     System.out.print("Enter key value to find: ");
                     aKey = getInt();
                     aDataItem = theHashTable.find(aKey);
-                    if(aDataItem != null){
+                    if (aDataItem != null) {
                         System.out.println("Found " + aKey);
-                    }else
+                    } else
                         System.out.println("Could not find " + aKey);
                     break;
                 default:
@@ -55,17 +55,20 @@ class HashApp {
             }
         }
     }
+
     public static String getString() throws IOException {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
         String s = br.readLine();
         return s;
     }
-    public static char getChar() throws IOException{
+
+    public static char getChar() throws IOException {
         String s = getString();
         return s.charAt(0);
     }
-    public static int getInt() throws IOException{
+
+    public static int getInt() throws IOException {
         String s = getString();
         return Integer.parseInt(s);
     }

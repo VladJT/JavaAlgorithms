@@ -47,17 +47,17 @@ class Player implements IOriginator {
     }
 
     public void GetHurt(int hurt) {
-        System.out.println("Нанесен урон: "+hurt);
+        System.out.println("Нанесен урон: " + hurt);
         health -= hurt;
     }
 
     public void GetCure(int cure) {
-        System.out.println("Лечение: "+cure);
+        System.out.println("Лечение: " + cure);
         health += cure;
     }
 
     public void PrintPulse() {
-       System.out.println("health = "+health);
+        System.out.println("health = " + health);
     }
 
     @Override
