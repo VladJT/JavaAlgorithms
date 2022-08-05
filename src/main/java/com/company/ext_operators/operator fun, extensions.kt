@@ -28,15 +28,23 @@ operator fun Money.plus(secondValue: Money): Money {
     }
 }
 
-class Test{
-    companion object{
+// public infix fun <A, B> A.to(that: B): Pair<A, B> = Pair(this, that)
+fun creditInfo(): Pair<String, Money> {
+    //return Pair("Ivan",Money(100, Money.Currency.RUB))
+    return "Ivan" to Money(100, Money.Currency.RUB)
+}
+
+
+class Test {
+    companion object {
         @JvmStatic
         fun main(args: Array<String>) {
             val creditMoney = Money(100, Money.Currency.RUB)
             val incomeMoney = Money(50, Money.Currency.RUB)
 
-            val ostatok = creditMoney - incomeMoney + Money(20, Money.Currency.RUB)
+            val ostatok = creditMoney sell (incomeMoney + Money(20, Money.Currency.RUB))
             println("itog = $ostatok")
+            println(creditInfo())
         }
     }
 }
