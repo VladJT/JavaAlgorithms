@@ -3,3 +3,5 @@
 target/
 # Java class files
 *.class
+pom.xml
+*.iml
