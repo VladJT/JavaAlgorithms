@@ -64,12 +64,61 @@ class Kotlin {
             return if (p.first.size == 1) p.first[0] else p.second[0]
         }
 
+
+        //fun persistence(num: Int) = if (num < 10) 0 else 1 + persistence(num.toString().map { it - '0' }.reduce(Int::times))
+        fun persistence(num: Int): Int {
+            var counter = 0
+            if (num >= 10) {
+                counter = 1 + persistence(num.toString().toCharArray().map { (it.code - 48) }.reduce(Int::times))
+            }
+            return counter
+        }
+
+        // fun findEvenIndex(arr: IntArray) = arr.indices.indexOfFirst { arr.take(it).sum() == arr.drop(it + 1).sum() }
+        fun findEvenIndex(arr: IntArray): Int {
+            for (i in arr.indices) {
+                var sumLeft = 0
+                if (i > 0) sumLeft = arr.slice(0 until i).sum()
+                var sumRight = 0
+                if (i < arr.lastIndex) sumRight = arr.slice(i + 1..arr.lastIndex).sum()
+                if (sumLeft == sumRight) return i
+            }
+            return -1
+        }
+
+        fun dirReduc(arr: Array<String>): Array<String> {
+//         val s = Stack<String>()
+//        arr.forEach {
+//            when (it) {
+//                "NORTH" -> if (s.isNotEmpty() && s.peek() == "SOUTH") s.pop() else s.push(it)
+//                "SOUTH" -> if (s.isNotEmpty() && s.peek() == "NORTH") s.pop() else s.push(it)
+//                "EAST" -> if (s.isNotEmpty() && s.peek() == "WEST") s.pop() else s.push(it)
+//                "WEST" -> if (s.isNotEmpty() && s.peek() == "EAST") s.pop() else s.push(it)
+//            }
+//        }
+//        return s.toList().toTypedArray()
+
+            var i = 0
+            val a = mutableListOf<String>()
+            a.addAll(arr)
+            while (i < a.lastIndex && a.size > 1) {
+                if ((a[i] == "EAST" && a[i + 1] == "WEST")||(a[i] == "WEST" && a[i + 1] == "EAST")||
+                    (a[i] == "NORTH" && a[i + 1] == "SOUTH")||(a[i] == "SOUTH" && a[i + 1] == "NORTH")) {
+                    a.removeAt(i)
+                    a.removeAt(i)
+                    if (i > 0) i--
+                    continue
+                } else i++
+            }
+            return a.toTypedArray()
+        }
+
         @JvmStatic
         fun main(args: Array<String>) {
             val startTime = System.currentTimeMillis()
             //-------------------------
-            val exampleTest1 = arrayOf(1, 1, -1, 1, 1, -44, 7, 7, 7, 7, 7, 7, 7, 7)
-            println(find(exampleTest1))
+            var a = arrayOf("NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST")//WEST
+            println(dirReduc(a).contentToString())
 
 
             //-------------------------
