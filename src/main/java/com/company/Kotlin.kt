@@ -1,10 +1,7 @@
 package com.company
 
-import java.lang.Math.abs
 import java.util.*
-import kotlin.Comparator
-import kotlin.properties.Delegates
-import kotlin.streams.toList
+import java.util.regex.Pattern
 
 
 class Kotlin {
@@ -102,8 +99,9 @@ class Kotlin {
             val a = mutableListOf<String>()
             a.addAll(arr)
             while (i < a.lastIndex && a.size > 1) {
-                if ((a[i] == "EAST" && a[i + 1] == "WEST")||(a[i] == "WEST" && a[i + 1] == "EAST")||
-                    (a[i] == "NORTH" && a[i + 1] == "SOUTH")||(a[i] == "SOUTH" && a[i + 1] == "NORTH")) {
+                if ((a[i] == "EAST" && a[i + 1] == "WEST") || (a[i] == "WEST" && a[i + 1] == "EAST") ||
+                    (a[i] == "NORTH" && a[i + 1] == "SOUTH") || (a[i] == "SOUTH" && a[i + 1] == "NORTH")
+                ) {
                     a.removeAt(i)
                     a.removeAt(i)
                     if (i > 0) i--
@@ -113,12 +111,56 @@ class Kotlin {
             return a.toTypedArray()
         }
 
+
+        fun longestConsec(strarr: Array<String>, k: Int): String {
+            val n = strarr.size
+            return if (n == 0 || k > n || k <= 0) ""
+            else strarr.asSequence()
+                .windowed(k)
+                .map { it.joinToString("") }
+                .maxBy { it.length } ?: ""
+        }
+
+        // RGB To Hex Conversion
+        fun rgb(r: Int, g: Int, b: Int): String {
+            return "${hex(r)}${hex(g)}${hex(b)}"
+        }
+
+        fun hex(i: Int): String {
+            var x = i
+            if (i < 0) x = 0
+            if (i > 255) x = 255
+            val s = Integer.toHexString(x).uppercase(Locale.getDefault())
+            return if (s.length < 2) "0$s" else s
+        }
+
+        // String incrementer
+        fun incrementString(str: String): String {
+            val pattern = Pattern.compile("[0-9]+$")
+            val matcher = pattern.matcher(str)
+            return if (matcher.find()) {
+                val r = str.substring(matcher.start(), matcher.end())
+                val x = (r.toInt() + 1).toString()
+                var n = r.length - x.length
+                if (n < 0) n = 0
+                str.substring(0, matcher.start()).plus("0".repeat(n).plus(x))
+            } else {
+                when (val x = str.toIntOrNull()) {
+                    null -> str.plus("1")
+                    else -> (x + 1).toString()
+                }
+            }
+        }
+
         @JvmStatic
         fun main(args: Array<String>) {
             val startTime = System.currentTimeMillis()
             //-------------------------
-            var a = arrayOf("NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST")//WEST
-            println(dirReduc(a).contentToString())
+
+            println(incrementString("foobar001"))//foobar002
+            println(incrementString("foobar999"))//foobar01000
+            println(incrementString("009"))//foo1
+            println(incrementString(""))//1
 
 
             //-------------------------
