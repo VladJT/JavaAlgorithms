@@ -152,15 +152,24 @@ class Kotlin {
             }
         }
 
+        // Find the missing letter
+        // fun findMissingLetter(array: CharArray) = (array.first()..array.last()).first { it !in array }
+        fun findMissingLetter(array: CharArray): Char {
+            var i = 1
+            while(i<array.size){
+                if(array[i]-array[i-1]!=1) return (array[i]-1)
+                i++
+            }
+            return ' '
+        }
+
         @JvmStatic
         fun main(args: Array<String>) {
             val startTime = System.currentTimeMillis()
             //-------------------------
 
-            println(incrementString("foobar001"))//foobar002
-            println(incrementString("foobar999"))//foobar01000
-            println(incrementString("009"))//foo1
-            println(incrementString(""))//1
+            println(findMissingLetter(charArrayOf('a', 'b', 'c', 'd', 'f')))//e
+
 
 
             //-------------------------
