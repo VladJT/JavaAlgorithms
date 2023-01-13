@@ -156,20 +156,63 @@ class Kotlin {
         // fun findMissingLetter(array: CharArray) = (array.first()..array.last()).first { it !in array }
         fun findMissingLetter(array: CharArray): Char {
             var i = 1
-            while(i<array.size){
-                if(array[i]-array[i-1]!=1) return (array[i]-1)
+            while (i < array.size) {
+                if (array[i] - array[i - 1] != 1) return (array[i] - 1)
                 i++
             }
             return ' '
         }
+
+        // fun josephusSurvivor(n: Int, k: Int): Int = (1..n).fold(1){ i, j -> (i + k) % j } + 1
+        fun josephusSurvivor(n: Int, k: Int): Int {
+            val arr = mutableListOf<Int>()
+            for (i in 1..n) arr.add(i)
+            return killNext(arr, k)
+        }
+
+        fun killNext(arr: MutableList<Int>, k: Int): Int {
+            return if (arr.size == 1) arr[0]
+            else {
+                Collections.rotate(arr, -(k - 1))
+                arr.removeAt(0)
+                killNext(arr, k)
+            }
+        }
+
+
+        fun smallest(n: Long): LongArray {
+            val arr = longArrayOf(n, 0, 0)
+            val stN = n.toString()
+            for (i in 0..stN.length - 1) {
+                val ch = stN.toCharArray()[i]
+                val newSt = n.toString().removeCharAtIndex(i)
+                for (j in 0..newSt.length ) {
+                    val smallest = newSt.addCharAtIndex(ch, j).toLong()
+                    if (smallest < arr[0]) {
+                        arr[0] = smallest
+                        arr[1] = i.toLong()
+                        arr[2] = j.toLong()
+                    }
+                }
+            }
+            return arr
+        }
+
+        fun String.addCharAtIndex(char: Char, index: Int) =
+            StringBuilder(this).apply { insert(index, char) }.toString()
+
+        fun String.removeCharAtIndex(index: Int) =
+            StringBuilder(this).apply { deleteCharAt(index) }.toString()
 
         @JvmStatic
         fun main(args: Array<String>) {
             val startTime = System.currentTimeMillis()
             //-------------------------
 
-            println(findMissingLetter(charArrayOf('a', 'b', 'c', 'd', 'f')))//e
-
+            println(smallest(261235).contentToString())//[126235, 2, 0]
+            println(smallest(285365).contentToString())//[238565, 3, 1]
+            println(smallest(209917).contentToString())//[29917, 0, 1]
+            println(smallest(935855753).contentToString())//3585575[39, 0, 8]
 
 
             //-------------------------

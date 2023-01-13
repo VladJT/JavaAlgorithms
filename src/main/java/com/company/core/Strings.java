@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 class Strings {
 
     public static void main(String[] args) {
+        Object object;
         String s1 = "  ";
         String s2 = """
                 this
