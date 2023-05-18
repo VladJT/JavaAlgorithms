@@ -2,22 +2,10 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2022-04-02T13:04:50.894847800Z</date>
-  <millis>1648904690894</millis>
-  <nanos>847800</nanos>
+  <date>2022-09-29T07:12:07.356283900Z</date>
+  <millis>1664435527356</millis>
+  <nanos>283900</nanos>
   <sequence>0</sequence>
-  <logger>method7_xmlLogger</logger>
-  <level>INFO</level>
-  <class>com.company.core.testjunit.junitandlogger.Method7</class>
-  <method>checkBalance</method>
-  <thread>1</thread>
-  <message>Дан массив: [0], результат проверки баланса: false</message>
-</record>
-<record>
-  <date>2022-04-02T13:04:50.945845Z</date>
-  <millis>1648904690945</millis>
-  <nanos>845000</nanos>
-  <sequence>1</sequence>
   <logger>method7_xmlLogger</logger>
   <level>INFO</level>
   <class>com.company.core.testjunit.junitandlogger.Method7</class>
@@ -26,10 +14,10 @@
   <message>Дан массив: [1, 2, 3, 4, 2], результат проверки баланса: true</message>
 </record>
 <record>
-  <date>2022-04-02T13:04:50.950844600Z</date>
-  <millis>1648904690950</millis>
-  <nanos>844600</nanos>
-  <sequence>2</sequence>
+  <date>2022-09-29T07:12:07.385286500Z</date>
+  <millis>1664435527385</millis>
+  <nanos>286500</nanos>
+  <sequence>1</sequence>
   <logger>method7_xmlLogger</logger>
   <level>INFO</level>
   <class>com.company.core.testjunit.junitandlogger.Method7</class>
@@ -38,10 +26,10 @@
   <message>Дан массив: [1, 2, 1, 7, 9], результат проверки баланса: false</message>
 </record>
 <record>
-  <date>2022-04-02T13:04:50.953848700Z</date>
-  <millis>1648904690953</millis>
-  <nanos>848700</nanos>
-  <sequence>3</sequence>
+  <date>2022-09-29T07:12:07.388286500Z</date>
+  <millis>1664435527388</millis>
+  <nanos>286500</nanos>
+  <sequence>2</sequence>
   <logger>method7_xmlLogger</logger>
   <level>INFO</level>
   <class>com.company.core.testjunit.junitandlogger.Method7</class>
@@ -50,10 +38,10 @@
   <message>Дан массив: [8, 3, -4, 0, 2], результат проверки баланса: false</message>
 </record>
 <record>
-  <date>2022-04-02T13:04:50.955849Z</date>
-  <millis>1648904690955</millis>
-  <nanos>849000</nanos>
-  <sequence>4</sequence>
+  <date>2022-09-29T07:12:07.392283700Z</date>
+  <millis>1664435527392</millis>
+  <nanos>283700</nanos>
+  <sequence>3</sequence>
   <logger>method7_xmlLogger</logger>
   <level>INFO</level>
   <class>com.company.core.testjunit.junitandlogger.Method7</class>
@@ -62,10 +50,10 @@
   <message>Дан массив: [1, 3, -7, -1, -2], результат проверки баланса: true</message>
 </record>
 <record>
-  <date>2022-04-02T13:04:50.957848800Z</date>
-  <millis>1648904690957</millis>
-  <nanos>848800</nanos>
-  <sequence>5</sequence>
+  <date>2022-09-29T07:12:07.395283Z</date>
+  <millis>1664435527395</millis>
+  <nanos>283000</nanos>
+  <sequence>4</sequence>
   <logger>method7_xmlLogger</logger>
   <level>INFO</level>
   <class>com.company.core.testjunit.junitandlogger.Method7</class>
