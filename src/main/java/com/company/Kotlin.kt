@@ -1,5 +1,7 @@
 package com.company
 
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.regex.Pattern
 
@@ -99,9 +101,7 @@ class Kotlin {
             val a = mutableListOf<String>()
             a.addAll(arr)
             while (i < a.lastIndex && a.size > 1) {
-                if ((a[i] == "EAST" && a[i + 1] == "WEST") || (a[i] == "WEST" && a[i + 1] == "EAST") ||
-                    (a[i] == "NORTH" && a[i + 1] == "SOUTH") || (a[i] == "SOUTH" && a[i + 1] == "NORTH")
-                ) {
+                if ((a[i] == "EAST" && a[i + 1] == "WEST") || (a[i] == "WEST" && a[i + 1] == "EAST") || (a[i] == "NORTH" && a[i + 1] == "SOUTH") || (a[i] == "SOUTH" && a[i + 1] == "NORTH")) {
                     a.removeAt(i)
                     a.removeAt(i)
                     if (i > 0) i--
@@ -115,10 +115,7 @@ class Kotlin {
         fun longestConsec(strarr: Array<String>, k: Int): String {
             val n = strarr.size
             return if (n == 0 || k > n || k <= 0) ""
-            else strarr.asSequence()
-                .windowed(k)
-                .map { it.joinToString("") }
-                .maxBy { it.length } ?: ""
+            else strarr.asSequence().windowed(k).map { it.joinToString("") }.maxBy { it.length } ?: ""
         }
 
         // RGB To Hex Conversion
@@ -156,22 +153,68 @@ class Kotlin {
         // fun findMissingLetter(array: CharArray) = (array.first()..array.last()).first { it !in array }
         fun findMissingLetter(array: CharArray): Char {
             var i = 1
-            while(i<array.size){
-                if(array[i]-array[i-1]!=1) return (array[i]-1)
+            while (i < array.size) {
+                if (array[i] - array[i - 1] != 1) return (array[i] - 1)
                 i++
             }
             return ' '
+        }
+
+        // fun top3(s: String): List<String> =
+        //    s.toLowerCase()
+        //        .split("[^a-z']+".toRegex())
+        //        .filter { it.contains("[a-z]".toRegex()) }
+        //        .groupingBy { it }
+        //        .eachCount()
+        //        .entries
+        //        .sortedByDescending { it.value }
+        //        .take(3)
+        //        .map { it.key }
+        fun top3(s: String): List<String> {
+            //    val list = s.replace("[/\\\\#.,!]".toRegex(), " ")
+            val list = s
+                .replace("_", " ")
+                .replace("'", "_")
+                .replace("[\\W]".toRegex(), " ")
+                .replace("_", "'")
+                .lowercase(Locale.getDefault()).split(" ").filter { it.isNotBlank() && !it.matches("^'+$".toRegex()) }
+
+            val map = mutableMapOf<String, Int>()
+
+            list.forEach {
+                if (map.containsKey(it)) {
+                    map[it] = map[it]!! + 1
+                } else {
+                    map[it] = 1
+                }
+            }
+
+            val result =
+                map.entries.sortedByDescending { it.value }
+                    .take(3)
+                    .map {
+                        it.key
+                    }.toList()
+
+            return result
+        }
+
+        fun date_nb_days(a0: Double, a: Double, p: Double): String {
+            var startDate = LocalDate.of(2016, 1, 1)
+            var startMoney = a0
+            var days: Long = 0
+            while(startMoney <= a){
+                startMoney += startMoney*p/100/360
+                days++
+            }
+            return startDate.plusDays(days).toString()
         }
 
         @JvmStatic
         fun main(args: Array<String>) {
             val startTime = System.currentTimeMillis()
             //-------------------------
-
-            println(findMissingLetter(charArrayOf('a', 'b', 'c', 'd', 'f')))//e
-
-
-
+            println(date_nb_days(100.0, 101.0, 0.98))//--> "2017-01-01" (366 days)
             //-------------------------
             println("Время выполнения (милисек.): " + (System.currentTimeMillis() - startTime))
         }
