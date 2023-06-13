@@ -4,6 +4,7 @@ import java.time.LocalDate
 import java.util.*
 import java.util.regex.Pattern
 import kotlin.Comparator
+import kotlin.math.roundToLong
 
 
 class Kotlin {
@@ -203,18 +204,88 @@ class Kotlin {
             var startDate = LocalDate.of(2016, 1, 1)
             var startMoney = a0
             var days: Long = 0
-            while(startMoney <= a){
-                startMoney += startMoney*p/100/360
+            while (startMoney <= a) {
+                startMoney += startMoney * p / 100 / 360
                 days++
             }
             return startDate.plusDays(days).toString()
+        }
+
+
+        //   if(zipcode.isEmpty()){
+        //      return ":/"
+        //    }
+        //    var matches = r.split(",").filter{it.endsWith(zipcode)}.map { it.replace(" $zipcode", "") }
+        //
+        //    val numbers = matches.map { it.substringBefore(" ") }.joinToString(",")
+        //    val streets = matches.map { it.substringAfter(" ") }.joinToString(",")
+        //
+        //    return "$zipcode:$streets/$numbers"
+        val adresses =
+            "123 Main Street St. Louisville OH 43071,432 Main Long Road St. Louisville OH 43071,786 High Street Pollocksville NY 56432"
+
+        fun travel(r: String, zipcode: String): String {
+            var streets = ""
+            var nums = ""
+
+            r.split(",").map { address ->
+                val formattedAddress = address
+                    .replace("(^[\\d]+)\\s".toRegex(), "$1|")
+                    .replace("\\s(..\\s[\\d]+)".toRegex(), "|$1")
+                    .split("|")
+
+                val _num = formattedAddress[0]
+                val _street = formattedAddress[1]
+                val _zip = formattedAddress[2]
+
+                if (_zip == zipcode) {
+                    streets += _street + ","
+                    nums += _num + ","
+                }
+            }
+
+            streets = streets.replace(",$".toRegex(), "")
+            nums = nums.replace(",$".toRegex(), "")
+
+            return "$zipcode:$streets/$nums"
+        }
+
+
+        // multiplication table
+        fun multiplicationTable(size: Int): Array<IntArray> =
+            Array(size) { i -> IntArray(size) { j -> (i + 1) * (j + 1) } }
+
+        fun balanceStatements(lst: String): String {
+            if (lst.isBlank()) return "Buy: 0 Sell: 0"
+
+            var bad = mutableListOf<String>()
+            var b = 0.0
+            var s = 0.0
+
+            for (order in lst.split(", ")) {
+                val match = "^([^\\s]+)\\s(\\d+)\\s(\\d+\\.\\d+)\\s([BS])$".toRegex().find(order)
+
+                if (match == null) bad.add(order + " ;")
+                else {
+                    var (m, quote, quantity, price, t) = match.groupValues
+                    val p = quantity.toInt() * price.toDouble()
+                    if (t == "B") b += p else if (t == "S") s += p
+                }
+            }
+            val bf = if (bad.isEmpty()) "" else "; Badly formed ${bad.size}: ${bad.joinToString("")}"
+            return String.format("Buy: %.0f Sell: %.0f%s", b, s, bf)
         }
 
         @JvmStatic
         fun main(args: Array<String>) {
             val startTime = System.currentTimeMillis()
             //-------------------------
-            println(date_nb_days(100.0, 101.0, 0.98))//--> "2017-01-01" (366 days)
+
+            var l = "ZNGA 1300 2.66 B, CLH15.NYM 50 56.32 B, OWW 1000 11.623 B, OGG 20 580.1 B"
+            var sol = "Buy: 29499 Sell: 0"
+
+            println(balanceStatements(l))
+
             //-------------------------
             println("Время выполнения (милисек.): " + (System.currentTimeMillis() - startTime))
         }
