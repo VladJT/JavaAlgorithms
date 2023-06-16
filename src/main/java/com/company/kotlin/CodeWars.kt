@@ -1,13 +1,12 @@
-package com.company
+package com.company.kotlin
 
 import java.time.LocalDate
 import java.util.*
 import java.util.regex.Pattern
 import kotlin.Comparator
-import kotlin.math.roundToLong
 
 
-class Kotlin {
+class CodeWars {
     companion object {
         fun outed(meet: Map<String, Int>, boss: String): String =
             if ((meet.values + meet[boss]!!).average() < 5.5) "Get Out Now!" else "Nice Work Champ!"
