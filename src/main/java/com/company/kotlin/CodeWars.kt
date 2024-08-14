@@ -3,7 +3,6 @@ package com.company.kotlin
 import java.time.LocalDate
 import java.util.*
 import java.util.regex.Pattern
-import kotlin.Comparator
 
 
 class CodeWars {
@@ -276,17 +275,38 @@ class CodeWars {
         }
 
         @JvmStatic
+
+
         fun main(args: Array<String>) {
-            val startTime = System.currentTimeMillis()
+            //val startTime = System.currentTimeMillis()
             //-------------------------
+            val cities = "5 6".split(" ").map { it.toInt() }
+            val roads = listOf(
+                "1 2 8",
+                "2 3 6",
+                "2 3 2",
+                "3 1 4",
+                "5 4 1",
+                "4 5 8"
+            )
 
-            var l = "ZNGA 1300 2.66 B, CLH15.NYM 50 56.32 B, OWW 1000 11.623 B, OGG 20 580.1 B"
-            var sol = "Buy: 29499 Sell: 0"
+            val uniqeStates = mutableSetOf<String>()
+            var maxRoad = 0
 
-            println(balanceStatements(l))
+            roads.forEach {
+                val m =  it.split(" ").map { it.toInt() }
+                if(m[2]>maxRoad) maxRoad = m[2]
+
+                uniqeStates.add(listOf(m[0], m[1]).sorted().toString())
+            }
+
+
+            val i = 1
 
             //-------------------------
-            println("Время выполнения (милисек.): " + (System.currentTimeMillis() - startTime))
+            // println("Время выполнения (милисек.): " + (System.currentTimeMillis() - startTime))
         }
+
+
     }
 }
