@@ -9,11 +9,41 @@ import kotlin.random.Random
 // observable
 
 fun main() {
-    Consumer(Producer()).execLambda()
+    //Consumer(Producer()).execLambda()
 
-    val observer = Consumer(Producer())
-    observer.execTimeFlow()
-    readln()
+//    val observer = Consumer(Producer())
+//    observer.execTimeFlow()
+//    readln()
+
+    val o: MyObservable = MyObservable()
+    val p = o.getData().subscribe(
+        {
+            println(it)
+        }, { e ->
+            println("error: $e")
+        }, {
+            println("finished")
+        })
+
+}
+
+class MyObservable {
+
+    fun getData(): Observable<Int> {
+        return Observable.create<Int> { emitter ->
+            try {
+                emitter.onNext(1)
+                Thread.sleep(500)
+                emitter.onNext(2)
+                emitter.onError(Throwable(Exception("some errors")))
+                Thread.sleep(500)
+                emitter.onNext(3)
+                emitter.onComplete()
+            } catch (e: Exception) {
+                emitter.onError(e)
+            }
+        }
+    }
 }
 
 // в Producer мы станем создавать Observable разными способами
