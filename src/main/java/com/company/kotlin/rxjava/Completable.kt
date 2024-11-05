@@ -9,9 +9,12 @@ import io.reactivex.rxjava3.core.Completable
 используется CompletableObserver, аналогичный Observer, но не имеющий onNext
  */
 fun main() {
-    saveCompletable("vlad@mail.ru").subscribe() {
+    saveCompletable("vlad@mail.ru").subscribe({
         println("Complete")
-    }
+    },
+        {
+        println("on Error")
+    })
 
 
 }
@@ -19,6 +22,7 @@ fun main() {
 private fun saveCompletable(mail: String) = Completable.create { emitter ->
     try {
         saveToDb(mail)
+        throw Exception("not saved")
         emitter.onComplete()
     } catch (e: java.lang.Exception) {
         emitter.onError(e)

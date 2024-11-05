@@ -1,6 +1,7 @@
 package com.company.kotlin.rxjava
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
 
@@ -24,16 +25,15 @@ BehaviorSubject хранит только последнее значение.
  */
 
 fun main() {
+    publishSubject.observeOn(Schedulers.io())
+    Thread.sleep(1000)
     publishSubject.subscribe { println("on next: $it") }
-
-    Thread.sleep(2000)
-    publishSubject.onNext("from main!")
-
     readln()
 }
 
 val publishSubject = PublishSubject.create<String>().apply {
-    Observable.interval(1, TimeUnit.SECONDS).subscribe() {
-        println("value from subject $it")
+    Observable.interval(1, TimeUnit.SECONDS).subscribe {
+        println("- $it")
+        onNext("Value: $it") // Отправка данных в publishSubject
     }
 }

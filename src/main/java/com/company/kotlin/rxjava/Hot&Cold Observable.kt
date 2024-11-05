@@ -13,23 +13,26 @@ import java.util.concurrent.TimeUnit
 
 fun main() {
     val hotObservable = createHotObservable()
-    hotObservable.connect()
-    Thread.sleep(2000)
+    //hotObservable.connect()
+    println("start")
+    Thread.sleep(1000)
+    println("start_2")
 
     hotObservable.subscribe { println("🏳️‍ = $it") }
-    hotObservable.connect()
-
     Thread.sleep(2000)
-
     hotObservable.subscribe { println("🧑 = $it") }
-    hotObservable.connect()
 
     readln()
 }
 
-fun createHotObservable() = Observable.interval(1000, TimeUnit.MILLISECONDS).replay()
+fun createHotObservable() = Observable.interval(500, TimeUnit.MILLISECONDS).share()
 
 /**
+
+ publish - connect _ никого не ждем , не кеширует , запуск сразу после connect
+
+share - горячий поток (ждет первого подписчика и затем не кеширует данные)
+
 Replay
 Отличие в том, что метод кэширует данные, и каждый новый подписчик получает полный набор
 данных, например, все сообщения чата, пришедшие до подписки, когда бы он ни подключился. Можно
