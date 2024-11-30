@@ -3,6 +3,7 @@ package com.company.kotlin
 import java.time.LocalDate
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.math.abs
 
 
 class CodeWars {
@@ -280,32 +281,83 @@ class CodeWars {
         fun main(args: Array<String>) {
             //val startTime = System.currentTimeMillis()
             //-------------------------
-            val cities = "5 6".split(" ").map { it.toInt() }
-            val roads = listOf(
-                "1 2 8",
-                "2 3 6",
-                "2 3 2",
-                "3 1 4",
-                "5 4 1",
-                "4 5 8"
+            // val expected = arrayOf(intArrayOf(0,27), intArrayOf(1,13), intArrayOf(2,14), intArrayOf(6,7))
+
+            val input = arrayOf(
+                intArrayOf(21, 9, 10, 4, 5, 4, 6, 2, 2, 1, 4, 1, 3, 2, 4),
+                intArrayOf(19, 9, 12, 4, 5, 4, 6, 2, 2, 1, 4, 1, 3, 2, 4),
+                intArrayOf(19, 9, 10, 5, 5, 4, 6, 2, 2, 1, 4, 1, 3, 2, 4),
+                intArrayOf(19, 9, 10, 4, 5, 4, 6, 3, 2, 1, 4, 1, 3, 2, 4),
+                intArrayOf(28, 13, 14, 6, 7, 5, 9),
+                intArrayOf(27, 14, 14, 6, 7, 5, 9),
+                intArrayOf(27, 13, 15, 6, 7, 5, 9),
+                intArrayOf(29, 13, 16, 5, 8, 9, 1)
             )
 
-            val uniqeStates = mutableSetOf<String>()
-            var maxRoad = 0
-
-            roads.forEach {
-                val m =  it.split(" ").map { it.toInt() }
-                if(m[2]>maxRoad) maxRoad = m[2]
-
-                uniqeStates.add(listOf(m[0], m[1]).sorted().toString())
+            for (i in input) {
+                println(findIncorrectNumber(i).toList())
             }
-
-
-            val i = 1
 
             //-------------------------
             // println("Время выполнения (милисек.): " + (System.currentTimeMillis() - startTime))
         }
+
+
+        val result = intArrayOf(0, 0)
+
+        fun findIncorrectNumber(tree: IntArray): IntArray {
+            find(0, 0, tree, true)
+            return result
+        }
+
+        fun find(curIndex: Int, level: Int, tree: IntArray, parentBad: Boolean) {
+            var child1 = curIndex * 2 +1
+            var child2 = curIndex * 2 +2
+
+            if (child2 > tree.lastIndex) return
+
+            if (tree[curIndex] != tree[child1] + tree[child2]) {
+                if (parentBad) {
+                    result[0] = curIndex
+                    result[1] = tree[child1] + tree[child2]
+                } else {
+                    result[0] = child2
+                    result[1] = tree[curIndex] - tree[child1]
+                }
+            }
+
+            val parBad = tree[curIndex] != tree[child1] + tree[child2]
+            find(child1, level + 1, tree, parBad)
+            find(child2, level + 1, tree, parBad)
+        }
+
+
+        fun doSqrSortedList(inputArray: IntArray): IntArray {
+
+            var result = mutableListOf<Int>()
+            var left = 0
+            var right = inputArray.size - 1
+
+            // -3, 2, 4
+            // 0
+            // 2
+            //
+            while (left <= right) {
+                if (inputArray[left].sqr() >= inputArray[right].sqr()) {
+                    result.add(inputArray[left].sqr())
+                    left++
+                } else {
+                    result.add(inputArray[right].sqr())
+                    right--
+                }
+            }
+            return result.reversed().toIntArray()
+        }
+
+        private fun Int.sqr(): Int = this * this
+
+        fun elevator(left: Int, right: Int, call: Int): String =
+            if (abs(call - left) < abs(call - right)) "left" else "right"
 
 
     }
